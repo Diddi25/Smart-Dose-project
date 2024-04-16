@@ -1,0 +1,36 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import "./css/index.css";
+import model from "./model/smart-dose-model.js";
+import { observable, configure } from "mobx";
+
+/*
+configure({ enforceActions: "never", });  // we don't use Mobx actions
+const reactiveModel= observable(model);
+
+import {createElement} from "react";
+window.React= {createElement:createElement}; // needed in the lab because it works with both React and Vue
+
+import {createRoot} from "react-dom/client";
+*/
+import App from './App-root.jsx';
+
+/*
+
+createRoot(document.getElementById('root'))
+    .render(<App model={reactiveModel}/>);  // mounts the app in the page DIV with the id "root"
+// to see the DIV, look at react.html in the developer tools Sources
+// react.html, with the content <div id="root"></div> is configured in vite.config.js
+
+// ------ for debug purposes ----------
+window.myModel= reactiveModel;             // make the model available in the Console
+//window.myModel= reactiveModel;  
+
+/*Glöm inte bort makerouter + connectToFirebase*/
+
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
