@@ -1,4 +1,8 @@
 
-navItems {
+.navItems {
     float: left;
+}
+
+.loginButton {
+    float: right;
 }

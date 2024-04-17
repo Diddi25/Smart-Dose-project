@@ -3,12 +3,14 @@ import "../css/navigationbar.css";
 function NavigationBarView(props) {
     return (
         <div>
-            <ul>
+            <ul className="navItems">
                 <lis>Home </lis>
                 <lis> Instructions </lis>
                 <lis> Functionlities </lis>
                 <lis> About </lis>
-                <lis><button>Login </button></lis>
+            </ul>
+            <ul className="loginButton">
+                <lis><button>Login</button></lis>
             </ul>
         </div>
     );

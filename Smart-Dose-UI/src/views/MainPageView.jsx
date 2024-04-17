@@ -1,9 +1,11 @@
-
+import "../css/navigationbar.css";
 
 function MainPageView(props) {
     return (
         <div>
-            <div>
+            <div className="mainPagePositioning">
+                <br />
+                <br />
                 <button>dispenser status</button>
             </div>
             <div>
