@@ -3,20 +3,21 @@ import "../css/navigationbar.css";
 function MainPageView(props) {
     return (
         <div>
-            <div className="mainPagePositioning">
+            <div>
                 <br />
                 <br />
-                <button>dispenser status</button>
+                <p>Select weight</p>
+                <button>0-3 kg</button>
+                <button>4-5 kg</button>
             </div>
             <div>
-                <p>Input weight</p>
-                <input type="text" />
-            </div>
-            <div>
+                <br />
                 <p>Select detergent type</p>
-                <select name="" id=""></select>
+                <button>WHITE</button>
+                <button>COLOR</button>
             </div>
             <div>
+                <br />
                 <p>Select water hardness</p>
                 <select name="" id=""></select>
             </div>
@@ -24,7 +25,11 @@ function MainPageView(props) {
                 <br />
                 <button>start</button>
                 <br />
-                <button disabled="true">stop</button>
+                <button disabled="true">cancel</button>
+            </div>
+            <div>
+                <br />
+                <button>dispenser status</button>
             </div>
         </div>
     );

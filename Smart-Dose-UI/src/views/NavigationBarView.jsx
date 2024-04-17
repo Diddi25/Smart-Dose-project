@@ -3,15 +3,10 @@ import "../css/navigationbar.css";
 function NavigationBarView(props) {
     return (
         <div>
-            <ul className="navItems">
-                <lis>Home </lis>
-                <lis> Instructions </lis>
-                <lis> Functionlities </lis>
-                <lis> About </lis>
-            </ul>
-            <ul className="loginButton">
-                <lis><button>Login</button></lis>
-            </ul>
+            <a href="" className="navItems">Home</a>
+            <a href="" className="navItems">About us</a>
+            <a href="" className="navItems">Instructions</a>
+            <a href="" className="loginButton"><button>Login</button></a>
         </div>
     );
 

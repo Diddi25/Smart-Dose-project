@@ -1,6 +1,7 @@
 
 .navItems {
     float: left;
+    margin-right: 10px;
 }
 
 .loginButton {
