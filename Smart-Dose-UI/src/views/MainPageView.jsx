@@ -15,6 +15,8 @@ function MainPageView(props) {
                 <p>Select detergent type</p>
                 <button>WHITE</button>
                 <button>COLOR</button>
+                <br />
+                
             </div>
             <div>
                 <br />
