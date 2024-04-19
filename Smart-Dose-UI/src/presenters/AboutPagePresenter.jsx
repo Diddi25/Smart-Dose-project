@@ -1,13 +1,13 @@
-import MainPageView from "../views/MainPageView.jsx";
+import AboutPageView from "../views/AboutPageView.jsx";
 
 export default // needed for the presenter to update (its view) when relevant parts of the model change
-    function MainPage(props){
+    function AboutPage(props){
         /*
         function functionName(parameter) {
             return props.model.functionInModel(parameterIfAny)
         }
         */
-        return <MainPageView 
+        return <AboutPageView 
                                     /*properties used in view*/
                                     />;
 }

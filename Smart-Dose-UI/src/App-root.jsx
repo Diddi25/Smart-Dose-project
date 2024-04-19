@@ -2,7 +2,9 @@ import { useState } from 'react'
 import "./css/App.css";
 import NavigationBar from "./presenters/NavigationBarPresenter.jsx";
 import MainPage from "./presenters/MainPagePresenter.jsx";
+import AboutPage from "./presenters/AboutPagePresenter.jsx";
 import { createHashRouter,  RouterProvider, useParams } from "react-router-dom";
+//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App(props) {
     if(!props.model.ready) {
@@ -28,12 +30,38 @@ function App(props) {
 export function makeRouter(props) {
   return createHashRouter([
       {
-          path: "/",
-          element: <MainPage model={props.model} />,
-      },     
+        path: "/",
+        element: <MainPage model={props.model} />,
+      },    
+      {
+        path: "/about",
+        element: <AboutPage model={props.model} />,
+      },   
+      {
+        path: "/instruction",
+        element: <AboutPage model={props.model} />,
+      },  
+      {
+        path: "/account",
+        element: <AboutPage model={props.model} />,
+      },  
   ])
 }
 
 export default App;
 
+/*
+      <div>
+        <Router>
+          <Switch>
+            <Route path="/" exact>
+              <MainPage model={props.model} />
+            </Route>
+            <Route path="/about">
+              <AboutPage model={props.model} />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+*/
 
