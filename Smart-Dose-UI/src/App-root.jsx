@@ -3,6 +3,7 @@ import "./css/App.css";
 import NavigationBar from "./presenters/NavigationBarPresenter.jsx";
 import MainPage from "./presenters/MainPagePresenter.jsx";
 import AboutPage from "./presenters/AboutPagePresenter.jsx";
+import InstructionPage from "./presenters/InstructionPagePresenter.jsx";
 import { createHashRouter,  RouterProvider, useParams } from "react-router-dom";
 //import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -39,7 +40,7 @@ export function makeRouter(props) {
       },   
       {
         path: "/instruction",
-        element: <AboutPage model={props.model} />,
+        element: <InstructionPage model={props.model} />,
       },  
       {
         path: "/account",
