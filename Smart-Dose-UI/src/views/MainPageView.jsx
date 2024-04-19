@@ -9,6 +9,10 @@ function MainPageView(props) {
                 <p>Select weight</p>
                 <button>0-3 kg</button>
                 <button>4-5 kg</button>
+                <br />
+                <br />
+                <p>Estimated weight from scale</p>
+                <button>3,4kg</button>
             </div>
             <div>
                 <br />

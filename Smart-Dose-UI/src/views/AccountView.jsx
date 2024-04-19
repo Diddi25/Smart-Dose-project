@@ -17,7 +17,7 @@ function AccountView(props) {
                 <h6>
                     Water hardness
                 </h6>
-                <select value="Stockholm 4-6 dH" id=""></select>
+                <select value="Stockholm 4-6 dH" id=""></select>    
             </div>
             <div>
                 <h6>
