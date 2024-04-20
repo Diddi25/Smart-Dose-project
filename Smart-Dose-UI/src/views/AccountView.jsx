@@ -5,6 +5,8 @@ import "../css/account.css";
 function AccountView(props) {
     const [ipAddress, setIpAdderess] = useState('');
     const [geoInfo, setGeoInfo] = useState({});
+    const [showFlag, setShowFlag] = useState('0');
+    const [fetchflag, setFetchFlag] = useState('0');
 
     useEffect(() => {
         getVisitorIP();
@@ -22,13 +24,24 @@ function AccountView(props) {
 
     const fetchIPInfo = async () => {
         try {
-            const response = await fetch('http://ip-api.com/json/130.229.182.157');
+            const url = 'http://ip-api.com/json/' + ipAddress;
+            const response = await fetch(url);
             const data = await response.json();
             setGeoInfo(data);
         } catch (error) {
             console.error('Failed to fetch location info:', error);
         }
     };
+
+    function showGeoInfo() {
+        if(showFlag === '0') {
+            fetchIPInfo();
+            setShowFlag('1');
+        } else {
+            setGeoInfo({});
+            setShowFlag('0');
+        }
+    }
 
     return (
         <div>
@@ -43,7 +56,7 @@ function AccountView(props) {
             </div>
             <div>
                 <button>Min ip adress: {ipAddress}</button>
-                <button>Fetch {fetchIPInfo}</button>
+                <button onClick={showGeoInfo}>Fetch</button>
             </div>
             <div>
                 <button>
@@ -51,6 +64,10 @@ function AccountView(props) {
                     {geoInfo.country && (
                         <div>
                             <strong>Country: </strong> {geoInfo.country}
+                            <br />
+                            <strong>City: </strong> {geoInfo.city}
+                            <br />
+                            <strong>Region: </strong> {geoInfo.regionName}
                         </div>
                     )}
                 </button>
