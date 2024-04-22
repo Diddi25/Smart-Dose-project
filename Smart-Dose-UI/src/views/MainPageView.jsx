@@ -37,6 +37,9 @@ function MainPageView(props) {
                 <br />
                 <button>dispenser status</button>
             </div>
+            <footer>
+                Software licences @ [footer]
+            </footer>
         </div>
     );
 
