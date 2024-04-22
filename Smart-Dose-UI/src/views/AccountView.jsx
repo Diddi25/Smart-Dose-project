@@ -5,6 +5,8 @@ import "../css/account.css";
 function AccountView(props) {
     const [ipAddress, setIpAdderess] = useState('');
     const [geoInfo, setGeoInfo] = useState({});
+    const [showFlag, setShowFlag] = useState('0');
+    const [fetchflag, setFetchFlag] = useState('0');
     const [geoFlag, setflag] = useState('0');
     const [seconfglad, setsecondflag] = useState('0');
 
@@ -24,6 +26,8 @@ function AccountView(props) {
 
     const fetchIPInfo = async () => {
         try {
+            const url = 'http://ip-api.com/json/' + ipAddress;
+            const response = await fetch(url);
             const url = ('http://ip-api.com/json/' + ipAddress);
             const response = await fetch(url);
             const data = await response.json();
@@ -32,6 +36,16 @@ function AccountView(props) {
             console.error('Failed to fetch location info:', error);
         }
     };
+
+    function showGeoInfo() {
+        if(showFlag === '0') {
+            fetchIPInfo();
+            setShowFlag('1');
+        } else {
+            setGeoInfo({});
+            setShowFlag('0');
+        }
+    }
 
     function showgeoInfo() {
         if(geoFlag === '0') {
@@ -56,6 +70,7 @@ function AccountView(props) {
             </div>
             <div>
                 <button>Min ip adress: {ipAddress}</button>
+                <button onClick={showGeoInfo}>Fetch</button>
                 <button onClick={showgeoInfo}>Fetch </button>
             </div>
             <div>
@@ -64,6 +79,10 @@ function AccountView(props) {
                     {geoInfo.country && (
                         <div>
                             <strong>Country: </strong> {geoInfo.country}
+                            <br />
+                            <strong>City: </strong> {geoInfo.city}
+                            <br />
+                            <strong>Region: </strong> {geoInfo.regionName}
                             <br />
                             <strong>City: </strong> {geoInfo.city}
                             <br />
