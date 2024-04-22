@@ -7,8 +7,6 @@ function AccountView(props) {
     const [geoInfo, setGeoInfo] = useState({});
     const [showFlag, setShowFlag] = useState('0');
     const [fetchflag, setFetchFlag] = useState('0');
-    const [geoFlag, setflag] = useState('0');
-    const [seconfglad, setsecondflag] = useState('0');
 
     useEffect(() => {
         getVisitorIP();
@@ -26,8 +24,6 @@ function AccountView(props) {
 
     const fetchIPInfo = async () => {
         try {
-            const url = 'http://ip-api.com/json/' + ipAddress;
-            const response = await fetch(url);
             const url = ('http://ip-api.com/json/' + ipAddress);
             const response = await fetch(url);
             const data = await response.json();
@@ -44,16 +40,6 @@ function AccountView(props) {
         } else {
             setGeoInfo({});
             setShowFlag('0');
-        }
-    }
-
-    function showgeoInfo() {
-        if(geoFlag === '0') {
-            fetchIPInfo();
-            setflag('1');
-        } else {
-            setGeoInfo({});
-            setflag('0');
         }
     }
 
