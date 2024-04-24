@@ -14,8 +14,8 @@ function NavigationBarView(props) {
 
     return (
         <div>
-        <body className='navItems'>
-        <div style={{activeLink}} >
+           
+        <div className = "navItems" style={{activeLink}} >
             <ul>
                 <li><a id="#/" className={activeLink === "#/" ? "active" : ""} onClick={()=>setactiveLink("#/")} href="#/">Home</a></li>
                 <li><a id="#/about" className={activeLink === "#/about" ? "active" : ""} onClick={()=>setactiveLink("#/about")} href="#/about">About us</a></li>
@@ -23,8 +23,7 @@ function NavigationBarView(props) {
                 <li className="loginButton"><a id="#/account" className={activeLink === "#/account" ? "active" : ""}onClick={()=>setactiveLink("#/account")} href="#/account">Login</a></li>
             </ul>
         </div>
-        </body>
-        </div> 
+        </div>
     );
 
 }
