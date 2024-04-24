@@ -1,25 +1,28 @@
 import { Link } from 'react-router-dom';
 import "../css/navigationbar.css";
+import { useState, useEffect } from 'react';
 
 function NavigationBarView(props) {
-    function mainPageACB() {
-        window.location.hash="#/"
-    }
-    function aboutUsPageACB() {
-        window.location.hash="#/about"
-    }
-    function instructionPageACB() {
-        window.location.hash="#/instruction"
-    }
-    function accountPageACB() {
-        window.location.hash="#/account"
-    }
+    /*Activates link when pressed and compares the id to the location.hash 
+        results in that the nav bar is highlited on the page im currently at */
+    const [activeLink, setactiveLink] = useState("/");
+    
+    useEffect(()=> {
+        const location = window.location.hash;
+        setactiveLink(location)
+    },[])
+
     return (
         <div>
-            <button onClick={mainPageACB} className='navItems'>Home</button>
-            <button onClick={aboutUsPageACB} className='navItems'>About us</button>
-            <button onClick={instructionPageACB} className='navItems'>Instruction</button>
-            <button onClick={accountPageACB} className='loginButton'>Login</button>
+           
+        <div className = "navItems" style={{activeLink}} >
+            <ul>
+                <li><a id="#/" className={activeLink === "#/" ? "active" : ""} onClick={()=>setactiveLink("#/")} href="#/">Home</a></li>
+                <li><a id="#/about" className={activeLink === "#/about" ? "active" : ""} onClick={()=>setactiveLink("#/about")} href="#/about">About us</a></li>
+                <li><a id="#/instuction" className={activeLink === "#/instruction" ? "active" : ""} onClick={()=>setactiveLink("#/instruction")} href="#/instruction">Instruction</a></li>
+                <li className="loginButton"><a id="#/account" className={activeLink === "#/account" ? "active" : ""}onClick={()=>setactiveLink("#/account")} href="#/account">Login</a></li>
+            </ul>
+        </div>
         </div>
     );
 

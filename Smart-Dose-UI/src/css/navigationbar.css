@@ -1,9 +1,56 @@
 
+
 .navItems {
-    float: left;
-    margin-right: 10px;
+    background-color:#343439;
+    color: rgb(239, 239, 239);
+    display:flex;
+    justify-content:space-between;
+    align-items: stretch;
+    padding: 15px 20px 0px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.loginButton {
-    float: right;
+.navItems ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+    display: flex;
+    gap: 20px;
+    width:100%;
+
 }
+
+.navItems li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navItems li:hover {
+    cursor: pointer;
+    color: rgba(121, 121, 121, 0.899);
+    
+}
+
+.navItems li:nth-last-child(1) { /*Sets the login link to the right*/
+    flex: none;
+    margin-left: auto;
+}
+
+.navItems a{
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    padding: 0px 0px 2px;
+    align-items: center;
+    white-space: nowrap;
+}
+.navItems  a.active{
+    color: rgba(155, 155, 155, 0.899);
+    
+}
+
+
+
+
