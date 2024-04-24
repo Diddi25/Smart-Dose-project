@@ -57,7 +57,6 @@ function AccountView(props) {
             <div>
                 <button>Min ip adress: {ipAddress}</button>
                 <button onClick={showGeoInfo}>Fetch</button>
-                <button onClick={showgeoInfo}>Fetch </button>
             </div>
             <div>
                 <button>
@@ -69,10 +68,6 @@ function AccountView(props) {
                             <strong>City: </strong> {geoInfo.city}
                             <br />
                             <strong>Region: </strong> {geoInfo.regionName}
-                            <br />
-                            <strong>City: </strong> {geoInfo.city}
-                            <br />
-                            <strong>RegionName: </strong> {geoInfo.regionName}
                         </div>
                     )}
                 </button>
