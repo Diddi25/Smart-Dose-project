@@ -1,4 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 .mainPagePositioning {
     justify-content: center;
 }
+
+.header {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 5px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 50px 0 20px;
+}
+
+.header h1 {
+    font-size: 50px;
+    margin: 0;
+}
+
+.background {
+    background-image: url('../images/pic.jpg');
+    background-repeat: repeat;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.background p {
+    font-size: 20px;
+    color: #e5e5e5; /* Vit textfärg för <p> element */
+}
+
+.background button {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #0000B2;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.background-water {
+    text-align: center; 
+    color: #fff; 
+}
+
+.background-water p {
+    font-size: 20px; 
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.background-water button {
+    margin: 20px; 
+    padding: 10px 20px; 
+    font-size: 18px; 
+    border: none; 
+    border-radius: 5px; 
+    color: #fff; 
+    background-color: #0000B2; 
+    cursor: pointer; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.city-dropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; 
+}
+
+.background-weight {
+    background-image: url('../images/pic.jpg');
+    background-repeat: repeat;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.background-weight p {
+    font-size: 20px;
+    color: #e5e5e5; /* Vit textfärg för <p> element */
+}
+
+.background-weight button {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #0000B2;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.text p {
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.button-container button {
+    width: 100px; 
+    height: 100px;
+    border-radius: 90%; 
+    background-color: #0000B2; 
+    color: white; 
+    font-size: 18px; 
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+
+
+

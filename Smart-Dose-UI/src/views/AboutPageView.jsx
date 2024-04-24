@@ -2,31 +2,18 @@ import "../css/AboutPage.css";
 
 function AboutPageView(props) {
     return (
-        <div>
-            <div>
-                <title>
-                    About us
-                </title>
+        <div className="about-container">
+            <div className="about-section">
+                <h1>About Us</h1>
+                <p>Vi är ett team av passionerade utvecklare som älskar att skapa fantastiska webbapplikationer.</p>
             </div>
-            <div>
-                <h4>
-                    The Creators
-                </h4>
+            <div className="team-section">
+                <h2>Vårt team</h2>
+                <p>Här kan du lägga till information om ditt team.</p>
             </div>
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-            </div>
-            <div>
-                <h4>
-                    The story about Smart Dose
-                </h4>
-            </div>
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+            <div className="mission-section">
+                <h2>Vår mission</h2>
+                <p>Här kan du beskriva företagets mission.</p>
             </div>
         </div>
     );
