@@ -28,8 +28,6 @@ function MainPageView(props) {
                 <option>Malmö 5.9° dH</option>
                 <option>Göteborg 2.7-3.3° dH</option>
             </select>
-            <div className="icon-container">
-                <img scr="Smart-Dose-UI/src/images/select /Users/jennifer/Projects/untitled folder/Smart-Dose-project/Smart-Dose-UI/src/images/select button.png.png"></img></div>
             </div>
             <div className="background-weight">
                 <br />

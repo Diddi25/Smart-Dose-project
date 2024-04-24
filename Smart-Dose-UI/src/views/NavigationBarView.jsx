@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import "../css/navigationbar.css";
 import { useState, useEffect } from 'react';
+import logo from '../images/logo3.png';
 
 function NavigationBarView(props) {
     /*Activates link when pressed and compares the id to the location.hash 
@@ -14,16 +15,17 @@ function NavigationBarView(props) {
 
     return (
         <div>
-        <body className='navItems'>
+        <div className='navItems'>
         <div style={{activeLink}} >
             <ul>
+            <img src={logo} alt= "logo" className='logo'></img>
                 <li><a id="#/" className={activeLink === "#/" ? "active" : ""} onClick={()=>setactiveLink("#/")} href="#/">Home</a></li>
                 <li><a id="#/about" className={activeLink === "#/about" ? "active" : ""} onClick={()=>setactiveLink("#/about")} href="#/about">About us</a></li>
                 <li><a id="#/instuction" className={activeLink === "#/instruction" ? "active" : ""} onClick={()=>setactiveLink("#/instruction")} href="#/instruction">Instruction</a></li>
                 <li className="loginButton"><a id="#/account" className={activeLink === "#/account" ? "active" : ""}onClick={()=>setactiveLink("#/account")} href="#/account">Login</a></li>
             </ul>
         </div>
-        </body>
+        </div>
         </div> 
     );
 

@@ -1,18 +1,24 @@
 import "../css/AboutPage.css";
-
+import logo from '../images/logo3.png';
 function AboutPageView(props) {
     return (
 
-        <div>
+        <div >
             <div>
                 <title>
                     About us 
                 </title>
             </div>
-            <body>
+            <div>
+            <div className="header-about">
+                <h1>SMART DOSE</h1>
+                <div className="logo-image">
+                    <img src={logo} alt="logo" ></img>
+                </div>
+            </div>
             <div className="card-container">
-            <div className="card1">
-            <div className="card-text">
+            <div className="creators">
+            <div className="creators-text">
                 <h3> The Creators</h3>
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
@@ -21,8 +27,8 @@ function AboutPageView(props) {
             </div>
             </div>
             
-            <div className="card2">
-            <div className="card-text">
+            <div className="about">
+            <div className="creators-text">
                 <h3> The story about Smart Dose</h3>
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
@@ -31,7 +37,7 @@ function AboutPageView(props) {
             </div>
             </div>
             </div>
-            </body>
+            </div>
         </div>
     );
 }

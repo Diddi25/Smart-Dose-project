@@ -26,7 +26,7 @@
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 35px;
+    gap: 40px;
     text-shadow: 1px 1.5px 0 rgba(159, 159, 159, 0.167);
     align-items: center;
 
@@ -61,6 +61,14 @@
     transition: all 0.4s ease 0s;
 
 } 
+
+.logo{
+    width: 50px;
+    height: 50px;
+    padding-bottom: 12px;
+    padding-left: 10px;
+
+}
 
 
 
