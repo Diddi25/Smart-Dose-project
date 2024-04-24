@@ -2,10 +2,6 @@ import React from 'react'
 import "./css/index.css";
 import model from "./model/smart-dose-model.js";
 import { observable, configure } from "mobx";
-import firebaseModel from "./firebaseModel.js";
-import connectToFirebase from "./firebaseModel.js";
-
-connectToFirebase(reactiveModel, reaction)
 
 configure({ enforceActions: "never", });  // we don't use Mobx actions
 const reactiveModel= observable(model);
@@ -35,3 +31,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 */
+
+import firebaseModel from "./firebaseModel.js";
+import connectToFirebase from "./firebaseModel.js";
+
+connectToFirebase(reactiveModel, reaction)
