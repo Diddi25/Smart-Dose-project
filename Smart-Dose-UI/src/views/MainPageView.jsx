@@ -50,6 +50,9 @@ function MainPageView(props) {
                 <button>CANCEL</button>
                 <br />
             </div>
+            <footer>
+                Software licences @ [footer]
+            </footer>
         </div>
     );
 
