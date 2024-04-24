@@ -1,55 +1,76 @@
 
-
 .navItems {
-    background-color:#343439;
-    color: rgb(239, 239, 239);
-    display:flex;
-    justify-content:space-between;
+    background-color:#f3f3f3b9;
+    color: rgb(4, 6, 59);
     align-items: stretch;
     padding: 15px 20px 0px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.navItems ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    justify-content: space-between;
-    display: flex;
-    gap: 20px;
-    width:100%;
-
-}
-
-.navItems li{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navItems li:hover {
-    cursor: pointer;
-    color: rgba(121, 121, 121, 0.899);
+    margin: 10px 10px 10px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 50px;
+    border-color:  rgb(207, 207, 208);
+    box-sizing:border-box;
+    border-style:solid;
+    box-shadow: 0 2px 4px 0 rgba(128, 128, 128, 0.683);
+    position: fixed;
+    top: 0;
+    width: 98.6%;
     
 }
 
-.navItems li:nth-last-child(1) { /*Sets the login link to the right*/
+
+.navItems ul {
+    font-weight:100;
+    font-size: x-small;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 35px;
+    width:100%;
+    text-shadow: 1px 1.5px 0 rgba(159, 159, 159, 0.167);
+    align-items: center;
+   
+
+}
+
+
+.navItems li:hover {
+    cursor: pointer;
+    color: rgb(142, 142, 142);
+    
+    
+}
+
+.navItems li:nth-last-child(1) { /*Sets the login link to the right */
     flex: none;
     margin-left: auto;
-}
+
+} 
 
 .navItems a{
     color: inherit;
     text-decoration: none;
     display: flex;
-    padding: 0px 0px 2px;
+    padding: 0px 6px 10px;
     align-items: center;
     white-space: nowrap;
+    transition: all 0.4s ease 0s;
 }
 .navItems  a.active{
-    color: rgba(155, 155, 155, 0.899);
+    background-color: #0000B2;
+    font-family: inherit;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    box-shadow: 0 2px 4px 0 rgba(128, 128, 128, 0.683);
+    color: rgb(255, 255, 255);
+    transition: all 0.3s ease 0s;
+ 
+
     
-}
+
+    
+} 
 
 
 
