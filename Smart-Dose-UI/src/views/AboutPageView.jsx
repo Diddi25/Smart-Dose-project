@@ -13,9 +13,7 @@ function AboutPageView(props) {
             <div className="header-about">
                 <h1>SMART DOSE</h1>
                 </div>
-                <div className="logo-image">
-                    <img src={logo} alt="logo" ></img>
-            </div>
+                <img src={logo} alt="logo" className="logo-image"></img>
             <div className="card-container">
             <div className="creators">
             <div className="creators-text">

@@ -44,7 +44,7 @@ function MainPageView(props) {
             <br />
                 <p>START THE DISPENSER</p>
             </div>
-            <div class="button-container">
+            <div className="button-container">
                 <br />
                 <button>START</button>
                 <button>CANCEL</button>
