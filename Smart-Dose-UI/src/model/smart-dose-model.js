@@ -1,10 +1,19 @@
 
+import {lookupAllHardnessData} from "/model/hardness-data-table.js";
+
 export default {
 
     /*properties that can be persisted*/
-    water_hardness: [],
-    detergent_type_white: [],
-    user_name: "username",
+    //username
+    //user_hardness
+    //user_city
+    //saved_detergents
+    //hardness_data
+    //detergent_type_data
+
+    
+
+
 
     
 }
