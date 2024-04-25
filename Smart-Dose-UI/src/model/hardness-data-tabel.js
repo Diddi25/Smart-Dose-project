@@ -12,7 +12,7 @@ class HardnessTable {
             lines.forEach(line => {
                 const row = line.split(",");
                 const data = new HardnessNode(row[0], row[1], parseInt(row[2]));
-                const key = parseInt(row[0].replace(/\s/g, ''));
+                const key = row[0].replace(/\s/g, '');
                 const index = this.hashFunction(key);
                 this.table[index] = data;
             });
@@ -22,7 +22,11 @@ class HardnessTable {
     }
 
     hashFunction(key) {
-        return key % this.constructor; //antingen är hashfunktionen för local_name eller local_nr
+        let hash = 0;
+        for (let i = 0; i < key.length; i++) {
+            hash += key.charCodeAt(i); // Add the character code of each letter
+        }
+        return hash % this.constructor.sweden_county_nr;
     }
 
 }

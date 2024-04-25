@@ -11,7 +11,9 @@ export default {
     //hardness_data
     //detergent_type_data
 
-    
+    accessHardness_data() {
+        lookupAllHardnessData("water_hardness_data.csv"); 
+    }
 
 
 
