@@ -1,5 +1,5 @@
 
-import {lookupAllHardnessData} from "/model/hardness-data-table.js";
+import {lookupAllHardnessData} from "./hardness-data-table.js";
 
 export default {
 
@@ -8,14 +8,13 @@ export default {
     //user_hardness
     //user_city
     //saved_detergents
-    //hardness_data
-    //detergent_type_data
+    hardness_data: [],
+    detergent_type_data: [],
 
     accessHardness_data() {
-        lookupAllHardnessData("water_hardness_data.csv"); 
+        //const hardnessTable = new HardnessTable('water_hardness_data.csv');
+        //this.hardness_data = lookupAllHardnessData(hardnessTable); 
+        this.hardness_data = lookupAllHardnessData(hardness_data);
     }
-
-
-
     
 }
