@@ -1,11 +1,14 @@
 import "../css/navigationbar.css";
 import "../css/mainpage.css";
+import logo from '../images/logo3.png';
 
 function MainPageView(props) {
     return (
         <div>
             <div className="header">
                 <h1>SMART DOSE</h1>
+                <img src={logo} alt="logo"></img>
+                
             </div>
             <div className="background">
                 <br />
