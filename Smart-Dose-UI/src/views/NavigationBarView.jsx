@@ -11,7 +11,7 @@ function NavigationBarView(props) {
     useEffect(()=> {
         const location = window.location.hash;
         setactiveLink(location)
-    },[])
+    },[]);
 
     return (
         <div>
