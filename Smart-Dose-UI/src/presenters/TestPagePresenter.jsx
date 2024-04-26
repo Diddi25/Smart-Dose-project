@@ -1,13 +1,13 @@
-import InstructionPageView from "../views/InstructionPageView.jsx";
+import TestPageView from "../views/TestPage.jsx";
 
 export default // needed for the presenter to update (its view) when relevant parts of the model change
-    function InstructionPage(props){
+    function TestPage(props){
         /*
         function functionName(parameter) {
             return props.model.functionInModel(parameterIfAny)
         }
         */
-        return <InstructionPageView 
+        return <TestPageView 
                                     /*properties used in view*/
                                     />;
 }

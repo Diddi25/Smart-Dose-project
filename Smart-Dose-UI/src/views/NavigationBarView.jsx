@@ -18,10 +18,11 @@ function NavigationBarView(props) {
         <div className='navItems'>
         <div style={{activeLink}} >
             <ul>
-            <img src={logo} alt= "logo" className='logo'></img>
+                <img src={logo} alt= "logo" className='logo'></img>
                 <li><a id="#/" className={activeLink === "#/" ? "active" : ""} onClick={()=>setactiveLink("#/")} href="#/">Home</a></li>
                 <li><a id="#/about" className={activeLink === "#/about" ? "active" : ""} onClick={()=>setactiveLink("#/about")} href="#/about">About us</a></li>
                 <li><a id="#/instuction" className={activeLink === "#/instruction" ? "active" : ""} onClick={()=>setactiveLink("#/instruction")} href="#/instruction">Instruction</a></li>
+                <li><a id="#/test" className={activeLink === "#/test" ? "active" : ""} onClick={()=>setactiveLink("#/test")} href="#/test">Test yta</a></li>
                 <li className="loginButton"><a id="#/account" className={activeLink === "#/account" ? "active" : ""}onClick={()=>setactiveLink("#/account")} href="#/account">Login</a></li>
             </ul>
         </div>

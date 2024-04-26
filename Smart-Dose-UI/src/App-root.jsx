@@ -4,6 +4,7 @@ import NavigationBar from "./presenters/NavigationBarPresenter.jsx";
 import MainPage from "./presenters/MainPagePresenter.jsx";
 import AboutPage from "./presenters/AboutPagePresenter.jsx";
 import InstructionPage from "./presenters/InstructionPagePresenter.jsx";
+import TestPage from "./presenters/TestPagePresenter.jsx";
 import AccountPage from "./presenters/AccountPresenter.jsx";
 import { createHashRouter,  RouterProvider, useParams } from "react-router-dom";
 //import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -44,6 +45,10 @@ export function makeRouter(props) {
         element: <InstructionPage model={props.model} />,
       },  
       {
+        path: "/test",
+        element: <TestPage model={props.model} />,
+      },  
+      {
         path: "/account",
         element: <AccountPage model={props.model} />,
       },  
@@ -51,19 +56,4 @@ export function makeRouter(props) {
 }
 
 export default App;
-
-/*
-      <div>
-        <Router>
-          <Switch>
-            <Route path="/" exact>
-              <MainPage model={props.model} />
-            </Route>
-            <Route path="/about">
-              <AboutPage model={props.model} />
-            </Route>
-          </Switch>
-        </Router>
-      </div>
-*/
 
