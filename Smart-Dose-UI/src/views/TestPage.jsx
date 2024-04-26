@@ -32,7 +32,7 @@ function TestPageView(props) {
         }
         return tabel;
     }
-    
+
     function readHardnessData2() {
         try {
             fetch('water_hardness_data.csv') // Assuming the file is in your public folder
@@ -75,12 +75,12 @@ function TestPageView(props) {
 
     return (
         <div>
-            <button className="upperSpace" onClick={readHardnessData2}>Something</button>
+            <button className="upperSpace" onClick={readHardnessData2}>Click on me!</button>
             <div>
              <table>
                 <tbody>
                   {  
-                    tableData && tableData.map(renderHardnessDataACB)
+                    tableData.map(renderHardnessDataACB)
                   }
                 </tbody>
               </table>
