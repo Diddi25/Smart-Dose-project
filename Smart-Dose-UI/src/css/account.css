@@ -1,0 +1,130 @@
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    padding: 120px 100px 27px 100px;
+    font-family: 'Roboto', sans-serif;
+}
+.profile-name h5, p{
+    font-size: 40px;
+    padding-bottom: 40px;
+    justify-content: center;
+    display: flex;
+}
+
+.profile-title h5{
+    font-size: 25px;
+}
+.profile-water{
+    font-family: 'Roboto', sans-serif;  
+    width: 50%;   /*sets scroll and text side by side*/
+    float: left;   /*sets scroll and text side by side*/
+    padding: 0px 10px 60px ;
+}
+.profile-water h6{
+    font-size: 15px;
+    
+}
+
+.profile-water select{
+    min-width: 250px;
+    border-radius: 50px;
+    color: black; 
+    background-color: whitesmoke;
+    font-size: 20px;
+    
+}
+
+.profile-detergent h6{
+    font-size: 25px;
+}
+button{
+    font-size: xx-small;
+    border-radius: 50px;
+    margin: 0px 50px 10px;
+    border: none;
+    background-color:#f3f3f3b9;
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
+    padding: 0px 10px  1px;
+}
+
+.detergent-container{
+    font-family: 'Roboto', sans-serif;
+    padding: 0px 20px 40px 40px;
+
+}
+.detergent-type{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 200px;
+    background-color:#f3f3f3b9;
+    border-radius: 15px;
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    cursor: pointer;
+    border-style:groove;
+    
+}
+
+.detergent-WC{
+    width: 50%;
+    float: left;
+    padding: 40px;
+}
+.detergent-WC h6{
+   padding: 0px 0px 0px 52px;
+}
+
+
+  /* -----------------MEDIA CSS-----------*/
+
+@media (max-width: 768px) {
+
+    .profile-container{
+        display: flex;
+        flex-direction: column;
+        padding: 120px 40px 7px 20px;
+    }
+    .profile-name h5, p{
+        font-size: 40px;
+    }
+    
+    .profile-title h5{
+        font-size: 22px;
+        
+    }
+
+    .profile-water h6{
+        font-size: 15px;
+    }
+    
+    .profile-water select{
+        min-width: 20vh;
+        border-radius: 50px;
+    }
+    
+    .profile-detergent h6{
+        font-size: 22px;
+        padding-left: 1vh;
+    }
+    button{
+        margin: 0 1vh 2vh;
+    }
+  
+    .detergent-type{
+        width: 15vh;
+        padding: 4vh 0;
+      
+    }
+    
+    .detergent-WC{
+        width: 50%;
+        float: left;
+        padding: 3vh 0 0;
+    }
+
+
+
+
+
+  }
