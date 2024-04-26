@@ -9,5 +9,6 @@ export default // needed for the presenter to update (its view) when relevant pa
         */
         return <InstructionPageView 
                                     /*properties used in view*/
+                                    hardnessData = {props.model.hardness_data}
                                     />;
 }
