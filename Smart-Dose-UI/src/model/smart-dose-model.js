@@ -62,8 +62,13 @@ export default {
         //this.setNode(local_name, node);
         return node;
     },
-    
+
     add_data() {
+        //this.hardness_data = [...this.hardness_data, inAFunction()];
+        this.hardness_data = inAFunction();
+    },
+    
+    add_data2() {
         try {
             fetch('water_hardness_data.csv')
                 .then(response => response.text())
