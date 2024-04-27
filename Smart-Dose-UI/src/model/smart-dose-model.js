@@ -5,7 +5,7 @@ import HardnessNode from './hardness-node.js';
 import Papa from 'papaparse';
 
 function inAFunction() {
-    const [dataa, setData] = useState([]);
+    const [dataa, setData] = useState([{Location: 'hi',Hardness : 'hi', ID: 0}]);
 
     useEffect(() => {
         const fetchData = async() => {
@@ -34,7 +34,7 @@ export default {
     //user_city
     //saved_detergents
     guests: 3,
-    hardness_data: [],
+    hardness_data: inAFunction(),
     fileName : 'water_hardness_data.csv',
 
     hashfunction(key) {
