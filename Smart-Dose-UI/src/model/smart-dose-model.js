@@ -10,16 +10,16 @@ export default {
     //user_hardness
     //user_city
     //saved_detergents
-    hardness_data: [],
-    detergent_type_data: [],
     guests: 3,
+    hardness_data: [],
     fileName : 'water_hardness_data.csv',
 
     hashfunction(key) {
         return key.length % 290;
     },
 
-    setNode(key, node, index) {
+    setNode(key, node) {
+        const index = this.hashfunction(key);
         const bucket = this.hardness_data[index];
         if(!bucket) {
             this.hardness_data[key] = [[key, node]];
@@ -33,52 +33,23 @@ export default {
         }
     },
 
-    add_data() {
-        fetch(this.fileName)
-            .then(response => response.text())
-            .then(text => {
-                const lines = text.split('\n');
-                lines.forEach(line => {
-                    const [local_name, hardness, local_nr] = line.split(",");
-                    const data = new HardnessNode(local_name, hardness, parseInt(local_nr)); //city, hardness, count
-                    const key = local_name.replace(/\s/g, '');
-                    const index = this.hashfunction(key);
-                    this.setNode(key, data, index);
-                });
-            })
-            .catch(error => {
-                console.error("Error reading file: ", error);
-            });
+    parseLinesACB(line) {
+        const [local_name, hardness, local_nr] = line.split(",");
+        const node = new HardnessNode(local_name, hardness, parseInt(local_nr));
+        //this.setNode(local_name, node);
+        return node;
     },
     
-    add_data3() {
+    add_data() {
         try {
-            const lines = require('fs').readFileSync(this.fileName, 'utf-8').split('\n');
-            lines.forEach(line => {
-                const row = line.split(",");
-                const data = new HardnessNode(row[0], row[1], parseInt(row[2])); //city, hardness, count
-                //const data = row[0];
-                const key = row[0].replace(/\s/g, '');
-                //const key = parseInt(row[2].replace(/\s/g, ''));
-                const index = this.hashfunction(key);
-                this.setNode(key, data, index)
-            });
-        } catch (e) {
-            console.log("file " + this.fileName + " not found");
-        }
-    },
-
-    add_data2() {
-        try {
-            fetch('water_hardness_data.csv') // Assuming the file is in your public folder
+            fetch('water_hardness_data.csv')
                 .then(response => response.text())
                 .then(text => {
                     const lines = text.split('\n');
-                    const data = lines.map(line => {
-                        const [local_name, hardness, local_nr] = line.split(",");
-                        return new HardnessNode(local_name, hardness, parseInt(local_nr));
-                    });
-                    setTableData(data);
+                    //this.hardness_data = lines.map(this.parseLinesACB); // Pass parseLinesACB directly to map()
+                    const data = lines.map(this.parseLinesACB); // Pass parseLinesACB directly to map()
+                    this.hardness_data = [... this.hardness_data, data];
+                    //lines.forEach(line => this.parseLinesACB(line));
                 })
                 .catch(error => {
                     console.error("Error reading file: ", error);
@@ -87,4 +58,5 @@ export default {
             console.error("Error reading file: ", e);
         }
     },
+
 }
