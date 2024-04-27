@@ -8,20 +8,20 @@ export default // needed for the presenter to update (its view) when relevant pa
             return props.model.functionInModel(parameterIfAny)
         }
         */
-        function ACB(parameters) {
+        function ACB() {
             return props.model.add_data();
         }
         if(props.model.hardness) {
             return <TestPageView 
                                 fireButtonACB = {ACB}
                                 gis = {props.model.guests}
-                                hard = {props.model.hardness_data}
+                                hard = {props.model.hardness}
                     />;
         } else {
             return <TestPageView 
                                 fireButtonACB = {ACB}
                                 gis = {props.model.guests}
-            
                     />;
         }
+
 }

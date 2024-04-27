@@ -5,7 +5,11 @@ import React, { useState } from 'react';
 function TestPageView(props) {
 
     function showDataACB() {
+        window.location.reload();
         props.fireButtonACB();
+        setTimeout(() => {
+            console.log("After 3 seconds");
+        }, 3000);
     }
     
     function renderHardnessDataACB(node) {

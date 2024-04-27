@@ -1,7 +1,30 @@
 
+import { useEffect, useState } from "react";
 import {lookupAllHardnessData} from "./hardness-data-table.js";
 import HardnessNode from './hardness-node.js';
+import Papa from 'papaparse';
 
+function inAFunction() {
+    const [dataa, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async() => {
+            const response = await fetch(fileName);
+            const reader = response.body.getReader();
+            const result = await reader.read();
+            const decoder = new TextDecoder("utf-8");
+            const csvData = decoder.decode(result.value);
+            const parsedData = Papa.parse(csvData, {
+                header: true,
+                skipEmptyLines: true
+            }).data;
+            setData(parsedData);
+        }
+        fetchData();
+    }, []);
+
+    return dataa;
+}
 
 export default {
 
@@ -46,9 +69,9 @@ export default {
                 .then(response => response.text())
                 .then(text => {
                     const lines = text.split('\n');
-                    //this.hardness_data = lines.map(this.parseLinesACB); // Pass parseLinesACB directly to map()
-                    const data = lines.map(this.parseLinesACB); // Pass parseLinesACB directly to map()
-                    this.hardness_data = [... this.hardness_data, data];
+                    this.hardness_data = lines.map(this.parseLinesACB); // Pass parseLinesACB directly to map()
+                    //const data = lines.map(this.parseLinesACB); // Pass parseLinesACB directly to map()
+                    //this.hardness_data = [... this.hardness_data, data];
                     //lines.forEach(line => this.parseLinesACB(line));
                 })
                 .catch(error => {
