@@ -33,9 +33,14 @@ export default {
     //user_hardness
     //user_city
     //saved_detergents
-    guests: 3,
-    hardness_data: inAFunction(),
+    hardness_data: [],
     fileName : 'water_hardness_data.csv',
+    what : 'ty',
+    number: 4,
+    someOther: 21,
+    hey: 0,
+    guests: 10,
+    //guests: 11,
 
     hashfunction(key) {
         return key.length % 290;
