@@ -11,6 +11,7 @@ export default {
 
     //hardnessData : [{Location:'Ale', Hardness: 3, ID: 1}, {Location: 'Alingsåddds', Hardness:1, ID: 2}],
     hardnessData : [],
+    user_location : '',
 
     
 

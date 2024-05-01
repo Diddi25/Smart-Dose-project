@@ -42,6 +42,10 @@ function AccountView(props) {
         }
     }
 
+    function renderOptionsACB(location) {
+        return <option key={location.ID} value={location}>{location} -jj</option>
+    }
+
     return (
         <div className="profile-container">
             <div>
@@ -59,11 +63,15 @@ function AccountView(props) {
                     <h6>Change your location</h6>
                 </div>
                 <div className="profile-water">
-                    <select value="Stockholm 4-6 dH" id="">
-                    <option>Test</option>
-                    <option>1</option>
-                        <option>{showGeoInfo}</option>
-                    </select>
+                    
+                <select value="" id="">
+                        {props.hard && props.hard.map( 
+                            (someOption, index) => (
+                                    <option key={index} value={someOption.Location}>{someOption.Location} {'\t'}{someOption.Hardness}°dH</option>)
+                        )}                     
+
+                </select>
+
                 </div>
             </div>
                 <div className="profile-detergent">
