@@ -7,36 +7,32 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 const app= initializeApp(firebaseConfig)
 const db= getDatabase(app)
 const PATH="smartdoseUI/test";
-const rf = ref(db, PATH)
+const PATH_HardnessData="hardnessData";
+const rf = ref(db, PATH_HardnessData)
 
 //set(ref(db, PATH+"/test"), "damn");
 //set(rf, "dammit")
 
 export function modelToPersistence(model) {
-    function mapDegreesACB(tuple) {
-        return {tuple};
+    /*
+    function transformACB(degree) {
+        return {degree};
     }
+    */
     return {
-        fileName : model.fileName,
-        currDish : model.what,
-        number: model.number,
-        someOther : model.someOther,
-        hey: model.hey,
-        hardnessDeegres: model.hardness_data.map(mapDegreesACB),
-        andreas: model.Andreas,
+        hardness : model.hardnessData,
     };
 }
 
 export function persistenceToModel(data, model) {
     function saveToModelACB(fromFB) {
-        model.guests = fromFB;
+        model.hardnessData = fromFB;
     }
     if(data) {
-        model.Andreas = data.andreas;
-        return saveToModelACB();
+        return saveToModelACB(data.hardness);
     } else {
-        model.guests = 4;
-        return saveToModelACB();
+        model.hardness = [];
+        return saveToModelACB(model.hardnessData);
     }
 }
 
@@ -64,7 +60,7 @@ export default function connectToFirebase(model, watchFunction){
     watchFunction(checkACB, sideEffectACB);
     function checkACB() {
         return [
-            model.guests,
+            model.hardnessData,
         ];
     };
     function sideEffectACB() {
