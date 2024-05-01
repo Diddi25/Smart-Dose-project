@@ -10,6 +10,7 @@ import {createElement} from "react";
 window.React= {createElement:createElement}; // no need but in case
 
 import {createRoot} from "react-dom/client";
+
 import App from './App-root.jsx';
 
 createRoot(document.getElementById('root'))
@@ -31,7 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 */
 
-import firebaseModel from "./model/firebaseModel.js";
+//import firebaseModel from "./model/firebaseModel.js";
 import connectToFirebase from "./model/firebaseModel.js";
 
 connectToFirebase(reactiveModel, reaction);

@@ -18,7 +18,7 @@ function TestPageView(props) {
     }
     return (
         <div>
-            <button className="upperSpace" onClick={reloadPage}>Choose me!</button>
+            <button className="upperSpace" onClick={reloadPage}>reload</button>
             <div>
              <table>
                 <tbody>
