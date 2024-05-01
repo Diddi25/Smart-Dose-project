@@ -10,7 +10,6 @@ import {createElement} from "react";
 window.React= {createElement:createElement}; // no need but in case
 
 import {createRoot} from "react-dom/client";
-
 import App from './App-root.jsx';
 
 createRoot(document.getElementById('root'))

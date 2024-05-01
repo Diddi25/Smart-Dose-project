@@ -9,13 +9,14 @@ export default // needed for the presenter to update (its view) when relevant pa
         }
         */
         function ACB() {
-            return props.model.add_data();
+            return props.model.add_data2();
         }
-        if(props.model.hardness) {
+        if(props.model.hardnessData) {
             return <TestPageView 
                                 fireButtonACB = {ACB}
                                 gis = {props.model.guests}
-                                hard = {props.model.hardness}
+                                hard = {props.model.hardnessData}
+                                andreas = {props.model.Andreas}
                     />;
         } else {
             return <TestPageView 

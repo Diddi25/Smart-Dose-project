@@ -13,26 +13,30 @@ const rf = ref(db, PATH)
 //set(rf, "dammit")
 
 export function modelToPersistence(model) {
+    function mapDegreesACB(tuple) {
+        return {tuple};
+    }
     return {
         fileName : model.fileName,
         currDish : model.what,
         number: model.number,
         someOther : model.someOther,
-        guests: model.guests,
         hey: model.hey,
+        hardnessDeegres: model.hardness_data.map(mapDegreesACB),
+        andreas: model.Andreas,
     };
 }
 
 export function persistenceToModel(data, model) {
+    function saveToModelACB(fromFB) {
+        model.guests = fromFB;
+    }
     if(data) {
-        model.guests = data.dumbGuest;
+        model.Andreas = data.andreas;
         return saveToModelACB();
     } else {
         model.guests = 4;
         return saveToModelACB();
-    }
-    function saveToModelACB(fromFB) {
-        model.guests = fromFB;
     }
 }
 
