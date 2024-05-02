@@ -32,7 +32,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 */
 
-import firebaseModel from "./firebaseModel.js";
-import connectToFirebase from "./firebaseModel.js";
 
-connectToFirebase(reactiveModel, reaction)
+
+import { connectToFirebase } from "/src/firebaseModel.js";
+// Connect the reactive model to Firebase
+connectToFirebase(reactiveModel);

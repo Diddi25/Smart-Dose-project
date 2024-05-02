@@ -21,6 +21,8 @@ function MainPageView(props) {
         setactiveButtonWeight(buttonID);
     }
 
+
+
     
     return (
         <div>
@@ -67,9 +69,9 @@ function MainPageView(props) {
                 <p>START THE DISPENSER</p>
             </div>
             <div className="button-container">
-                <br />
-                <button id="start" onClick ={() => setButtonDisabled(true)} disabled ={isButtonDisabled} >START</button>
-                <button id="cancel" onClick ={() => setButtonDisabled(false)} disabled ={!isButtonDisabled}>CANCEL</button>
+            <br />
+                <button id="start" onClick={() => {setButtonDisabled(true);props.statusChange(true);}} disabled={isButtonDisabled}>START</button>
+                <button id="cancel" onClick={() => {setButtonDisabled(false);props.statusChange(false);}} disabled={!isButtonDisabled}>CANCEL</button>
                 <br />
             </div>
             <footer>

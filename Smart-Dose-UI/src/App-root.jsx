@@ -29,25 +29,27 @@ function App(props) {
   }
 }
 
-export function makeRouter(props) {
+function makeRouter(model) {
   return createHashRouter([
       {
         path: "/",
-        element: <MainPage model={props.model} />,
+        element: <MainPage model={model} />,
       },    
       {
         path: "/about",
-        element: <AboutPage model={props.model} />,
+        element: <AboutPage model={model} />,
       },   
       {
         path: "/instruction",
-        element: <InstructionPage model={props.model} />,
+        element: <InstructionPage model={model} />,
       },  
       {
         path: "/account",
-        element: <AccountPage model={props.model} />,
-      },  
-  ])
+        element: <AccountPage model={model} />,
+      },
+        
+  ]);
+
 }
 
 export default App;

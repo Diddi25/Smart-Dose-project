@@ -10,7 +10,19 @@ export default {
     //saved_detergents
     hardness_data: [],
     detergent_type_data: [],
-    satus:false,
+    ready:false,
+
+
+
+
+    setModelReadyACB(readys){
+
+
+this.ready=readys;
+
+    },
+    
+    status: false,
 
     accessHardness_data() {
         //const hardnessTable = new HardnessTable('water_hardness_data.csv');
@@ -18,8 +30,12 @@ export default {
         this.hardness_data = lookupAllHardnessData(hardness_data);
     },
 
-    setSatus(state){
-        this.status = state;
-    },
+
+    //servo motor status ON /OFF
+    setStatus(state){
+    this.status= state;
+
+},
+
     
 }
