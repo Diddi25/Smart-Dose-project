@@ -9,10 +9,8 @@ const app= initializeApp(firebaseConfig)
 const db= getDatabase(app)
 const PATH_HardnessData="hardnessData";
 const rf = ref(db, PATH_HardnessData);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 var path="USERID"; 
-
-
 
 export function modelToPersistence(model) {
     return {
@@ -24,7 +22,6 @@ export function persistenceToModel(data, model) {
     function saveToModelACB(fromFB) {
         model.hardnessData = fromFB;
     }
-
     if(data) {
         return saveToModelACB(data.hardness);
     } else {
@@ -50,7 +47,8 @@ export function readFromFirebase(model) {
         return persistenceToModel(snapshot.val(), model)
     }
     function setModelReadyACB() {
-        model.ready = true;
+        
+        
     }
     if(model.user) {
         return get(ref(db, path+"/"+ model.user.uid)).then(convertACB).then(setModelReadyACB);

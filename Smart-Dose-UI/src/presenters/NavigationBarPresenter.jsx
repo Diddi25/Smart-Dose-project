@@ -1,6 +1,8 @@
 import NavigationBarView from "../views/NavigationBarView.jsx";
 
-export default // needed for the presenter to update (its view) when relevant parts of the model change
+import { observer } from "mobx-react-lite";
+
+export default observer(
     function NavigationBar(props){
         /*
         function functionName(parameter) {
@@ -10,4 +12,5 @@ export default // needed for the presenter to update (its view) when relevant pa
         return <NavigationBarView 
                                     /*properties used in view*/
                                     />;
-    };
+    }
+)

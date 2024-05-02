@@ -9,7 +9,12 @@ export default observer(
         return props.model.functionInModel(parameterIfAny)
     }
     */
+   function setLocationACB(locationChoice) {
+        props.model.setUserLocation(locationChoice);
+   }
     return <AccountView 
                                 hard = {props.model.hardnessData}/*properties used in view*/
+                                selectLocation = {props.model.user_location}
+                                selectLocationOption= {setLocationACB}
                                 />;
 }) // needed for the presenter to update (its view) when relevant parts of the model change

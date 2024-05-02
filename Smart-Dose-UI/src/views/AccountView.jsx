@@ -42,8 +42,8 @@ function AccountView(props) {
         }
     }
 
-    function renderOptionsACB(location) {
-        return <option key={location.ID} value={location}>{location} -jj</option>
+    function selectTypeChangeACB(evt) {
+        props.selectLocationOption(evt.target.value);
     }
 
     return (
@@ -64,10 +64,11 @@ function AccountView(props) {
                 </div>
                 <div className="profile-water">
                     
-                <select value="" id="">
+                <select value={props.userLocation || ''} onChange={selectTypeChangeACB}>
+                    <option value={props.userLocation || ''}>Change location...</option>
                         {props.hard && props.hard.map( 
                             (someOption, index) => (
-                                    <option key={index} value={someOption.Location}>{someOption.Location} {'\t'}{someOption.Hardness}°dH</option>)
+                                    <option key={index} value={someOption.Location}>{someOption.Location} {someOption.Hardness}°dH</option>)
                         )}                     
 
                 </select>
@@ -82,7 +83,7 @@ function AccountView(props) {
                                 <h6>WHITE</h6>
                             <div>
                                 <button>Remove</button>
-                                <detergent className="detergent-type">Coop white</detergent>
+                                <div className="detergent-type">Coop white</div>
                                 {/* Saved white detergent */}
                             </div>
 
@@ -91,7 +92,7 @@ function AccountView(props) {
                                 <h6>COLOR</h6>
                             <div>
                                 <button>Remove</button>
-                                <detergent className="detergent-type">Ariel color</detergent>
+                                <div className="detergent-type">Ariel color</div>
                                 {/* Saved colored detergent */}
                             </div>
                             </div>
