@@ -20,9 +20,6 @@
 .header img{
     width: 80px;
     height: 80px;
-
-   
-    
 }
 .header h1 {
     padding-top: 15px;
@@ -70,6 +67,7 @@
 .background-water {
     text-align: center; 
     color: #000000; 
+   
 }
 
 .background-water p {
@@ -78,7 +76,7 @@
     margin-bottom: 20px;
 }
 
-.background-water button {
+.background-water a {
     margin: 20px; 
     padding: 10px 20px; 
     font-size: 18px; 
@@ -88,6 +86,23 @@
     background-color: #0000B2; 
     cursor: pointer; 
     box-shadow: -3px 2px 5px rgba(0, 0, 0, 0.273); 
+    text-decoration: none;
+
+    
+}
+
+.background-water .a:link, .a:visited{
+    margin: 20px; 
+    padding: 10px 20px; 
+    font-size: 18px; 
+    border: none; 
+    border-radius: 5px; 
+    color: #fff; 
+    background-color: #0000B2; 
+    cursor: pointer; 
+    box-shadow: -3px 2px 5px rgba(0, 0, 0, 0.273); 
+   
+    
 }
 
 
@@ -121,6 +136,8 @@
     padding: 0 30px 0 15px;
     color: black; 
     font-size: 20px;
+    border-style:groove;
+
 }
 
 .background-weight {
@@ -132,6 +149,11 @@
 
 .background-weight p {
     font-size: 20px;
+    margin-top: 30px;
+    color: #e5e5e5; /* Vit textfärg för <p> element */
+}
+.background-weight h5 {
+    font-size: 10px;
     margin-top: 30px;
     color: #e5e5e5; /* Vit textfärg för <p> element */
 }
@@ -159,6 +181,16 @@
     cursor: pointer;
     box-shadow: -3px 2px 5px rgba(164, 164, 164, 0.273); 
 }
+.background-weight input {
+    margin-bottom: 40px;
+    border-radius: 50px;
+    pointer-events: none;
+    padding-left: 10px;
+}
+.background-weight input::placeholder{
+    padding-left: 20px;
+}
+
 
 
 
@@ -209,7 +241,7 @@
 
 }
 
-button:enabled:hover{
+.button-container:enabled:hover{
     background-color: #0000B2; 
     transform: scale(1.1);
 }
@@ -217,4 +249,12 @@ button:enabled:hover{
 
 
 
+/*removes the spinners on the input box for the weight of the scale*/
+input[type="number"]::-webkit-outer-spin-button,
+                input[type="number"]::-webkit-inner-spin-button {
+                     -webkit-appearance: none;
+                    margin: 0;
+                    
+                }
 
+                

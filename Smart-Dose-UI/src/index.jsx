@@ -1,7 +1,7 @@
 import React from 'react'
 import "./css/index.css";
 import model from "./model/smart-dose-model.js";
-import { observable, configure } from "mobx";
+import { observable, configure , reaction} from "mobx";
 
 configure({ enforceActions: "never", });  // we don't use Mobx actions
 const reactiveModel= observable(model);

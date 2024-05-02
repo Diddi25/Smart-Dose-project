@@ -1,11 +1,25 @@
 import { useState, useEffect } from "react";
 import "../css/account.css";
 
+
 function AccountView(props) {
     const [ipAddress, setIpAdderess] = useState("");
     const [geoInfo, setGeoInfo] = useState({});
     const [showFlag, setShowFlag] = useState("0");
     const [fetchflag, setFetchFlag] = useState("0");
+    const [activeButtonWater, setactiveButtonWater] = useState(" ");
+    const [activeButtonRemoveW, setactiveButtonRemoveW] = useState(" ");
+    const [activeButtonRemoveC, setactiveButtonRemoveC] = useState(" ");
+
+    const buttonClickHandlerWater =(buttonID) =>{
+        setactiveButtonWater(buttonID);
+    }
+    const buttonRemoveWhite =(buttonID) =>{
+        setactiveButtonRemoveW(buttonID);
+    }
+    const buttonRemoveColor =(buttonID) =>{
+        setactiveButtonRemoveC(buttonID);
+    }
 
     useEffect(() => {
         getVisitorIP();
@@ -59,31 +73,40 @@ function AccountView(props) {
                     <h6>Change your location</h6>
                 </div>
                 <div className="profile-water">
-                    <select value="Stockholm 4-6 dH" id="">
+                    <select id="">
                     <option>Test</option>
                     <option>1</option>
-                        <option>{showGeoInfo}</option>
+                    
                     </select>
                 </div>
             </div>
+            <div className="manual-waterhardness">
+                        <h6>Choose water hardness manually</h6>
+                     
+                        <button id="hard" onClick={() => buttonClickHandlerWater("hard")} disabled={activeButtonWater ==="hard"}>HARD</button>
+                        <button id="medium" onClick={() => buttonClickHandlerWater("medium")} disabled={activeButtonWater ==="medium"}>MEDIUM</button>
+                        <button id="soft" onClick={() => buttonClickHandlerWater("soft")} disabled={activeButtonWater ==="soft"}>SOFT</button>
+                    </div>
+                    <br/>
+                    <br/>
                 <div className="profile-detergent">
                     <h6>Recently used detergent types</h6>
                     <div>
                         <div className="detergent-container">
                             <div className="detergent-WC">
                                 <h6>WHITE</h6>
-                            <div>
-                                <button>Remove</button>
-                                <detergent className="detergent-type">Coop white</detergent>
+                            <div className="remove-button">
+                                <button id="remove-white" onClick={() => buttonRemoveWhite("remove-white")} disabled={activeButtonRemoveW ==="remove-white"}>Remove</button>
+                                <div className="detergent-type">Coop white</div>
                                 {/* Saved white detergent */}
                             </div>
 
                             </div>
                             <div className="detergent-WC">
                                 <h6>COLOR</h6>
-                            <div>
-                                <button>Remove</button>
-                                <detergent className="detergent-type">Ariel color</detergent>
+                            <div className="remove-button">
+                            <button id="remove-color" onClick={() => buttonRemoveColor("remove-color")} disabled={activeButtonRemoveC ==="remove-color"}>Remove</button>
+                                <div className="detergent-type">Ariel color</div>
                                 {/* Saved colored detergent */}
                             </div>
                             </div>

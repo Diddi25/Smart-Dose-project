@@ -11,6 +11,9 @@ export default {
     hardness_data: [],
     detergent_type_data: [],
     satus:false,
+    scaleWeight:0,
+    
+
 
     accessHardness_data() {
         //const hardnessTable = new HardnessTable('water_hardness_data.csv');
@@ -21,5 +24,9 @@ export default {
     setSatus(state){
         this.status = state;
     },
+    
+    setScaleWeight(weight){
+        this.scaleWeight = weight;
+    }
     
 }
