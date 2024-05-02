@@ -75,32 +75,30 @@ function AccountView(props) {
 
                 </div>
             </div>
-                <div className="profile-detergent">
-                    <h6>Recently used detergent types</h6>
-                    <div>
-                        <div className="detergent-container">
-                            <div className="detergent-WC">
-                                <h6>WHITE</h6>
+            <div className="profile-detergent">
+                <h6>Recently used detergent types</h6>
+                <div>
+                    <div className="detergent-container">
+                        <div className="detergent-WC">
+                            <h6>WHITE</h6>
                             <div>
                                 <button>Remove</button>
                                 <div className="detergent-type">Coop white</div>
-                                {/* Saved white detergent */}
+                                 {/* Saved white detergent */}
                             </div>
-
-                            </div>
-                            <div className="detergent-WC">
-                                <h6>COLOR</h6>
+                        </div>
+                        <div className="detergent-WC">
+                            <h6>COLOR</h6>
                             <div>
                                 <button>Remove</button>
                                 <div className="detergent-type">Ariel color</div>
-                                {/* Saved colored detergent */}
-                            </div>
+                                    {/* Saved colored detergent */}
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             
-
             <div>
                 <br />
                 <br />
