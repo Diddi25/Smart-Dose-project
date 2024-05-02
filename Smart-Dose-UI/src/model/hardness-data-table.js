@@ -1,5 +1,5 @@
 
-/*
+
 class HardnessTable {
 
     static #sweden_county_nr = 290;
@@ -31,12 +31,12 @@ class HardnessTable {
     }
 
 }
-*/
 
 const nrOfCounties = 290;
+const table = [];
 
 function readHardnessData(table, fileName) {
-    table =[];
+    
     try {
         const lines = require('fs').readFileSync(fileName, 'utf-8').split('\n');
         lines.forEach(line => {
@@ -57,7 +57,7 @@ function hashFunction(key) {
     for (let i = 0; i < key.length; i++) {
         hash += key.charCodeAt(i); // Add the character code of each letter
     }
-    return hash % this.constructor.sweden_county_nr;
+    return hash % nrOfCounties;
 }
 
 export function lookupAllHardnessData(hardness_data) {
