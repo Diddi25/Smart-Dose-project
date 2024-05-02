@@ -6,14 +6,27 @@
 
 .header {
     font-family: 'Roboto', sans-serif;
-    letter-spacing: 5px;
+    justify-content: center;
+    display: flex;
+    flex-wrap:  wrap;
+    gap: 20px;
+    letter-spacing: 6px;
     background-color: white;
     color: black;
     text-align: center;
-    padding: 50px 0 20px;
+    padding: 120px 0 27px;
 }
 
+.header img{
+    width: 80px;
+    height: 80px;
+
+   
+    
+}
 .header h1 {
+    padding-top: 15px;
+    padding-left: 98px;
     font-size: 50px;
     margin: 0;
 }
@@ -39,12 +52,24 @@
     color: #fff;
     background-color: #0000B2;
     cursor: pointer;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    box-shadow: -3px 2px 5px rgba(164, 164, 164, 0.273); 
+}
+
+.background button:disabled {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(226, 226, 226);
+    color: rgb(121, 121, 121); 
+    cursor: pointer;
+    box-shadow: -3px 2px 5px rgba(164, 164, 164, 0.273); 
 }
 
 .background-water {
     text-align: center; 
-    color: #fff; 
+    color: #000000; 
 }
 
 .background-water p {
@@ -62,14 +87,40 @@
     color: #fff; 
     background-color: #0000B2; 
     cursor: pointer; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    box-shadow: -3px 2px 5px rgba(0, 0, 0, 0.273); 
+}
+
+
+
+.background-water button:disabled{
+    background-color: rgb(226, 226, 226);
+    color: rgb(121, 121, 121); 
+    margin: 20px; 
+    padding: 10px 20px; 
+    font-size: 18px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    box-shadow: -3px 2px 5px rgba(0, 0, 0, 0.273); 
 }
 
 .city-dropdown {
     display: flex;
     justify-content: center;
+    font-family: 'Roboto', sans-serif;
     align-items: center;
     height: 100px; 
+    position: relative;
+    min-width: 250px;
+    
+}
+
+.city-dropdown select {
+    background-color: whitesmoke;
+    border-radius: 50px;
+    padding: 0 30px 0 15px;
+    color: black; 
+    font-size: 20px;
 }
 
 .background-weight {
@@ -81,6 +132,7 @@
 
 .background-weight p {
     font-size: 20px;
+    margin-top: 30px;
     color: #e5e5e5; /* Vit textfärg för <p> element */
 }
 
@@ -93,11 +145,27 @@
     color: #fff;
     background-color: #0000B2;
     cursor: pointer;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    box-shadow: -3px 2px 5px rgba(164, 164, 164, 0.273); 
 }
+
+.background-weight button:disabled {
+    background-color: rgb(226, 226, 226);
+    color: rgb(121, 121, 121); 
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: -3px 2px 5px rgba(164, 164, 164, 0.273); 
+}
+
+
+
 
 .text p {
     font-size: 20px;
+    padding: 0 10px 30px;
     color: #000;
     text-align: center;
 }
@@ -111,19 +179,41 @@
 }
 
 .button-container button {
-    width: 100px; 
-    height: 100px;
-    border-radius: 90%; 
+    width: 150px; 
+    height: 150px;
+    border-radius: 100%; 
     background-color: #0000B2; 
     color: white; 
-    font-size: 18px; 
+    font-size: 23px; 
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.273); 
 }
+
+.button-container :disabled{
+    width: 150px; 
+    height: 150px;
+    border-radius: 100%; 
+    background-color: rgb(226, 226, 226);
+    color: rgb(121, 121, 121); 
+    font-size: 23px; 
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.273); 
+
+}
+
+button:enabled:hover{
+    background-color: #0000B2; 
+    transform: scale(1.1);
+}
+
 
 
 

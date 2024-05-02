@@ -10,13 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< Updated upstream
-=======
-    "csv-parser": "^3.0.0",
-    "firebase": "^10.11.0",
->>>>>>> Stashed changes
+    "firebase": "^10.11.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
+    "mobx": "^6.12.3",
+    "mobx-react": "^9.1.1",
+    "papaparse": "^5.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",

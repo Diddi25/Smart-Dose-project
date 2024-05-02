@@ -1,9 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
 
 .navItems {
-    float: left;
-    margin-right: 10px;
+    background-color:#f3f3f3b9;
+    font-family: 'Roboto', sans-serif;
+    position: fixed;
+    top: 0;
+    width: 98.6%;
+    color: rgb(4, 6, 59);
+    padding: 15px 20px 0px;
+    margin: 10px 10px 10px;
+    border-radius: 50px;
+    box-sizing:border-box;
+    border-color:  rgb(207, 207, 208);
+    border-style:solid;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2); 
+    z-index: 1;
 }
 
-.loginButton {
-    float: right;
+
+.navItems ul {
+    font-size: x-small;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 40px;
+    text-shadow: 1px 1.5px 0 rgba(159, 159, 159, 0.167);
+    align-items: center;
+
 }
+
+
+.navItems li:hover {
+    cursor: pointer;
+    color: rgb(142, 142, 142);
+}
+
+.navItems li:nth-last-child(1) { /*Sets the login link to the right */
+    margin-left: auto;
+
+} 
+
+.navItems a{
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    padding: 0px 6px 10px;
+    transition: all 0.3s ease 0s;
+}
+
+.navItems  a.active{
+    background-color: #0000B2;
+    padding: 8px 10px;
+    margin-bottom: 12px;
+    border-radius: 50px;
+    box-shadow: 0 2px 5px 0 rgba(128, 128, 128, 0.683);
+    color: rgb(255, 255, 255);
+    transition: all 0.4s ease 0s;
+
+} 
+
+.logo{
+    width: 50px;
+    height: 50px;
+    padding-bottom: 12px;
+    padding-left: 10px;
+}
+
+
+
