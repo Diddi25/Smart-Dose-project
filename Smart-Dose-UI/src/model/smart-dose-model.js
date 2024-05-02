@@ -13,6 +13,7 @@ export default {
     ready:false,
 
 
+<<<<<<< Updated upstream
 
 
     setModelReadyACB(readys){
@@ -20,6 +21,10 @@ export default {
 
 this.ready=readys;
 
+=======
+    setStatus(state){
+        this.status = state;
+>>>>>>> Stashed changes
     },
     
     status: false,

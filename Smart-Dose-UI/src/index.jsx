@@ -32,6 +32,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 */
 
+<<<<<<< Updated upstream
+=======
+//import firebaseModel from "./model/firebaseModel.js";
+import { connectToFirebase } from "./model/firebaseModel.js";
+
+>>>>>>> Stashed changes
 
 
 import { connectToFirebase } from "/src/firebaseModel.js";
