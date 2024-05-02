@@ -8,6 +8,10 @@ export default {
     user_location : '',
     status : false,
 
+    setUserLocation(location) {
+        this.location = location;
+    },
+
     setSatus(state){
         this.status = state;
     },
