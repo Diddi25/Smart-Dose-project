@@ -1,9 +1,4 @@
 
-import { useEffect, useState } from "react";
-import {lookupAllHardnessData} from "./hardness-data-table.js";
-import HardnessNode from './hardness-node.js';
-
-
 
 export default {
 
