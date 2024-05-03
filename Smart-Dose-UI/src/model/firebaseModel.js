@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, set, onValue, child, onChildAdded, onChildRemoved, off} from "firebase/database";
 import React, { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { fetchLocation } from "../geoSource";
 
 const app= initializeApp(firebaseConfig)
 const db= getDatabase(app)
@@ -15,19 +16,34 @@ var path="USERID";
 export function modelToPersistence(model) {
     return {
         hardness : model.hardnessData,
+        userLocation : model.user_location,
     };
 }
 
-export function persistenceToModel(data, model) {
+export async function persistenceToModel(data, model) {
+    /*
+    model.user_location = fetchLocation().then(geoInfo => {
+        if (data) {
+            saveToModelACB(data.hardness, model);
+        }
+        return geoInfo;
+    }).catch(error => {
+        console.error("Error fetching location info:", error);
+        return null; // Return null or handle the error accordingly
+    });
+    */
+    
     function saveToModelACB(fromFB) {
         model.hardnessData = fromFB;
     }
     if(data) {
+        model.user_location = await fetchLocation();
         return saveToModelACB(data.hardness);
     } else {
-        model.hardness = [];
-        return saveToModelACB(model.hardness);
+        model.user_location = fetchLocation();
+        return;
     }
+    
 }
 
 export function saveToFirebase(model) {
@@ -47,8 +63,7 @@ export function readFromFirebase(model) {
         return persistenceToModel(snapshot.val(), model)
     }
     function setModelReadyACB() {
-        
-        
+        model.ready = true;
     }
     if(model.user) {
         return get(ref(db, path+"/"+ model.user.uid)).then(convertACB).then(setModelReadyACB);

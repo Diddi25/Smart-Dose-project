@@ -2,45 +2,6 @@ import { useState, useEffect } from "react";
 import "../css/account.css";
 
 function AccountView(props) {
-    const [ipAddress, setIpAdderess] = useState("");
-    const [geoInfo, setGeoInfo] = useState({});
-    const [showFlag, setShowFlag] = useState("0");
-    const [fetchflag, setFetchFlag] = useState("0");
-
-    useEffect(() => {
-        getVisitorIP();
-    }, []);
-
-    const getVisitorIP = async () => {
-        try {
-            const response = await fetch("https://api.ipify.org");
-            const data = await response.text();
-            setIpAdderess(data);
-        } catch (error) {
-            console.error("Failed to fetch IP:", error);
-        }
-    };
-
-    const fetchIPInfo = async () => {
-        try {
-            const url = "http://ip-api.com/json/" + ipAddress;
-            const response = await fetch(url);
-            const data = await response.json();
-            setGeoInfo(data);
-        } catch (error) {
-            console.error("Failed to fetch location info:", error);
-        }
-    };
-
-    function showGeoInfo() {
-        if (showFlag === "0") {
-            fetchIPInfo();
-            setShowFlag("1");
-        } else {
-            setGeoInfo({});
-            setShowFlag("0");
-        }
-    }
 
     function selectTypeChangeACB(evt) {
         props.selectLocationOption(evt.target.value);
@@ -56,6 +17,7 @@ function AccountView(props) {
                 <p>{/*google account name*/}</p>
             </div>
                 <div className="profile-title">
+                    Location: {props.location.country}
                     <h5>Water hardness</h5>
                 </div>
             <div>
@@ -65,12 +27,11 @@ function AccountView(props) {
                 <div className="profile-water">
                     
                 <select value={props.userLocation || ''} onChange={selectTypeChangeACB}>
-                    <option value={props.userLocation || ''}>Change location...</option>
+                    <option value={props.userLocation || ''}></option>
                         {props.hard && props.hard.map( 
                             (someOption, index) => (
                                     <option key={index} value={someOption.Location}>{someOption.Location} {someOption.Hardness}°dH</option>)
                         )}                     
-
                 </select>
 
                 </div>
