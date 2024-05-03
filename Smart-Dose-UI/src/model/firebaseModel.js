@@ -20,27 +20,14 @@ export function modelToPersistence(model) {
     };
 }
 
-export async function persistenceToModel(data, model) {
-    /*
-    model.user_location = fetchLocation().then(geoInfo => {
-        if (data) {
-            saveToModelACB(data.hardness, model);
-        }
-        return geoInfo;
-    }).catch(error => {
-        console.error("Error fetching location info:", error);
-        return null; // Return null or handle the error accordingly
-    });
-    */
-    
+export async function persistenceToModel(data, model) {    
+    model.user_location = await fetchLocation();
     function saveToModelACB(fromFB) {
         model.hardnessData = fromFB;
     }
     if(data) {
-        model.user_location = await fetchLocation();
         return saveToModelACB(data.hardness);
     } else {
-        model.user_location = fetchLocation();
         return;
     }
     
