@@ -16,21 +16,19 @@ export const auth = getAuth(app);
 export function modelToPersistence(model) {
     console.log('Did it come here?')
     return {
-        hardness : model.hardnessData,
+        HardnessData : model.HardnessData,
         userLocation : model.user_location,
     };
-    console.log('Or here?')
-
 }
 
 export async function persistenceToModel(data, model) {    
     console.log('Or here? Dumb duplicate')
     function saveToModelACB(fromFB) {
-        model.hardnessData = fromFB;
+        model.HardnessData = fromFB;
     }
     if(data) {
         model.user_location = userLocation;
-        return saveToModelACB(data.hardness);
+        return saveToModelACB(data.HardnessData);
     }
     console.log('Did I find it?')
 }
@@ -72,7 +70,7 @@ export default function connectToFirebase(model, watchFunction){
     function checkACB() {
         console.log('In CheckACB')
         return [
-            model.hardnessData,
+            model.HardnessData,
             model.user_location,
         ];
     };

@@ -17,7 +17,7 @@ function AccountView(props) {
                 <p>{/*google account name*/}</p>
             </div>
                 <div className="profile-title">
-                    Location: {props.location.city}
+                    Location city: {props.location.city}
                     <h5>Water hardness</h5>
                 </div>
             <div>
