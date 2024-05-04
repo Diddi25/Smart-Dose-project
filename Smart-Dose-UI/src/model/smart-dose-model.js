@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 export default {
     /*properties that can be persisted*/
 
-    HardnessData : HardnessDataTable, // const HardnessDataTable = [{Location: "Stockholm", Hardness: 3, ID: 34}]
+    HardnessData : HardnessDataTable, // const HardnessDataTable = [{Location: "Stockholm", Hardness: 3, ID: 199}]
     user_location : {}, //innehåller .country .city .regionName || countryCode, region, zip, lat, lon, timezone, isp, org, as, query
     user_hardness : {}, //{Location: , Hardness: , ID:}
     user_regionName_without_county : "",
@@ -25,7 +25,9 @@ export default {
                 return hardnessTuple;
             }
         };
-        this.user_hardness = this.HardnessData.find(findCityACB);
+        if(this.user_hardness.Location === undefined) {
+            this.user_hardness = this.HardnessData.find(findCityACB);
+        }
         if (this.user_hardness === undefined) {
             this.setHardnessWithRegionName();
         }

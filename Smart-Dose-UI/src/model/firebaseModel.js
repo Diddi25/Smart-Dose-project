@@ -18,6 +18,7 @@ export function modelToPersistence(model) {
     return {
         HardnessData : model.HardnessData,
         userLocation : model.user_location,
+        userHardness : model.user_hardness,
     };
 }
 
@@ -27,7 +28,8 @@ export async function persistenceToModel(data, model) {
         model.HardnessData = fromFB;
     }
     if(data) {
-        model.user_location = userLocation;
+        model.user_location = data.userLocation;
+        model.user_hardness = data.userHardness;
         return saveToModelACB(data.HardnessData);
     }
     console.log('Did I find it?')
@@ -72,6 +74,7 @@ export default function connectToFirebase(model, watchFunction){
         return [
             model.HardnessData,
             model.user_location,
+            model.user_hardness,
         ];
     };
     function sideEffectACB() {

@@ -15,7 +15,6 @@ export default observer(
     return <AccountView 
                                 hardData = {props.model.HardnessData}/*properties used in view*/
                                 userHard = {props.model.user_hardness}
-                                location = {props.model.user_location}
                                 selectLocationOption= {setLocationACB}
                                 />;
 }) // needed for the presenter to update (its view) when relevant parts of the model change

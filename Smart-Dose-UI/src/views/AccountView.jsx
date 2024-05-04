@@ -17,14 +17,12 @@ function AccountView(props) {
                 <p>{/*google account name*/}</p>
             </div>
                 <div className="profile-title">
-                    User Location property: {props.location.city}
-                    <br />
-                    User Hardness property: {props.userHard.Location}
                     <h5>Water hardness</h5>
                 </div>
             <div>
                 <div className="profile-water">
-                    <h6>Change your location</h6>
+                    <h6>Water hardness based on your location:</h6>
+                    {props.userHard.Location} {props.userHard.Hardness}°dH
                 </div>
                 <div className="profile-water">
                     
