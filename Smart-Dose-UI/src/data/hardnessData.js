@@ -1,4 +1,6 @@
 
+//Good lookup link for swedens ip addresses: https://ipregistry.co/AS3301
+
 const HardnessDataTable = [
   {
     "Location": "Ale",

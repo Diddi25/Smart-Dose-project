@@ -56,6 +56,8 @@ export function readFromFirebase(model) {
 
 export default function connectToFirebase(model, watchFunction){
     //const readFirebaseObject = readFromFirebase(model); //Den ska kunna läsa oavsett user?
+    console.log('Before fetching')
+    fetchGeographicalInfo();
     function loginOrOutACB(user) {
         if (user) {
             model.user=user;
@@ -63,8 +65,6 @@ export default function connectToFirebase(model, watchFunction){
         }
         readFromFirebase(model);
     }
-    console.log('Before fetching')
-    fetchGeographicalInfo();
     onAuthStateChanged(auth, loginOrOutACB);
     watchFunction(checkACB, sideEffectACB);
     function checkACB() {
@@ -72,12 +72,10 @@ export default function connectToFirebase(model, watchFunction){
         return [
             model.HardnessData,
             model.user_location,
-            model.user_location.country,
         ];
     };
     function sideEffectACB() {
         saveToFirebase(model);
-        console.log('Is this undefined?',model.user_location.city);
-        model.determineHardnessBasedOnUserLocation();
+        model.setUserHardness(); //this have to be evoked at this point
     };
 }

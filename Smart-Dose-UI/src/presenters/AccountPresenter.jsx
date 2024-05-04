@@ -10,10 +10,11 @@ export default observer(
     }
     */
    function setLocationACB(locationChoice) {
-        props.model.setUserLocation(locationChoice);
+        props.model.changeUserHardness(locationChoice);
    }
     return <AccountView 
-                                hard = {props.model.hardnessData}/*properties used in view*/
+                                hardData = {props.model.HardnessData}/*properties used in view*/
+                                userHard = {props.model.user_hardness}
                                 location = {props.model.user_location}
                                 selectLocationOption= {setLocationACB}
                                 />;

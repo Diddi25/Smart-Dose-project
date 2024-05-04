@@ -10,11 +10,16 @@ export default {
     user_regionName_without_county : "",
     status : false,
 
-    setUserLocation(location) {
-        this.location = location;
+    changeUserHardness(location) { //here comes the string
+        const findCityACB = hardnessTuple => {
+            if (hardnessTuple.Location === location) {
+                return hardnessTuple;
+            }
+        };
+        this.user_hardness = this.HardnessData.find(findCityACB);
     },
 
-    determineHardnessBasedOnUserLocation() {
+    setUserHardness() {
         const findCityACB = hardnessTuple => {
             if (hardnessTuple.Location === this.user_location.city) {
                 return hardnessTuple;
@@ -22,24 +27,23 @@ export default {
         };
         this.user_hardness = this.HardnessData.find(findCityACB);
         if (this.user_hardness === undefined) {
-            this.determineWithRegionName();
+            this.setHardnessWithRegionName();
         }
     },
 
-    determineWithRegionName() {
+    setHardnessWithRegionName() {
         const findRegionNameACB = hardnessTuple => {
             if (this.user_regionName_without_county === hardnessTuple.Location) {
                 return hardnessTuple;
             }
         };
-        function extractCounty() {
+        const extractCounty = () => {
             const regionName = this.user_location.regionName;
             const words = regionName.split(" ");
             const desiredWord = words[0];
             console.log(desiredWord, 'from', regionName); // Output: "Stockholm" from "Stockholm County"
             return desiredWord;
-
-        }
+        };
         this.user_regionName_without_county = extractCounty();
         this.user_hardness = this.HardnessData.find(findRegionNameACB)
     },

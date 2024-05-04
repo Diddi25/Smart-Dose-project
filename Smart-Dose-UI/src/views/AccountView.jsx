@@ -17,7 +17,9 @@ function AccountView(props) {
                 <p>{/*google account name*/}</p>
             </div>
                 <div className="profile-title">
-                    Location city: {props.location.city}
+                    User Location property: {props.location.city}
+                    <br />
+                    User Hardness property: {props.userHard.Location}
                     <h5>Water hardness</h5>
                 </div>
             <div>
@@ -26,9 +28,9 @@ function AccountView(props) {
                 </div>
                 <div className="profile-water">
                     
-                <select value={props.location.city} onChange={selectTypeChangeACB}>
-                    <option value={props.location.city}></option>
-                        {props.hard && props.hard.map( 
+                <select value={props.userHard.Location} onChange={selectTypeChangeACB}>
+                    <option value={props.userHard.Location}>{props.userHard.Location} {props.userHard.Hardness}°dH</option>
+                        {props.hardData.map( 
                             (someOption, index) => (
                                     <option key={index} value={someOption.Location}>{someOption.Location} {someOption.Hardness}°dH</option>)
                         )}                     
