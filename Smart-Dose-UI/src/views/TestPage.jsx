@@ -1,6 +1,5 @@
 import "../css/testpage.css";
 import React, { useState } from 'react';
-import HardnessNode from "../model/hardness-node";
 
 function TestPageView(props) {
 
