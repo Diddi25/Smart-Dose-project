@@ -72,9 +72,12 @@ export default function connectToFirebase(model, watchFunction){
         return [
             model.HardnessData,
             model.user_location,
+            model.user_location.country,
         ];
     };
     function sideEffectACB() {
         saveToFirebase(model);
+        console.log('Is this undefined?',model.user_location.city);
+        model.determineHardnessBasedOnUserLocation();
     };
 }
