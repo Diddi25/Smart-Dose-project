@@ -16,9 +16,16 @@ export const auth = getAuth(app);
 export function modelToPersistence(model) {
     console.log('Did it come here?')
     return {
-        HardnessData : model.HardnessData,
-        userLocation : model.user_location,
-        userHardness : model.user_hardness,
+        HardnessData: model.HardnessData,
+        userLocation: model.user_location,
+        userHardness: model.user_hardness,
+    };
+}
+
+export function modelToPersistence2(model) {
+    console.log('Did it come here?')
+    return {
+
     };
 }
 
@@ -36,6 +43,12 @@ export async function persistenceToModel(data, model) {
 }
 
 export function saveToFirebase(model) {
+    /*
+    if(model.user) {
+        const ref_user = ref(db, PATH+"/"+model.user.uid);
+        set(ref_users, modelToPersistence2(model))
+    }
+    */
     set(ref_root, modelToPersistence(model))
 }
 

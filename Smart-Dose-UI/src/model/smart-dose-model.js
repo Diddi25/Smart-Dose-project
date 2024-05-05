@@ -1,5 +1,6 @@
 import HardnessDataTable from "../data/hardnessData.js"
 import { observer } from "mobx-react-lite";
+import firebaseObject from "../firebaseObject.js"
 
 export default {
     /*properties that can be persisted*/
@@ -9,6 +10,7 @@ export default {
     user_hardness : {}, //{Location: , Hardness: , ID:}
     user_regionName_without_county : "",
     status : false,
+    FirebaseObject : firebaseObject,
 
     changeUserHardness(location) { //here comes the string
         const findCityACB = hardnessTuple => {
