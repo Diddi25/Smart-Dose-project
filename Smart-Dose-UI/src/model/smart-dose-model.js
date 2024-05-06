@@ -10,6 +10,7 @@ export default {
     user_hardness : {}, //{Location: , Hardness: , ID:}
     user_regionName_without_county : "",
     status : false,
+    scaleWeight:0,
     FirebaseObject : firebaseObject,
 
     changeUserHardness(location) { //here comes the string
@@ -55,5 +56,9 @@ export default {
     setSatus(state){
         this.status = state;
     },
+    
+    setScaleWeight(weight){
+        this.scaleWeight = weight;
+    }
     
 }

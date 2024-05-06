@@ -35,9 +35,11 @@ export function makeRouter(model) {
       {
         path: "/",
         element: <MainPage model={model} />,
+        element: <MainPage model={model} />,
       },    
       {
         path: "/about",
+        element: <AboutPage model={model} />,
         element: <AboutPage model={model} />,
       },   
       {
@@ -50,6 +52,7 @@ export function makeRouter(model) {
       },  
       {
         path: "/account",
+        element: <AccountPage model={model} />,
         element: <AccountPage model={model} />,
       },  
   ])

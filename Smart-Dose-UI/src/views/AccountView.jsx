@@ -1,7 +1,22 @@
 import { useState, useEffect } from "react";
 import "../css/account.css";
 
+
 function AccountView(props) {
+
+    const [activeButtonWater, setactiveButtonWater] = useState(" ");
+    const [activeButtonRemoveW, setactiveButtonRemoveW] = useState(" ");
+    const [activeButtonRemoveC, setactiveButtonRemoveC] = useState(" ");
+
+    const buttonClickHandlerWater =(buttonID) =>{
+        setactiveButtonWater(buttonID);
+    }
+    const buttonRemoveWhite =(buttonID) =>{
+        setactiveButtonRemoveW(buttonID);
+    }
+    const buttonRemoveColor =(buttonID) =>{
+        setactiveButtonRemoveC(buttonID);
+    }
 
     function selectTypeChangeACB(evt) {
         props.selectLocationOption(evt.target.value);
@@ -36,6 +51,15 @@ function AccountView(props) {
 
                 </div>
             </div>
+            <div className="manual-waterhardness">
+                        <h6>Choose water hardness manually</h6>
+                     
+                        <button id="hard" onClick={() => buttonClickHandlerWater("hard")} disabled={activeButtonWater ==="hard"}>HARD</button>
+                        <button id="medium" onClick={() => buttonClickHandlerWater("medium")} disabled={activeButtonWater ==="medium"}>MEDIUM</button>
+                        <button id="soft" onClick={() => buttonClickHandlerWater("soft")} disabled={activeButtonWater ==="soft"}>SOFT</button>
+            </div>
+                    <br/>
+                    <br/>
             <div className="profile-detergent">
                 <h6>Recently used detergent types</h6>
                 <div>
