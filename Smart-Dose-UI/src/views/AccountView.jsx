@@ -3,7 +3,6 @@ import "../css/account.css";
 
 
 function AccountView(props) {
-
     const [activeButtonWater, setactiveButtonWater] = useState(" ");
     const [activeButtonRemoveW, setactiveButtonRemoveW] = useState(" ");
     const [activeButtonRemoveC, setactiveButtonRemoveC] = useState(" ");
