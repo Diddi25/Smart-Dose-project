@@ -1,44 +1,31 @@
 import { useState, useEffect } from "react";
 import "../css/account.css";
+import { auth } from '../model/firebaseModel.js'
+import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import { deleteUser } from "firebase/auth";
 
 function AccountView(props) {
-    const [ipAddress, setIpAdderess] = useState("");
-    const [geoInfo, setGeoInfo] = useState({});
-    const [showFlag, setShowFlag] = useState("0");
-    const [fetchflag, setFetchFlag] = useState("0");
-
-    useEffect(() => {
-        getVisitorIP();
-    }, []);
-
-    const getVisitorIP = async () => {
-        try {
-            const response = await fetch("https://api.ipify.org");
-            const data = await response.text();
-            setIpAdderess(data);
-        } catch (error) {
-            console.error("Failed to fetch IP:", error);
+      
+    function logOutACB() {
+        if(auth.currentUser) {
+          signOut(auth)
+          window.location.href = "#/"; 
+          console.log('Logged out')
         }
-    };
+    }
 
-    const fetchIPInfo = async () => {
-        try {
-            const url = "http://ip-api.com/json/" + ipAddress;
-            const response = await fetch(url);
-            const data = await response.json();
-            setGeoInfo(data);
-        } catch (error) {
-            console.error("Failed to fetch location info:", error);
-        }
-    };
-
-    function showGeoInfo() {
-        if (showFlag === "0") {
-            fetchIPInfo();
-            setShowFlag("1");
-        } else {
-            setGeoInfo({});
-            setShowFlag("0");
+    function deleteAccount() {
+        if(auth.currentUser) {
+            if(window.confirm("Are you sure you want to permanently delete your account?")) {
+                deleteUser(auth.currentUser)
+                .then(() => {
+                    console.log('Account deleted')
+                    window.location.href = "#/"; 
+                })
+                .catch((error) => {
+                    console.error('Error deleting account', error);
+                });
+            }
         }
     }
 
@@ -105,10 +92,10 @@ function AccountView(props) {
                 <br />
                 <br />
                 <br />
-                <button>Log out</button>
+                <button onClick={logOutACB}>Log out</button>
             </div>
             <div>
-                <button>Delete account</button>
+                <button onClick={deleteAccount}>Delete account</button>
             </div>
         </div>
     );
