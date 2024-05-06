@@ -3,25 +3,16 @@ import "../css/mainpage.css";
 import logo from '../images/logo3.png';
 import { useState, React, useEffect } from 'react';
 
-
-
-
-
 function MainPageView(props) {
  
     const [isButtonDisabled, setButtonDisabled] = useState(false);
     const [activeButtonDetergent, setactiveButtonDetergent] = useState(" ");
     const [activeButtonWater, setactiveButtonWater] = useState(" ");
     const [activeButtonWeight, setactiveButtonWeight] = useState(" ");
-  
     
     function handleScaleWeightACB(){
         props.setWeight(props.weight);
-
     }
-       
-    
-
     
     const buttonClickHandlerDetergent =(buttonID) =>{
         setactiveButtonDetergent(buttonID);
@@ -32,11 +23,10 @@ function MainPageView(props) {
     const buttonClickHandlerWeight =(buttonID) =>{
         setactiveButtonWeight(buttonID);
     }
-    
-
-
-
-    
+    function selectTypeChangeACB(evt) {
+        props.selectLocationOption(evt.target.value);
+    }
+  
     return (
         <div className="main">
         <div className="header">
@@ -52,25 +42,28 @@ function MainPageView(props) {
                 <br/>
                 <br/>
                 <div className="main-button">
-                <button id="white" onClick={() => buttonClickHandlerDetergent("white")}disabled={activeButtonDetergent === "white"}>WHITE</button>
-                <button id="color" onClick ={() => buttonClickHandlerDetergent("color")} disabled ={activeButtonDetergent === "color"}>COLOR</button>
-                </div>
-               
+                    <button id="white" onClick={() => buttonClickHandlerDetergent("white")}disabled={activeButtonDetergent === "white"}>WHITE</button>
+                    <button id="color" onClick ={() => buttonClickHandlerDetergent("color")} disabled ={activeButtonDetergent === "color"}>COLOR</button>
+                </div>  
             </div>
             <div className="card">
-            <div className="water-hardness">
+                <div className="water-hardness">
 
-                WATER HARDNESS <br/>
-                <br/>
-                <br/>
-               <h6>Current location:</h6>
-                <select className="dropdown">
-                    <option>Stockholm 4-6° dH</option>
-                </select>
-            </div>
+                    WATER HARDNESS <br/>
+                    <br/>
+                    <br/>
+                    <h6>Based on current location:</h6>
+                    <select value={props.userHard.Location} onChange={selectTypeChangeACB}>
+                        <option value={props.userHard.Location}>{props.userHard.Location} {props.userHard.Hardness}°dH</option>
+                            {props.hardData.map( 
+                                (someOption, index) => (
+                                    <option key={index} value={someOption.Location}>{someOption.Location} {someOption.Hardness}°dH</option>)
+                            )}                     
+                    </select>
+                </div>
             </div>
             <div className="card">
-            SELECT WEIGHT
+                SELECT WEIGHT
             <div className="main-button">
                 <button id="0-3" onClick={() => buttonClickHandlerWeight("0-3")} disabled={activeButtonWeight === "0-3"}>0-3 kg</button>
                 <button id="4-5" onClick={() => buttonClickHandlerWeight("4-5")} disabled={activeButtonWeight === "4-5"}>4-5 kg</button>
@@ -90,70 +83,11 @@ function MainPageView(props) {
                 <br />
                 <button id="start" onClick ={() => setButtonDisabled(true)} disabled ={isButtonDisabled} >START</button>
                 <button id="cancel" onClick ={() => setButtonDisabled(false)} disabled ={!isButtonDisabled}>CANCEL</button>
-    
             </div>
             </div>
             </div>
         </div>
-
-        /* 
-        <div>
-            <div className="header">
-                <h1>SMART DOSE</h1>
-                <img src={logo} alt="logo"></img>
-
-            </div>
-            <div className="background">
-                <br />
-                <p>SELECT DETERGENT TYPE</p>
-                <button id="white" onClick={() => buttonClickHandlerDetergent("white")}disabled={activeButtonDetergent === "white"}>WHITE</button>
-                <button id="color" onClick ={() => buttonClickHandlerDetergent("color")} disabled ={activeButtonDetergent === "color"}>COLOR</button>
-                <br />
-            </div>
-            <div className="background-water">
-                <br />
-                <p>SELECT WATER HARDNESS</p>
-        
-                <a href ="#waterhardness"> Water Hardness</a>
-                
-            </div>
-            <div className="city-dropdown">
-                <select>
-                    <option>Stockholm 4-6° dH</option>
-                </select>
-            </div>
-        
-            <div className="background-weight">
-                <br />
-                <br />
-                <p>SELECT WEIGHT</p>
-                <button id="0-3" onClick={() => buttonClickHandlerWeight("0-3")} disabled={activeButtonWeight === "0-3"}>0-3 kg</button>
-                <button id="4-5" onClick={() => buttonClickHandlerWeight("4-5")} disabled={activeButtonWeight === "4-5"}>4-5 kg</button>
-                <button id="6+" onClick={() => buttonClickHandlerWeight("6+")} disabled={activeButtonWeight === "6+"}>6+ kg</button>
-                <p>OR use scaling device</p>
-                <button id="scale" onClick={() => {buttonClickHandlerWeight("scale");handleScaleWeightACB();}} disabled={activeButtonWeight === "scale"}>SCALE</button>
-                <div>
-                <input type="number" value={props.weight} onChange={handleScaleWeightACB} name="quantity" min="0" placeholder="Scale weight.."  readOnly/>
-                </div>
-            </div>
-            <div className="text">
-                <br />
-                <br />
-                <p>START THE DISPENSER</p>
-            </div>
-            <div className="button-container">
-            <br />
-                <button id="start" onClick={() => {setButtonDisabled(true);props.statusChange(true);}} disabled={isButtonDisabled}>START</button>
-                <button id="cancel" onClick={() => {setButtonDisabled(false);props.statusChange(false);}} disabled={!isButtonDisabled}>CANCEL</button>
-                <br />
-            </div>
-            <footer>
-                Software licences @ [footer]
-            </footer>
-        </div>
-        */
     );
-
 }
 
 export default MainPageView;
