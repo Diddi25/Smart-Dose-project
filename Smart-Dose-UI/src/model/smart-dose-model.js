@@ -53,12 +53,14 @@ export default {
         this.user_hardness = this.HardnessData.find(findRegionNameACB)
     },
 
-    setSatus(state){
+    setStatus(state){
         this.status = state;
     },
     
     setScaleWeight(weight){
         this.scaleWeight = weight;
-    }
+    },
+    
+
     
 }
