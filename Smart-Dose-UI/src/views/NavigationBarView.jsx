@@ -8,32 +8,34 @@ function setButtonTextCB() {
     const [signInOrOutText, setSignText] = useState('Sign in');
 
     useEffect(() => {
-      if (auth.currentUser) {
-        setSignText('Logged in as ' + auth.currentUser.displayName);
-      } else {
-        setSignText('Sign in')
-      }
-    }, [auth.currentUser, signInOrOutText]);
-  
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if (user) {
+                setSignText('My profile');
+            } else {
+                setSignText('Sign in');
+            }
+        });
+    
+        return () => unsubscribe();
+    }, []);
+    
+
     return signInOrOutText;
 }
   
 function signInACB() {
     const provider = new GoogleAuthProvider();
-    if(auth.currentUser) {
-      signOut(auth) 
-      window.location.reload();
-      console.log('logged out')
-    } else {
+    if(!auth.currentUser) {
       console.log('The button text update is slow')
       signInWithPopup(auth, provider)
       console.log('Logged in')
+    } else {
+      window.location.href = "#/account"; 
     }
 }
 
+
 function NavigationBarView(props) {
-    /*Activates link when pressed and compares the id to the location.hash 
-        results in that the nav bar is highlited on the page im currently at */
     const [activeLink, setactiveLink] = useState("/");
     
     useEffect(()=> {
@@ -92,27 +94,8 @@ function NavigationBarView(props) {
                         </a>
                     </li>
                     <li>
-                        <a 
-                            id="#/test" 
-                            className={activeLink === "#/test" ? "active" : ""} 
-                            onClick={()=>setactiveLink("#/test")} 
-                            href="#/test">
-                                Test yta
-                        </a></li>
-                    <li className="loginButton">
-                        <a 
-                            id="#/account" 
-                            className={activeLink === "#/account" ? "active" : ""} 
-                            onClick={()=>setactiveLink("#/account")} 
-                            href="#/account">
-                                Login
-                        </a>
+                        {returnSignInButton()}
                     </li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>{returnSignInButton()}</li>
                 </ul>
             </div>
         </div>

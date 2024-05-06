@@ -30,6 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <App />
   </React.StrictMode>,
 )
+<<<<<<< Updated upstream
 */
 
 //import firebaseModel from "./model/firebaseModel.js";

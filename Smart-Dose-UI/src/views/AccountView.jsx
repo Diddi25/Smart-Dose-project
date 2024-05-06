@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import "../css/account.css";
-
+import { auth } from '../model/firebaseModel.js'
+import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import { deleteUser } from "firebase/auth";
 
 function AccountView(props) {
+
     const [activeButtonWater, setactiveButtonWater] = useState(" ");
     const [activeButtonRemoveW, setactiveButtonRemoveW] = useState(" ");
     const [activeButtonRemoveC, setactiveButtonRemoveC] = useState(" ");
@@ -15,7 +18,32 @@ function AccountView(props) {
     }
     const buttonRemoveColor =(buttonID) =>{
         setactiveButtonRemoveC(buttonID);
+    }  
+
+    function logOutACB() {
+        if(auth.currentUser) {
+          signOut(auth)
+          window.location.href = "#/"; 
+          console.log('Logged out')
+        }
     }
+
+    function deleteAccount() {
+        if(auth.currentUser) {
+            if(window.confirm("Are you sure you want to permanently delete your account?")) {
+                deleteUser(auth.currentUser)
+                .then(() => {
+                    console.log('Account deleted')
+                    window.location.href = "#/"; 
+                })
+                .catch((error) => {
+                    console.error('Error deleting account', error);
+                });
+            }
+        }
+    }
+
+
 
     function selectTypeChangeACB(evt) {
         props.selectLocationOption(evt.target.value);
@@ -87,10 +115,10 @@ function AccountView(props) {
                 <br />
                 <br />
                 <br />
-                <button>Log out</button>
+                <button onClick={logOutACB}>Log out</button>
             </div>
             <div>
-                <button>Delete account</button>
+                <button onClick={deleteAccount}>Delete account</button>
             </div>
         </div>
     );
