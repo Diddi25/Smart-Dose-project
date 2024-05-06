@@ -1,3 +1,5 @@
+
+
 import MainPageView from "../views/MainPageView.jsx";
 
 export default // needed for the presenter to update (its view) when relevant parts of the model change
@@ -6,22 +8,18 @@ export default // needed for the presenter to update (its view) when relevant pa
         function functionName(parameter) {
             return props.model.functionInModel(parameterIfAny)
         }
-
-        
         */
 
-//
-        function handleStatusChange(newStatus) {
+        function handleWeightChange(status) {
+           console.log("Changing status to:", status); 
 
-            console.log("Changing status to:", newStatus); 
+            props.model.setStatus(status);
 
-            props.model.setStatus(newStatus);
-
-            console.log("Model status updated to:", props.model.status)
+            console.log("Model weight updated to:", props.model.status);
         }
         return <MainPageView 
                                     /*properties used in view*/
-
-                                    statusChange={handleStatusChange}
-                                    />;
+        status={props.model.status}      
+        statusChange={handleWeightChange}
+        />;
 }

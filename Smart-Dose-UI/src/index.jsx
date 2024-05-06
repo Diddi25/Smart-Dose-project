@@ -1,7 +1,7 @@
 import React from 'react'
 import "./css/index.css";
 import model from "./model/smart-dose-model.js";
-import { observable, configure } from "mobx";
+import { observable, configure, reaction} from "mobx";
 
 configure({ enforceActions: "never", });  // we don't use Mobx actions
 const reactiveModel= observable(model);
@@ -19,7 +19,7 @@ createRoot(document.getElementById('root'))
 // react.html, with the content <div id="root"></div> is configured in vite.config.js
 
 // ------ for debug purposes ----------
-window.myModel= reactiveModel;             // make the model available in the Console
+window.model= reactiveModel;             // make the model available in the Console
 //window.myModel= reactiveModel;  
 
 /*Glöm inte bort makerouter + connectToFirebase*/
@@ -32,14 +32,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 */
 
-<<<<<<< Updated upstream
-=======
 //import firebaseModel from "./model/firebaseModel.js";
-import { connectToFirebase } from "./model/firebaseModel.js";
-
->>>>>>> Stashed changes
+import connectToFirebase from "./model/firebaseModel.js";
 
 
-import { connectToFirebase } from "/src/firebaseModel.js";
-// Connect the reactive model to Firebase
+
 connectToFirebase(reactiveModel);

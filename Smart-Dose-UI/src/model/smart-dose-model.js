@@ -1,4 +1,3 @@
-
 import {lookupAllHardnessData} from "./hardness-data-table.js";
 
 export default {
@@ -10,24 +9,10 @@ export default {
     //saved_detergents
     hardness_data: [],
     detergent_type_data: [],
-    ready:false,
-
-
-<<<<<<< Updated upstream
-
-
-    setModelReadyACB(readys){
-
-
-this.ready=readys;
-
-=======
-    setStatus(state){
-        this.status = state;
->>>>>>> Stashed changes
-    },
+    status:false,
+    scaleWeight:0,
     
-    status: false,
+
 
     accessHardness_data() {
         //const hardnessTable = new HardnessTable('water_hardness_data.csv');
@@ -35,12 +20,12 @@ this.ready=readys;
         this.hardness_data = lookupAllHardnessData(hardness_data);
     },
 
-
-    //servo motor status ON /OFF
     setStatus(state){
-    this.status= state;
-
-},
-
+        this.status = state;
+    },
+    
+    setScaleWeight(weight){
+        this.scaleWeight = weight;
+    }
     
 }
