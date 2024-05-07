@@ -6,14 +6,19 @@ export default {
     /*properties that can be persisted*/
 
     HardnessData : HardnessDataTable, // const HardnessDataTable = [{Location: "Stockholm", Hardness: 3, ID: 199}]
+    DetergentData: '',
+    FirebaseObject : firebaseObject, //meningen att innehålla allt
     user_location : {}, //innehåller .country .city .regionName || countryCode, region, zip, lat, lon, timezone, isp, org, as, query
     user_hardness : {}, //{Location: , Hardness: , ID:}
-    user_regionName_without_county : "",
-    status : false,
-    scaleWeight: 0,
-    chooseServomotor: '',
-    optimalDosage: 0, 
-    FirebaseObject : firebaseObject,
+    user_regionName_without_county : "undefined",
+    user_added_detergents: {},
+    user_detergent: 'WHITE',
+    dispenser_status : false,
+    scale_weight: 0,
+    selected_weight: null,
+    sensor_weight: 0,
+    servomotor_option: 0, //0 == WHITE container 1 == COLOR container
+    optimal_dosage: 0, 
 
     changeUserHardness(location) { //here comes the string
         const findCityACB = hardnessTuple => {

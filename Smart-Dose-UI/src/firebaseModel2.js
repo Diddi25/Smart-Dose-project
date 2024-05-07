@@ -10,7 +10,6 @@ const db = getDatabase(app);
 const auth = getAuth(app); 
 const PATH = "smartdose";
 
-
 function modelToPersistence(model) {
     console.log("Model to save:", model); // Debug
     return {
@@ -33,8 +32,6 @@ function persistenceToModel(data, model) {
         saveToModel(null, false);
     }
 }
-
-
 
 function saveToFirebase(model) {
     if (!model.ready) {
@@ -60,12 +57,6 @@ function saveToFirebase(model) {
         console.log('Model is marked as ready, not saving to Firebase');
     }
 }
-
-
-
-
-
-
 
 
 function readFromFirebase(model) {
