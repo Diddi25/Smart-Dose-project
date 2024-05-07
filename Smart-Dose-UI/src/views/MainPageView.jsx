@@ -53,8 +53,8 @@ function MainPageView(props) {
                     <br/>
                     <br/>
                     <h6>Based on current location:</h6>
-                    <select value={props.userHard.Location} onChange={selectTypeChangeACB}>
-                        <option value={props.userHard.Location}>{props.userHard.Location} {props.userHard.Hardness}°dH</option>
+                    <select value={props.userHard.Location || 'No internet connection'} onChange={selectTypeChangeACB}>
+                        <option value={props.userHard.Location || 'No internet connection'}>{props.userHard.Location} {props.userHard.Hardness}°dH</option>
                             {props.hardData.map( 
                                 (someOption, index) => (
                                     <option key={index} value={someOption.Location}>{someOption.Location} {someOption.Hardness}°dH</option>)

@@ -43,8 +43,6 @@ function AccountView(props) {
         }
     }
 
-
-
     function selectTypeChangeACB(evt) {
         props.selectLocationOption(evt.target.value);
     }
@@ -68,8 +66,8 @@ function AccountView(props) {
                 </div>
                 <div className="profile-water">
                     
-                <select value={props.userHard.Location} onChange={selectTypeChangeACB}>
-                    <option value={props.userHard.Location}>{props.userHard.Location} {props.userHard.Hardness}°dH</option>
+                <select value={props.userHard.Location || 'No internet connection'} onChange={selectTypeChangeACB}>
+                    <option value={props.userHard.Location}>{props.userHard.Location || 'No internet connection'} {props.userHard.Hardness}°dH</option>
                         {props.hardData.map( 
                             (someOption, index) => (
                                     <option key={index} value={someOption.Location}>{someOption.Location} {someOption.Hardness}°dH</option>)
