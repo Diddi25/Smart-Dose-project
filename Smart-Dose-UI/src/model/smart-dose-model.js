@@ -11,6 +11,8 @@ export default {
     user_regionName_without_county : "",
     status : false,
     scaleWeight: 0,
+    chooseServomotor: '',
+    optimalDosage: 0, 
     FirebaseObject : firebaseObject,
 
     changeUserHardness(location) { //here comes the string
