@@ -10,7 +10,7 @@ export default {
     user_hardness : {}, //{Location: , Hardness: , ID:}
     user_regionName_without_county : "",
     status : false,
-    scaleWeight:0,
+    scaleWeight:7,
     FirebaseObject : firebaseObject,
 
     changeUserHardness(location) { //here comes the string
