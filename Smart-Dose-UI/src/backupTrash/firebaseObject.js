@@ -1,5 +1,5 @@
 
-import HardnessDataTable from "./data/hardnessData.js"
+import HardnessDataTable from "../data/hardnessData.js"
 
 const firebaseObject = {
 

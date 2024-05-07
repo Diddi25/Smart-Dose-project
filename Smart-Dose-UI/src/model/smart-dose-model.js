@@ -1,6 +1,6 @@
 import HardnessDataTable from "../data/hardnessData.js"
 import { observer } from "mobx-react-lite";
-import firebaseObject from "../firebaseObject.js"
+import firebaseObject from "../backupTrash/firebaseObject.js"
 
 export default {
     /*properties that can be persisted*/
