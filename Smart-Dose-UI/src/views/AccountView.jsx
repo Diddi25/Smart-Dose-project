@@ -3,15 +3,21 @@ import "../css/account.css";
 import { auth } from '../model/firebaseModel.js'
 import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { deleteUser } from "firebase/auth";
+import Popup from "../components/Popup";
 
 function AccountView(props) {
 
     const [activeButtonWater, setactiveButtonWater] = useState(" ");
     const [activeButtonRemoveW, setactiveButtonRemoveW] = useState(" ");
     const [activeButtonRemoveC, setactiveButtonRemoveC] = useState(" ");
+    const [buttonPopupWhite, setButtonPopupWhite] = useState(false);
+    const [buttonPopupColor, setButtonPopupColor] = useState(false);
 
     const buttonClickHandlerWater =(buttonID) =>{
         setactiveButtonWater(buttonID);
+    }
+    const buttonClickHandlerDetergent =(buttonID) =>{
+        setactiveButtonDetergent(buttonID);
     }
     const buttonRemoveWhite =(buttonID) =>{
         setactiveButtonRemoveW(buttonID);
@@ -19,6 +25,7 @@ function AccountView(props) {
     const buttonRemoveColor =(buttonID) =>{
         setactiveButtonRemoveC(buttonID);
     }  
+
 
     function logOutACB() {
         if(auth.currentUser) {
@@ -95,7 +102,7 @@ function AccountView(props) {
                             <h6>WHITE</h6>
                             <div>
                                 <button>Remove</button>
-                                <div className="detergent-type">Coop white</div>
+                                <div className="detergent-type" id="white" onClick={() => {buttonClickHandlerDetergent("white"); setButtonPopupWhite(true)}}>Coop white</div>
                                  {/* Saved white detergent */}
                             </div>
                         </div>
@@ -103,7 +110,7 @@ function AccountView(props) {
                             <h6>COLOR</h6>
                             <div>
                                 <button>Remove</button>
-                                <div className="detergent-type">Ariel color</div>
+                                <div className="detergent-type" id="color" onClick ={() => {buttonClickHandlerDetergent("color"); setButtonPopupColor(true)}}>Ariel color</div>
                                     {/* Saved colored detergent */}
                             </div>
                         </div>
@@ -120,7 +127,40 @@ function AccountView(props) {
             <div>
                 <button onClick={deleteAccount}>Delete account</button>
             </div>
+            <Popup trigger={buttonPopupWhite} setTrigger = {setButtonPopupWhite} className="card"> 
+            <div > 
+                    WHITE DETERGENTS  <br/>  <br/>
+                    Select a detergent 
+                    <br/>
+                    <br/>
+        
+                   <h6> Detergent 1  <br/> 
+                    Detergent 2  </h6>
+                    <br/>  
+
+            </div>
+        
+
+            </Popup>
+
+            <Popup trigger={buttonPopupColor} setTrigger = {setButtonPopupColor} className="card"> 
+            <div >
+                    COLOR DETERGENTS  <br/>  <br/>
+                    
+                    Select a detergent  
+                    <br/>
+                    <br/>
+        
+                   <h6> Detergent 1  <br/> 
+                    Detergent 2  </h6>
+                    <br/>  
+
+            </div>
+        
+
+            </Popup>
         </div>
+        
     );
 }
 
