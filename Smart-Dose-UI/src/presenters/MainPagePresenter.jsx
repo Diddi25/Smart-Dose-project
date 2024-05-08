@@ -19,11 +19,20 @@ export default observer(
     function setLocationACB(locationChoice) {
         props.model.changeUserHardness(locationChoice);
     }
+    function handleScaleStatus(status){
+        console.log("Changing scale status to !!!!: ", status )
+ 
+         props.model.setScaleStatus(status);
+ 
+        console.log("Model scale status updated to: ", props.model.status);
+    }
+
     return <MainPageView 
                                 status={props.model.status}      
                                 statusChange={handleSetChange}
                                 weight={props.model.scaleWeight}      
                                 setWeight={handleWeightChange}
+                                scaleChange={handleScaleStatus}
                                 hardData = {props.model.HardnessData}/*properties used in view*/
                                 userHard = {props.model.user_hardness}
                                 selectLocationOption= {setLocationACB}

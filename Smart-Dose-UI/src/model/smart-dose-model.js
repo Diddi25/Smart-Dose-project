@@ -66,6 +66,10 @@ export default {
     setStatus(state){
         this.status = state;
     },
+
+    setScaleStatus(state){
+        this.scaleStatus = state
+    },
     
     setScaleWeight(weight){
         this.scaleWeight = weight;
