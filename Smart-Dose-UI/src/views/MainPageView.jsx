@@ -18,7 +18,7 @@ function MainPageView(props) {
     
     function handleScaleWeightACB(){
         props.setWeight(props.weight);
-
+        
     }
     const buttonClickHandlerDetergent =(buttonID) =>{
         setactiveButtonDetergent(buttonID);
@@ -73,7 +73,7 @@ function MainPageView(props) {
                 <button id="4-5" onClick={() => buttonClickHandlerWeight("4-5")} disabled={activeButtonWeight === "4-5"}>4-5 kg</button>
                 <button id="6+" onClick={() => buttonClickHandlerWeight("6+")} disabled={activeButtonWeight === "6+"}>6+ kg</button>
                 <h6>OR use scaling device</h6>
-                <button id="scale" onClick={() => {buttonClickHandlerWeight("scale");handleScaleWeightACB(); setButtonPopup(true);}} disabled={activeButtonWeight === "scale"}>SCALE</button>
+                <button id="scale" onClick={() => {buttonClickHandlerWeight("scale");handleScaleWeightACB(); setButtonPopup(true); props.scaleChange(true)}} disabled={activeButtonWeight === "scale"}>SCALE</button>
             </div>
             </div>
             <div className="card">
@@ -82,9 +82,9 @@ function MainPageView(props) {
                 <br/>
                 <div className="ss-button">
                 <br />
-                <button id="start" onClick ={() => setButtonDisabled(true)} disabled ={isButtonDisabled} >START</button>
-                <button id="cancel" onClick ={() => setButtonDisabled(false)} disabled ={!isButtonDisabled}>CANCEL</button>
-    
+                <button id="start" onClick={() => {setButtonDisabled(true);props.statusChange(true);}} disabled={isButtonDisabled}>START</button>
+                <button id="cancel" onClick={() => {setButtonDisabled(false);props.statusChange(false);}} disabled={!isButtonDisabled}>CANCEL</button>
+                <br />
             </div>
             </div>
             </div>

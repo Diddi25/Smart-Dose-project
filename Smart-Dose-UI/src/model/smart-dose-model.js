@@ -10,6 +10,7 @@ export default {
     user_hardness : {}, //{Location: , Hardness: , ID:}
     user_regionName_without_county : "",
     status : false,
+    scaleStatus: false,
     scaleWeight:7,
     FirebaseObject : firebaseObject,
 
@@ -55,6 +56,10 @@ export default {
 
     setStatus(state){
         this.status = state;
+    },
+
+    setScaleStatus(state){
+        this.scaleStatus = state
     },
     
     setScaleWeight(weight){
