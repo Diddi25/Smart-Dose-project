@@ -1,5 +1,5 @@
 
-import HardnessDataTable from "./data/hardnessData.js"
+import HardnessDataTable from "../data/hardnessData.js"
 
 const firebaseObject = {
 
@@ -23,6 +23,10 @@ const firebaseObject = {
                 loc: "Stock",
                 hard: 3,
                 ID: 4,
+                //status: , //boolean
+                //chooseServoMotor: //integer
+                //optimalDosage: //float
+                //weight: //float
             },
             userlocat: {
                 as : "AS1257 Tele2 Sverige AB",

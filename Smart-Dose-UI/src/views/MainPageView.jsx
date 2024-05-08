@@ -54,6 +54,16 @@ function MainPageView(props) {
         }
     }
 
+    function selectTypeChangeACB(evt) {
+        props.selectLocationOption(evt.target.value);
+    };
+    function LocationShallNotBeUndefined(userHardnessObject) {
+        if(userHardnessObject.Location) {
+            return [userHardnessObject.Location, userHardnessObject.Hardness, "°dH"];
+        } else {
+            return "No internet connection";
+        };
+    };
 
 
 
@@ -94,10 +104,18 @@ function MainPageView(props) {
                         WATER HARDNESS <br />
                         <br />
                         <br />
-                        <h6>Current location:</h6>
-                        <select className="dropdown">
-                            <option>Stockholm 4-6° dH</option>
-                        </select>
+                        <h6>Based on current location:</h6>
+                        <select value={props.userHard.Location &&  props.userHard.Location || 'no side effect'} onChange={selectTypeChangeACB}>
+                        <option value={props.userHard.Location &&  props.userHard.Location}>
+                            {props.userHard.Location && props.userHard.Location || 'no side effect'} {props.userHard.Hardness && props.userHard.Hardness + '°dH' || ''}
+                        </option>
+                        {props.hardData.map( 
+                            (someOption, index) => (
+                                    <option key={index} value={someOption.Location && someOption.Location || 'no internet connection'}>
+                                        {someOption.Location && someOption.Location || 'no internet connection'} {someOption.Hardness}°dH
+                                    </option>)
+                        )}                     
+                </select>
                     </div>
                 </div>
                 <div className="card">

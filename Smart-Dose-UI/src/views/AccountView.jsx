@@ -50,11 +50,17 @@ function AccountView(props) {
         }
     }
 
-
-
     function selectTypeChangeACB(evt) {
         props.selectLocationOption(evt.target.value);
-    }
+    };
+
+    function LocationShallNotBeUndefined(userHardnessObject) {
+        if(userHardnessObject.Location) {
+            return [userHardnessObject.Location, userHardnessObject.Hardness, "°dH"];
+        } else {
+            return "No internet connection";
+        };
+    };
 
     return (
         <div className="profile-container">
@@ -71,15 +77,19 @@ function AccountView(props) {
             <div>
                 <div className="profile-water">
                     <h6>Water hardness based on your location:</h6>
-                    {props.userHard.Location} {props.userHard.Hardness}°dH
+                    {props.userHard.Location && props.userHard.Location} {props.userHard.Hardness && props.userHard.Hardness}°dH
                 </div>
                 <div className="profile-water">
                     
-                <select value={props.userHard.Location} onChange={selectTypeChangeACB}>
-                    <option value={props.userHard.Location}>{props.userHard.Location} {props.userHard.Hardness}°dH</option>
+                <select value={props.userHard.Location &&  props.userHard.Location || 'no side effect'} onChange={selectTypeChangeACB}>
+                        <option value={props.userHard.Location &&  props.userHard.Location}>
+                            {props.userHard.Location && props.userHard.Location || 'no side effect'} {props.userHard.Hardness && props.userHard.Hardness + '°dH' || ''}
+                        </option>
                         {props.hardData.map( 
                             (someOption, index) => (
-                                    <option key={index} value={someOption.Location}>{someOption.Location} {someOption.Hardness}°dH</option>)
+                                    <option key={index} value={someOption.Location && someOption.Location || 'no internet connection'}>
+                                        {someOption.Location && someOption.Location || 'no internet connection'} {someOption.Hardness}°dH
+                                    </option>)
                         )}                     
                 </select>
 
@@ -87,10 +97,10 @@ function AccountView(props) {
             </div>
             <div className="manual-waterhardness">
                         <h6>Choose water hardness manually</h6>
-                     
-                        <button id="hard" onClick={() => buttonClickHandlerWater("hard")} disabled={activeButtonWater ==="hard"}>HARD</button>
-                        <button id="medium" onClick={() => buttonClickHandlerWater("medium")} disabled={activeButtonWater ==="medium"}>MEDIUM</button>
-                        <button id="soft" onClick={() => buttonClickHandlerWater("soft")} disabled={activeButtonWater ==="soft"}>SOFT</button>
+                        {/*Gränsvärden för hårdhet tagen ifrån https://sv.wikipedia.org/wiki/Vattenh%C3%A5rdhet 07052024 */}
+                        <button id="soft" onClick={() => buttonClickHandlerWater("soft")} disabled={activeButtonWater ==="soft"}>SOFT 0-6°dH</button>
+                        <button id="medium" onClick={() => buttonClickHandlerWater("medium")} disabled={activeButtonWater ==="medium"}>MEDIUM 7-13°dH</button>
+                        <button id="hard" onClick={() => buttonClickHandlerWater("hard")} disabled={activeButtonWater ==="hard"}>HARD 14-20°dH</button>
             </div>
                     <br/>
                     <br/>
