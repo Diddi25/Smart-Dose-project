@@ -49,8 +49,8 @@ export function saveToFirebase(model) {
         set(ref_users, modelToPersistence2(model))
     }
     */
-    set(ref_root, modelToPersistence(model))
-}
+    //set(ref_root, modelToPersistence(model))
+} 
 
 async function fetchGeographicalInfo() {
     console.log('Here')
@@ -66,7 +66,7 @@ export function readFromFirebase(model) {
     function setModelReadyACB() {
         model.ready = true;
     }
-    return get(ref_root).then(convertACB).then(setModelReadyACB);
+    //return get(ref_root).then(convertACB).then(setModelReadyACB);
 }
 
 export default function connectToFirebase(model, watchFunction){
@@ -78,7 +78,7 @@ export default function connectToFirebase(model, watchFunction){
             model.user=user;
             model.ready=false;
         }
-        readFromFirebase(model);
+        //readFromFirebase(model);
     }
     onAuthStateChanged(auth, loginOrOutACB);
     watchFunction(checkACB, sideEffectACB);
