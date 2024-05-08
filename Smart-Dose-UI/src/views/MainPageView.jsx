@@ -2,7 +2,7 @@ import "../css/navigationbar.css";
 import "../css/mainpage.css";
 import logo from '../images/logo3.png';
 import { useState, React, useEffect } from 'react';
-import Popup from "../components/Popup";
+import Popup from "../components/popup";
 import { set } from "firebase/database";
 
 
@@ -105,7 +105,7 @@ function MainPageView(props) {
                         <br />
                         <br />
                         <h6>Based on current location:</h6>
-                        <select value={props.userHard.Location &&  props.userHard.Location || 'no side effect'} onChange={selectTypeChangeACB}>
+                        <select className="dropdown" value={props.userHard.Location &&  props.userHard.Location || 'no side effect'} onChange={selectTypeChangeACB}>
                         <option value={props.userHard.Location &&  props.userHard.Location}>
                             {props.userHard.Location && props.userHard.Location || 'no side effect'} {props.userHard.Hardness && props.userHard.Hardness + '°dH' || ''}
                         </option>
@@ -209,7 +209,7 @@ function MainPageView(props) {
                 <div >
                     <div className="status">
                         <h5>Smart Dose will soon pour your detergent</h5>
-                        {showStatus}
+                        {showStatus()}
 
                         <div className="ss-button">
                             <div className="ss-button-cancle">
