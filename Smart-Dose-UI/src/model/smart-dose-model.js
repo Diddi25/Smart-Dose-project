@@ -13,7 +13,7 @@ export default {
     user_regionName_without_county : "undefined",
     user_added_detergents: {},
     user_detergent: 'WHITE',
-    dispenser_status : false,
+    dispenser_status : true,
     scale_weight: 0,
     selected_weight: null,
     sensor_weight: 0,
@@ -64,7 +64,7 @@ export default {
     },
 
     setStatus(state){
-        this.status = state;
+        this.dispenser_status = state;
     },
 
     setScaleStatus(state){

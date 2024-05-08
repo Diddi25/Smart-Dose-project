@@ -28,7 +28,7 @@ export default observer(
     }
 
     return <MainPageView 
-                                status={props.model.status}      
+                                status={props.model.dispenser_status}      
                                 statusChange={handleSetChange}
                                 weight={props.model.scaleWeight}      
                                 setWeight={handleWeightChange}

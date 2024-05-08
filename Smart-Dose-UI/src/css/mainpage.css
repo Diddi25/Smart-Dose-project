@@ -84,15 +84,10 @@
     color: black; 
     font-size: 20px;
     border-style:groove;
-    border-width: 1.5px;
-
+    border-width: 1.5px; 
+    cursor: auto;
     
 }
-
-.dropdown input{
-    
-}
-
 
 .ss-button{
     display: flex;
@@ -115,6 +110,12 @@
 
 }
 
+.ss-button-cancle {
+    position:absolute;
+    bottom:46px;
+    right: 46px;
+}
+
 
 .ss-button button:disabled{
 
@@ -129,7 +130,13 @@
     transform: scale(1.1);
 }
 
-
+.status{
+    padding: 0px 40px 100px;
+    
+}
+.status img{
+   margin-top: 40px;
+}
 
 
 
