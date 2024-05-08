@@ -62,7 +62,6 @@ function saveToFirebase(model) {
 function readFromFirebase(model) {
     model.ready = false;
     console.log("Attempting to read from Firebase at path:", PATH);
-
     // Reading hardness data
     get(ref(db, PATH))
         .then(snapshot => {
@@ -73,11 +72,6 @@ function readFromFirebase(model) {
                 console.log("No hardness data found at specified path:", PATH);
             }
         });
-
-
-      
-
-
     // Reading status from a ardunio path
     console.log("Attempting to read status from Firebase at path: Arduino");
     get(ref(db, "arduino"))
@@ -89,9 +83,7 @@ function readFromFirebase(model) {
                 console.log("No status data found at specified path: Arduino");
                 model.setStatus(false); 
             }
-        })
-        
-        
+        }) 
 }
 
 function connectToFirebase(model) {

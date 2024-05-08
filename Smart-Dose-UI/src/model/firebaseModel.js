@@ -8,11 +8,12 @@ import { fetchLocation } from "../geoSource";
 
 const app= initializeApp(firebaseConfig);
 const db= getDatabase(app);
-const ref_hardness = ref(db, "hardnessData");
+const ref_hardness = ref(db, "HardnessData");
 const ref_users = ref(db, "USERIDs")
 const ref_root = ref(db);
 export const auth = getAuth(app);
-// test purposes : set(ref(db, "/GuestUSER"), {"bug": 5});
+// test purposes :  
+//set(ref(db, "/GuestUSER"), {"bug": 5});
 
 export function modelToPersistence(model) {
     return {
@@ -25,6 +26,12 @@ export function modelToPersistence(model) {
         user_weight: model.scale_weight !== undefined ? model.scale_weight : model.selected_weight !== undefined ? model.selected_weight : null,
         servoMotorOption: model.servomotor_option,
         optimalDosage: model.optimal_dosage
+    };
+}
+
+function PushDetergentData(model) {
+    return {
+        detergentData: model.DetergentData
     };
 }
 
@@ -77,7 +84,7 @@ export function readFromDatabase() {
     if(model.user) {
         return get(ref(db, "USERID:S/"+ model.user.displayName  + ": " + model.user.uid)).then(userConvertACB).then(setModelReadyACB);
     } else {
-        return get(ref(db, "/GuestUSER")).then(convertACB).then(setModelReadyACB);
+        return get(ref(db, "GuestUSER")).then(convertACB).then(setModelReadyACB);
     }
 }
 
@@ -107,7 +114,7 @@ export default function connectToFirebase(model, watchFunction){
         ];
     };
     function sideEffectACB() {
-        saveToFirebase(model);
         model.setUserHardness(); //this have to be evoked at this point
+        saveToFirebase(model);
     };
 }

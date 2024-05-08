@@ -1,13 +1,13 @@
-import HardnessDataTable from "../data/hardnessData.js"
 import { observer } from "mobx-react-lite";
 import firebaseObject from "../backupTrash/firebaseObject.js"
+import HardnessDataTable from "../data/hardnessData.js"
+import DetergentDataTable from "../data/detergentData.js"
 
 export default {
     /*properties that can be persisted*/
 
     HardnessData : HardnessDataTable, // const HardnessDataTable = [{Location: "Stockholm", Hardness: 3, ID: 199}]
-    DetergentData: '',
-    FirebaseObject : firebaseObject, //meningen att innehålla allt
+    DetergentData : DetergentDataTable,
     user_location : {}, //innehåller .country .city .regionName || countryCode, region, zip, lat, lon, timezone, isp, org, as, query
     user_hardness : {}, //{Location: , Hardness: , ID:}
     user_regionName_without_county : "undefined",
@@ -50,11 +50,14 @@ export default {
             }
         };
         const extractCounty = () => {
+            function filterOutCountyACB(regionName) {
+                return !(regionName === "county");
+            }
             const regionName = this.user_location.regionName;
-            const words = regionName.split(" ");
-            const desiredWord = words[0];
-            console.log(desiredWord, 'from', regionName); // Output: "Stockholm" from "Stockholm County"
-            return desiredWord;
+            let words = regionName.split(" ");
+            words = words.filter(filterOutCountyACB)
+            console.log(words, 'from', regionName); // Output: "Stockholm" from "Stockholm County"
+            return words;
         };
         this.user_regionName_without_county = extractCounty();
         this.user_hardness = this.HardnessData.find(findRegionNameACB)

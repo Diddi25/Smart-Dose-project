@@ -25,7 +25,14 @@ function MainPageView(props) {
     }
     function selectTypeChangeACB(evt) {
         props.selectLocationOption(evt.target.value);
-    }
+    };
+    function LocationShallNotBeUndefined(userHardnessObject) {
+        if(userHardnessObject.Location) {
+            return [userHardnessObject.Location, userHardnessObject.Hardness, "°dH"];
+        } else {
+            return "No internet connection";
+        };
+    };
   
     return (
         <div className="main">
@@ -48,18 +55,21 @@ function MainPageView(props) {
             </div>
             <div className="card">
                 <div className="water-hardness">
-
                     WATER HARDNESS <br/>
                     <br/>
                     <br/>
                     <h6>Based on current location:</h6>
-                    <select value={props.userHard.Location || 'No internet connection'} onChange={selectTypeChangeACB}>
-                        <option value={props.userHard.Location || 'No internet connection'}>{props.userHard.Location} {props.userHard.Hardness}°dH</option>
-                            {props.hardData.map( 
-                                (someOption, index) => (
-                                    <option key={index} value={someOption.Location}>{someOption.Location} {someOption.Hardness}°dH</option>)
-                            )}                     
-                    </select>
+                    <select value={props.userHard.Location &&  props.userHard.Location || 'no side effect'} onChange={selectTypeChangeACB}>
+                        <option value={props.userHard.Location &&  props.userHard.Location}>
+                            {props.userHard.Location && props.userHard.Location || 'no side effect'} {props.userHard.Hardness && props.userHard.Hardness + '°dH' || ''}
+                        </option>
+                        {props.hardData.map( 
+                            (someOption, index) => (
+                                    <option key={index} value={someOption.Location && someOption.Location || 'no internet connection'}>
+                                        {someOption.Location && someOption.Location || 'no internet connection'} {someOption.Hardness}°dH
+                                    </option>)
+                        )}                     
+                </select>
                 </div>
             </div>
             <div className="card">
