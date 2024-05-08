@@ -41,6 +41,7 @@ function MainPageView(props) {
         if(props.status){
             return(
             <div className="status">
+                <div>The dispenser is pouring/running</div>
                 <img id="gif" src="https://brfenergi.se/iprog/loading.gif" height="100" />
             </div> 
             )
@@ -49,7 +50,9 @@ function MainPageView(props) {
             return(
             <div>
                 Ready!
+                <div>You can now take the cup</div>
             </div>
+
             )
         }
     }
@@ -208,7 +211,7 @@ function MainPageView(props) {
             <Popup trigger={buttonPopupStatus} setTrigger={setButtonPopupStatus} className="card">
                 <div >
                     <div className="status">
-                        <h5>Smart Dose will soon pour your detergent</h5>
+                    
                         {showStatus()}
 
                         <div className="ss-button">
