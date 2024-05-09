@@ -2,7 +2,7 @@
 function mainAlgoritm(detergent, weight, hardness) {
     const waterHardness = hardnessToString(hardness);
 
-    switch(detergrnt.brand.toLowerCase()) {
+    switch(detergent.brand.toLowerCase()) {
         // Case algoritm för ica
         case 'ica':
             return ica.calculateDetergent(detergent, weight, waterHardness );
