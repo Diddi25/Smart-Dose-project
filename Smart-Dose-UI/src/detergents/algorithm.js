@@ -5,7 +5,7 @@ function mainAlgoritm(detergent, weight, hardness) {
     switch(detergent.brand.toLowerCase()) {
         // Case algoritm för ica
         case 'ica':
-            return ica.calculateDetergent(detergent, weight, waterHardness );
+            return Ica.calculateDetergent(detergent, weight, waterHardness );
         // Case algoritm för A+ 
         case 'a+':
             return Aplus.calculateDetergent(detergent, weight, waterHardness);
