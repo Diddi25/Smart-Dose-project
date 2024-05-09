@@ -16,6 +16,7 @@ function mainAlgoritm(detergent, weight, waterHardness) {
         // Case algoritm för Via    
         case 'Via':
             return Via.calculateDetergent(detergent, weight, waterHardness);
+        //test
 
 
         default:
