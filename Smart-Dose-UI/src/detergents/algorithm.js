@@ -1,24 +1,31 @@
-import { calculateIcaDetergent } from "./algorithms/Ica.js";
+import { calculateIcaDetergent } from "./algorithms/ica.js";
+import { calculateAplusDetergent } from "./algorithms/Aplus.js";
+import { calculateIcaBasicDetergent } from "./algorithms/IcaBasic.js";
+import { calculateIcaSkonaDetergent } from "./algorithms/IcaSkona.js";
+import { calculateViaDetergent } from "./algorithms/Via.js";
 
-function mainAlgoritm(detergent, weight, hardness) {
+
+function mainAlgoritm(detergent, weight, hardness, factor) {
     const waterHardness = hardnessToString(hardness);
+    const weightFactor = calculateFactor(factor);
+
 
     switch(detergent.brand.toLowerCase()) {
         // Case algoritm för ica
         case 'ica':
-            return calculateIcaDetergent(detergent, weight, waterHardness );
+            return calculateIcaDetergent(detergent, weight, waterHardness, weightFactor );
         // Case algoritm för A+ 
         case 'a+':
-            return Aplus.calculateDetergent(detergent, weight, waterHardness);
+            return calculateAplusDetergent(detergent, weight, waterHardness, weightFactor);
         // Case algoritm för Ica Basic
-        case 'icabasic':
-            return IcaBasic.calculateDetergent(detergent, weight, waterHardness);
+        case 'ica basic':
+            return calculateIcaBasicDetergent(detergent, weight, waterHardness, weightFactor);
         // Case algoritm för Ica Skona
-        case 'icaskona':
-            return IcaSkona.calculateDetergent(detergent, weight, waterHardness);
+        case 'ica skona':
+            return calculateIcaSkonaDetergent(detergent, weight, waterHardness, weightFactor);
         // Case algoritm för Via    
-        case 'Via':
-            return Via.calculateDetergent(detergent, weight, waterHardness);
+        case 'via':
+            return calculateViaDetergent(detergent, weight, waterHardness, weightFactor);
         //test
 
         default:
@@ -36,28 +43,47 @@ function hardnessToString(hardness){
     }
 }
 
+function calculateFactor(factorInfo){
+    let dosageString = factorInfo;
+
+    let parts = dosageString.split("=");
+
+    let milliliters = parseFloat(parts[0]);
+    let grams = parseFloat(parts[1]);
+
+    let factor = grams / milliliters;
+
+    return factor;
+}
+
+
+
 // TEST
 const testDetergent = {
-    "id": 1,
-    "name": "Kulörtvättmedel Parfymfri Ekologisk 750ml ICA Skona",
-    "brand": "ICA",
-    "link": "https://handla.ica.se/produkt/2042652",
-    "type": "color",
-    "dosage": "100ml = 82g",
-    "articleNumber": "?",
-    "dosageTable": {
-        "Soft Water <8°dH": { //ml
-            "3-5kg": 39,
-            "5-8kg": 65
-        },
-        "Medium Water 8-14°dH": {
-            "3-5kg": 45,
-            "5-8kg": 75
-        },
-        "Hard Water >14°dH": {
-            "3-5kg": 60,
-            "5-8kg": 100
-        }
+    "id": "11",
+            "name": "A+ Sensitive Color pulver 700g",
+            "brand": "ICA",
+            "link": "https://www.kontorsgiganten.se/a-sensitive-color-pulver-700g-p-50",
+            "type": "color",
+            "weight": "0.7kg",
+            "dosage": "39ml = 33g",
+            "articleNumber": "?",
+            "dosageTable": {
+                "Soft Water <8°dH": {
+                    "3-4kg": "39 ml",
+                    "5-7kg": "67 ml",
+                    "8+kg": "89 ml"
+                },
+                "Medium Water 8-14°dH": {
+                    "3-4kg": "50 ml",
+                    "5-7kg": "85 ml",
+                    "8+kg": "114 ml"
+                },
+                "Hard Water >14°dH": {
+                    "3-4kg": "62 ml",
+                    "5-7kg": "106 ml",
+                    "8+kg": "141 ml"
+                }
     }
 };
 
@@ -67,6 +93,7 @@ const wH = {
     "ID": 2
   };
 
-const testWeight = 5;
+const testWeight = 7;
 
-console.log("Recommended dosage:", mainAlgoritm(testDetergent, testWeight, wH));
+
+console.log("Recommended dosage:", mainAlgoritm(testDetergent, testWeight, wH, testDetergent.dosage));
