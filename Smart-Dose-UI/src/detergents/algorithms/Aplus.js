@@ -12,10 +12,7 @@ function calculateAplusDetergent(detergent, weight, waterHardness, weightFactor)
         lowerWeight = 4;
         upperWeight = 7;
     } else {
-        lowerDosage = parseFloat(detergent.dosageTable[waterHardness]["8+kg"]);
-        upperDosage = lowerDosage;
-        lowerWeight = 8;
-        upperWeight = Infinity; 
+        return parseFloat(detergent.dosageTable[waterHardness]["8+kg"]);
     }
 
     // Interpolera mellan doseringarna baserat på den givna vikten

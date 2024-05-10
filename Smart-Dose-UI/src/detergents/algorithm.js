@@ -1,13 +1,13 @@
-import { calculateIcaDetergent } from "./algorithms/ica.js";
+import { calculateIcaDetergent } from "./algorithms/Ica.js";
 import { calculateAplusDetergent } from "./algorithms/Aplus.js";
 import { calculateIcaBasicDetergent } from "./algorithms/IcaBasic.js";
 import { calculateIcaSkonaDetergent } from "./algorithms/IcaSkona.js";
 import { calculateViaDetergent } from "./algorithms/Via.js";
 
 
-function mainAlgoritm(detergent, weight, hardness, factor) {
+function mainAlgoritm(detergent, weight, hardness) {
     const waterHardness = hardnessToString(hardness);
-    const weightFactor = calculateFactor(factor);
+    const weightFactor = calculateFactor(detergent.dosage);
 
 
     switch(detergent.brand.toLowerCase()) {
@@ -52,7 +52,7 @@ function calculateFactor(factorInfo){
     let grams = parseFloat(parts[1]);
 
     let factor = grams / milliliters;
-
+    
     return factor;
 }
 
@@ -96,4 +96,4 @@ const wH = {
 const testWeight = 7;
 
 
-console.log("Recommended dosage:", mainAlgoritm(testDetergent, testWeight, wH, testDetergent.dosage));
+console.log("Recommended dosage:", mainAlgoritm(testDetergent, testWeight, wH));

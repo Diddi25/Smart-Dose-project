@@ -2,13 +2,13 @@ function calculateIcaDetergent(detergent, weight, waterHardness, weightFactor) {
     let lowerDosage, upperDosage, lowerWeight, upperWeight;
 
     if (weight <= 5) {
-        lowerDosage = parseFloat(detergent.dosageTable[waterHardness]["3-5kg"]);
-        upperDosage = parseFloat(detergent.dosageTable[waterHardness]["5-8kg"]);
-        lowerWeight = 3;
+        lowerDosage = 0;
+        upperDosage = parseFloat(detergent.dosageTable[waterHardness]["3-5kg"]);
+        lowerWeight = 0;
         upperWeight = 5;
     } else if (weight <= 8) {
-        lowerDosage = parseFloat(detergent.dosageTable[waterHardness]["5-8kg"]);
-        upperDosage = lowerDosage;
+        lowerDosage = parseFloat(detergent.dosageTable[waterHardness]["3-5kg"]);
+        upperDosage = parseFloat(detergent.dosageTable[waterHardness]["5-8kg"])
         lowerWeight = 5;
         upperWeight = 8;
     } else {
