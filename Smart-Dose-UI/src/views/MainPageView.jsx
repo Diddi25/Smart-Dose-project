@@ -61,13 +61,6 @@ function MainPageView(props) {
             return detergent;
         }
     };
-    function showChosenDetergentACB() {
-        if(buttonClickHandlerDetergent === 'white') {
-            return props.userWhiteDetergent.name;
-        } else {
-            return props.userColorDetergent.name;
-        }
-    }
 
     return (
         <div className="main">
@@ -190,7 +183,8 @@ function MainPageView(props) {
                     WHITE DETERGENTS <br />
                     Select a detergent <br />
                     <select className="dropdown" 
-                                value={props.userWhiteDetergent && props.userWhiteDetergent.name ? props.userWhiteDetergent.name : 'not chosen yet'} 
+                                value={props.userWhiteDetergent && props.userWhiteDetergent.name ? 
+                                        props.userWhiteDetergent.name : 'not chosen yet'} 
                                 onChange={selectDetergentACB}>
                             <option value={'not chosen yet'}>
                                 Choose white detergent...
@@ -209,7 +203,8 @@ function MainPageView(props) {
                     COLOR DETERGENTS  <br />
                     Select a detergent <br />
                     <select className="dropdown" 
-                                value={props.userColorDetergent && props.userColorDetergent.name ? props.userColorDetergent.name : 'not chosen yet'} 
+                                value={props.userColorDetergent && props.userColorDetergent.name ? 
+                                        props.userColorDetergent.name : 'not chosen yet'} 
                                 onChange={selectDetergentACB}>
                             <option value={'not chosen yet'}>
                                 Choose color detergent...
