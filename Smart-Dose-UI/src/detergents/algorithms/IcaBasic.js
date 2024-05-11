@@ -2,20 +2,17 @@ function calculateIcaBasicDetergent(detergent, weight, waterHardness, weightFact
     let lowerDosage, upperDosage, lowerWeight, upperWeight;
 
     if (weight <= 5) {
-        lowerDosage = parseFloat(detergent.dosageTable[waterHardness]["4-5kg"]);
-        upperDosage = parseFloat(detergent.dosageTable[waterHardness]["6-8kg"]);
-        lowerWeight = 4;
+        lowerDosage = 0;
+        upperDosage = parseFloat(detergent.dosageTable[waterHardness]["4-5kg"]);
+        lowerWeight = 4; 
         upperWeight = 5;
     } else if (weight <= 8) {
-        lowerDosage = parseFloat(detergent.dosageTable[waterHardness]["6-8kg"]);
-        upperDosage = lowerDosage;
-        lowerWeight = 6;
+        lowerDosage = parseFloat(detergent.dosageTable[waterHardness]["4-5kg"]);
+        upperDosage = parseFloat(detergent.dosageTable[waterHardness]["6-8kg"]);
+        lowerWeight = 5;
         upperWeight = 8;
     } else {
-        lowerDosage = parseFloat(detergent.dosageTable[waterHardness]["6-8kg"]);
-        upperDosage = parseFloat(detergent.dosageTable[waterHardness]["6-8kg"]);
-        lowerWeight = 8;
-        upperWeight = Infinity; 
+        //TODO: Extrapolate 
     }
 
     // Interpolera mellan doseringarna baserat på den givna vikten
@@ -25,7 +22,7 @@ function calculateIcaBasicDetergent(detergent, weight, waterHardness, weightFact
     // Beräkna exakt grammotsvarighet för den givna millilitern
     let exactGrams = exactDosage * weightFactor;
     
-    return `${exactGrams} g`;
+    return exactGrams;
 }
 
 export { calculateIcaBasicDetergent };

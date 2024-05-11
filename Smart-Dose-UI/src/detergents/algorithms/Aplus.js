@@ -22,7 +22,7 @@ function calculateAplusDetergent(detergent, weight, waterHardness, weightFactor)
     // Beräkna exakt grammotsvarighet för den givna millilitern
     let exactGrams = exactDosage * weightFactor;
     
-    return `${exactGrams} g`;
+    return exactGrams;
 }
 
 export { calculateAplusDetergent };

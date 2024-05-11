@@ -60,30 +60,30 @@ function calculateFactor(factorInfo){
 
 // TEST
 const testDetergent = {
-    "id": "11",
-            "name": "A+ Sensitive Color pulver 700g",
-            "brand": "ICA",
-            "link": "https://www.kontorsgiganten.se/a-sensitive-color-pulver-700g-p-50",
-            "type": "color",
-            "weight": "0.7kg",
-            "dosage": "39ml = 33g",
-            "articleNumber": "?",
-            "dosageTable": {
-                "Soft Water <8°dH": {
-                    "3-4kg": "39 ml",
-                    "5-7kg": "67 ml",
-                    "8+kg": "89 ml"
-                },
-                "Medium Water 8-14°dH": {
-                    "3-4kg": "50 ml",
-                    "5-7kg": "85 ml",
-                    "8+kg": "114 ml"
-                },
-                "Hard Water >14°dH": {
-                    "3-4kg": "62 ml",
-                    "5-7kg": "106 ml",
-                    "8+kg": "141 ml"
-                }
+    "id": 13,
+    "name": "Tvättmedel White 700g A+",
+    "brand": "A+",
+    "link": "https://www.mathem.se/se/products/8588-a-tvattmedel-white-700g-a/?gad_source=1&gclid=Cj0KCQjwltKxBhDMARIsAG8KnqVci2FgDX1tk9_-JYC4Vv_7ja4dMuUsfw8S3bcb9NYJga0piau8RLoaAp05EALw_wcB",
+    "type": "white",
+    "weight": "0.7kg",
+    "dosage": "39ml = 33g",
+    "articleNumber": "?",
+    "dosageTable": {
+        "Soft Water <8°dH": {
+            "3-4kg": 39,
+            "5-7kg": 67,
+            "8+kg": 89
+        },
+        "Medium Water 8-14°dH": {
+            "3-4kg": 50,
+            "5-7kg": 85,
+            "8+kg": 114
+        },
+        "Hard Water >14°dH": {
+            "3-4kg": 62,
+            "5-7kg": 106,
+            "8+kg": 141
+        }
     }
 };
 
@@ -93,7 +93,7 @@ const wH = {
     "ID": 2
   };
 
-const testWeight = 7;
+const testWeight = 6;
 
 
 console.log("Recommended dosage:", mainAlgoritm(testDetergent, testWeight, wH));
