@@ -398,7 +398,7 @@ const DetergentDataTable = [
         "name": "Tvättmedel Kulörtvätt Morgonsol 1kg Miljömärkt ICA Skona",
         "brand": "ICA Skona",
         "link": "https://handla.ica.se/produkt/2021932",
-        "type": "white",
+        "type": "color",
         "weight": "1kg",
         "dosage": "100ml = 86g",
         "articleNumber": "?",

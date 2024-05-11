@@ -11,8 +11,9 @@ export default {
     user_location : {}, //innehåller .country .city .regionName || countryCode, region, zip, lat, lon, timezone, isp, org, as, query
     user_hardness : {}, //{Location: , Hardness: , ID:}
     user_regionName_without_county : "undefined",
+    user_white_detergent: {},
+    user_color_detergent: {},
     user_added_detergents: {},
-    user_detergent: 'WHITE',
     dispenser_status : true,
     scale_weight: 0,
     selected_weight: null,
@@ -61,6 +62,20 @@ export default {
         };
         this.user_regionName_without_county = extractCounty();
         this.user_hardness = this.HardnessData.find(findRegionNameACB)
+    },
+
+    setDetergentType(detergent_name) {
+        const findDetergentACB = detergent => {
+            if (detergent.name === detergent_name) {
+                return detergent;
+            }
+        };
+        const foundDetergent = this.DetergentData.find(findDetergentACB)
+        if(foundDetergent.type === 'white') {
+            this.user_white_detergent = foundDetergent;
+        } else {
+            this.user_color_detergent = foundDetergent;
+        }
     },
 
     setStatus(state){

@@ -21,7 +21,8 @@ export function modelToPersistence(model) {
         userHardness: model.user_hardness,
         userRegionName: model.user_regionName_without_county,
         userAddedDetergents: model.user_added_detergents !== undefined ? model.user_added_detergents : null,
-        userDetergent: model.user_detergent,
+        userWhiteDetergent: model.user_white_detergent,
+        userColorDetergent: model.user_color_detergent,
         dispenserStatus: model.dispenser_status,
         user_weight: model.scale_weight !== undefined ? model.scale_weight : model.selected_weight !== undefined ? model.selected_weight : null,
         servoMotorOption: model.servomotor_option,
@@ -36,23 +37,22 @@ function PushDetergentData(model) {
 }
 
 export function persistenceToModel(data, model) {    
-    function saveWeightToModelACB(userWeight) {
-        if(model.scale_weight) {
-            model.scale_weight = userWeight;
-        } else {
-            model.selected_weight = userWeight;
+    function saveWeightToModelACB(userLocation) {
+        if(userLocation.city != model.user_location.city) {
+            model.user_location = userLocation;
         }
     }
     if(data) {
-        model.user_location = data.userLocation;
+        //model.user_location = data.userLocation;
         model.user_hardness = data.userHardness;
         model.user_regionName_without_county = data.userRegionName;
         model.user_added_detergents = data.userAddedDetergents;
-        model.user_detergent = data.userDetergent;
+        model.user_white_detergent = data.userWhiteDetergent;
+        model.user_color_detergent = data.userColorDetergent;
         model.dispenser_status = data.dispenserStatus;
         model.servomotor_option = data.servoMotorOption;
         model.optimal_dosage = data.optimalDosage;
-        return saveWeightToModelACB(data.user_weight);
+        return saveWeightToModelACB(data.userLocation);
     }
 }
 
@@ -65,7 +65,10 @@ export function saveToFirebase(model) {
 }
 
 async function fetchGeographicalInfo() {
-    model.user_location = await fetchLocation();
+    const newLocation = await fetchLocation();
+    if(newLocation.city != model.user_location.city) {
+        model.user_location = newLocation;
+    }
 }
 
 export function readFromDatabase() {
@@ -105,7 +108,8 @@ export default function connectToFirebase(model, watchFunction){
             model.user_hardness,
             model.user_regionName_without_county,
             model.user_added_detergents,
-            model.user_detergent,
+            model.user_white_detergent,
+            model.user_color_detergent,
             model.dispenser_status,
             model.scale_weight,
             model.selected_weight,
