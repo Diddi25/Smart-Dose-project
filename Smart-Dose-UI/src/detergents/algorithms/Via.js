@@ -12,14 +12,27 @@ function calculateViaDetergent(detergent, weight, waterHardness, weightFactor) {
         lowerWeight = 6;
         upperWeight = 8;
     } else {
-        //TODO: Extrapolate
+        // Extrapolate based on the trend in the dosage table
+        let prevDosage = parseFloat(detergent.dosageTable[waterHardness]["6-8kg"]);
+        let nextDosage = parseFloat(detergent.dosageTable[waterHardness]["3-5kg"]);
+        let prevWeight = 8;
+        let nextWeight = 5; // For wrapping around the weight range
+
+        // Calculate the rate of increase per kilogram of weight
+        let dosageRate = (nextDosage - prevDosage) / (nextWeight - prevWeight);
+
+        // Extrapolate dosage for the given weight
+        lowerDosage = prevDosage;
+        upperDosage = prevDosage + dosageRate * (weight - prevWeight);
+        lowerWeight = prevWeight;
+        upperWeight = weight; // Weight above 8 kg
     }
 
-    // Interpolera mellan doseringarna baserat på den givna vikten
+    // Interpolate between dosages based on the given weight
     let weightRatio = (weight - lowerWeight) / (upperWeight - lowerWeight);
     let exactDosage = lowerDosage + weightRatio * (upperDosage - lowerDosage);
 
-    // Beräkna exakt grammotsvarighet för den givna millilitern
+    // Calculate exact grams corresponding to the given milliliters
     let exactGrams = exactDosage * weightFactor;
     
     return exactGrams;

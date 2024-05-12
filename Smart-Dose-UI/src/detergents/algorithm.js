@@ -11,23 +11,21 @@ function mainAlgoritm(detergent, weight, hardness) {
 
 
     switch(detergent.brand.toLowerCase()) {
-        // Case algoritm för ica
+        // Case algoritm For Ica
         case 'ica':
             return calculateIcaDetergent(detergent, weight, waterHardness, weightFactor );
-        // Case algoritm för A+ 
+        // Case algoritm for A+ 
         case 'a+':
             return calculateAplusDetergent(detergent, weight, waterHardness, weightFactor);
-        // Case algoritm för Ica Basic
+        // Case algoritm for Ica Basic
         case 'ica basic':
             return calculateIcaBasicDetergent(detergent, weight, waterHardness, weightFactor);
-        // Case algoritm för Ica Skona
+        // Case algoritm for Ica Skona
         case 'ica skona':
             return calculateIcaSkonaDetergent(detergent, weight, waterHardness, weightFactor);
-        // Case algoritm för Via    
+        // Case algoritm for Via    
         case 'via':
             return calculateViaDetergent(detergent, weight, waterHardness, weightFactor);
-        //test
-
         default:
             return "Ingen hantering för det angivna varumärket.";
     }
