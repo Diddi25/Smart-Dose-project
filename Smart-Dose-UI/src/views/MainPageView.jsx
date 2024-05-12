@@ -30,7 +30,7 @@ function MainPageView(props) {
     const buttonClickHandlerWeight = (buttonID) => {
         setactiveButtonWeight(buttonID);
     };
-    const showStatus = ()=> {
+    const showStatus = () => {
         if(props.status){
             return(
             <div className="status">
@@ -61,6 +61,14 @@ function MainPageView(props) {
             return detergent;
         }
     };
+    function setSelectedWeight(weight) {
+        props.setSelectedWeight(weight);
+    };
+    function startDevice() {
+        //if detergentChoice + weight choice + hardness {}
+        props.statusChange(true);
+        props.startCalculateDosage();
+    }
 
     return (
         <div className="main">
@@ -122,17 +130,17 @@ function MainPageView(props) {
                     <div className="main-button">
                         <button 
                             id="0-3" 
-                            onClick={() => { buttonClickHandlerWeight("0-3"); buttonHandlerStart(); }} 
+                            onClick={() => { buttonClickHandlerWeight("0-3"); buttonHandlerStart(); setSelectedWeight(1.5)}} 
                             disabled={activeButtonWeight === "0-3"}>0-3 kg
                         </button>
                         <button 
                             id="4-5" 
-                            onClick={() => { buttonClickHandlerWeight("4-5"); buttonHandlerStart(); }} 
+                            onClick={() => { buttonClickHandlerWeight("4-5"); buttonHandlerStart(); setSelectedWeight(4.5)}} 
                             disabled={activeButtonWeight === "4-5"}>4-5 kg
                         </button>
                         <button 
                             id="6+" 
-                            onClick={() => { buttonClickHandlerWeight("6+"); buttonHandlerStart(); }} 
+                            onClick={() => { buttonClickHandlerWeight("6+"); buttonHandlerStart(); setSelectedWeight(6)}} 
                             disabled={activeButtonWeight === "6+"}>6+ kg
                         </button>
                         <h6>OR use scaling device</h6>
@@ -155,7 +163,7 @@ function MainPageView(props) {
                         <br />
                         <button
                             id="start"
-                            onClick={() => { setButtonDisabled(true); props.statusChange(true); setButtonPopupStatus(true) }}
+                            onClick={() => { setButtonDisabled(true); startDevice(); setButtonPopupStatus(true) }}
                             disabled={isStartDisabled || isButtonDisabled}>START</button>
                         <button
                             id="cancel"
@@ -215,7 +223,7 @@ function MainPageView(props) {
                                         {detergent.name && detergent.name || 'error in data'}
                                     </option>)
                             )}                     
-                        </select>
+                    </select>
                 </div>
             </Popup>
             <Popup trigger={buttonPopupStatus} setTrigger={setButtonPopupStatus} className="card">

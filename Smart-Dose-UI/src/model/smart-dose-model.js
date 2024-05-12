@@ -1,7 +1,12 @@
 import { observer } from "mobx-react-lite";
-import firebaseObject from "../backupTrash/firebaseObject.js"
-import HardnessDataTable from "../data/hardnessData.js"
-import DetergentDataTable from "../data/detergentData.js"
+import firebaseObject from "../backupTrash/firebaseObject.js";
+import HardnessDataTable from "../data/hardnessData.js";
+import DetergentDataTable from "../data/detergentData.js";
+import { getDosageTable } from "../algoritm.js";
+import { getDosageConversion } from "../algoritm.js";
+import { getWeightRanges } from "../algoritm.js";
+import { getDosageInLiter } from "../algoritm.js";
+import { convertToGram } from "../algoritm.js";
 
 export default {
     /*properties that can be persisted*/
@@ -14,12 +19,32 @@ export default {
     user_white_detergent: {},
     user_color_detergent: {},
     user_added_detergents: {},
-    dispenser_status : true,
+    detergent_choice: 0, // 0 == white 1 == color
     scale_weight: 0,
-    selected_weight: null,
+    selected_weight: null, // 1,5 / 4,5 / 6
+    weight_choice: 0, // 0 == selected 1 == scale 
     sensor_weight: 0,
+    dispenser_status : true,
     servomotor_option: 0, //0 == WHITE container 1 == COLOR container
     optimal_dosage: 0, 
+
+    calculateOptimalDosage() {
+        let relevantDosageTable = {}; //behöver detergentChoice, whiteDetergent, colorDetergent
+        let relevantWeightRange = {};
+        let dosageConversion = ""; //detergentChoice whiteDetergent, colorDetergent
+        let literDosage = "";
+
+        relevantDosageTable = getDosageTable(this.detergent_choice, this.user_white_detergent, this.user_color_detergent);
+        dosageConversion = getDosageConversion(this.detergent_choice, this.user_white_detergent, this.user_color_detergent);
+        relevantWeightRange = getWeightRanges(this.user_hardness.Hardness, relevantDosageTable);
+        if(this.weight_choice == 0) {
+            literDosage = getDosageInLiter(this.selected_weight, relevantWeightRange)
+        } else {
+            literDosage = getDosageInLiter(this.scale_weight, relevantWeightRange)
+        }
+
+        this.optimal_dosage = convertToGram(dosageConversion, literDosage); //convertToGram /// dosageConversion, literDosage
+    },
 
     changeUserHardness(location) { //here comes the string
         const findCityACB = hardnessTuple => {
@@ -73,8 +98,10 @@ export default {
         const foundDetergent = this.DetergentData.find(findDetergentACB)
         if(foundDetergent.type === 'white') {
             this.user_white_detergent = foundDetergent;
+            this.detergent_choice = 0; //user wants to use white
         } else {
             this.user_color_detergent = foundDetergent;
+            this.detergent_choice = 1; //user wants to use color
         }
     },
 
@@ -88,6 +115,11 @@ export default {
     
     setScaleWeight(weight){
         this.scaleWeight = weight;
+    },
+
+    setSelectedScaleWeight(manualWeight) {
+        this.selected_weight = manualWeight;
+        this.weight_choice = 0; //means the user wants to select weight
     },
     
 

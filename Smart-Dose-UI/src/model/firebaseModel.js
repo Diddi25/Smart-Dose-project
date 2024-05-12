@@ -13,7 +13,7 @@ const ref_users = ref(db, "USERIDs")
 const ref_root = ref(db);
 export const auth = getAuth(app);
 // test purposes :  
-//set(ref(db, "/GuestUSER"), {"bug": 5});
+//set(ref(db, "/GuestUSER1"), {"bug": 5});
 
 export function modelToPersistence(model) {
     return {
@@ -23,8 +23,11 @@ export function modelToPersistence(model) {
         userAddedDetergents: model.user_added_detergents !== undefined ? model.user_added_detergents : null,
         userWhiteDetergent: model.user_white_detergent,
         userColorDetergent: model.user_color_detergent,
+        userDetergentChoice: model.detergent_choice,
         dispenserStatus: model.dispenser_status,
-        user_weight: model.scale_weight !== undefined ? model.scale_weight : model.selected_weight !== undefined ? model.selected_weight : null,
+        userScaleWeight: model.scale_weight,
+        userSelectedWeight: model.selected_weight,
+        userWeightChoice: model.weight_choice,
         servoMotorOption: model.servomotor_option,
         optimalDosage: model.optimal_dosage
     };
@@ -49,8 +52,12 @@ export function persistenceToModel(data, model) {
         model.user_added_detergents = data.userAddedDetergents;
         model.user_white_detergent = data.userWhiteDetergent;
         model.user_color_detergent = data.userColorDetergent;
+        model.detergent_choice = data.userDetergentChoice;
         model.dispenser_status = data.dispenserStatus;
         model.servomotor_option = data.servoMotorOption;
+        model.scale_weight = data.userScaleWeight;
+        model.selected_weight = data.userSelectedWeight;
+        model.weight_choice = data.userWeightChoice;
         model.optimal_dosage = data.optimalDosage;
         return saveWeightToModelACB(data.userLocation);
     }
@@ -110,9 +117,11 @@ export default function connectToFirebase(model, watchFunction){
             model.user_added_detergents,
             model.user_white_detergent,
             model.user_color_detergent,
+            model.detergent_choice,
             model.dispenser_status,
             model.scale_weight,
             model.selected_weight,
+            model.weight_choice,
             model.servomotor_option,
             model.optimal_dosage
         ];
