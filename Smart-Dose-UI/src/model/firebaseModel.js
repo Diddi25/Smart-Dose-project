@@ -80,4 +80,11 @@ export function checkUpdatesFirebase(model) {
         console.log("Real-time weigh2 update:", newWeigh2);  // Logging for debugging
         model.setScaleWeight(newWeigh2);
     });
+    // Listener for status
+    const stateRef = ref(db, `${PATH}/status`);
+    onValue(stateRef, (snapshot) => {
+        const newstate = snapshot.val();
+        console.log("Real-time weigh2 update:", newstate);  // Logging for debugging
+        model.setStatus(newstate);
+    });
 }

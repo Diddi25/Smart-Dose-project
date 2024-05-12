@@ -18,8 +18,13 @@ function MainPageView(props) {
     const [activeButtonDetergent, setactiveButtonDetergent] = useState(" ");
     const [activeButtonWeight, setactiveButtonWeight] = useState(" ");
     const [buttonPopup, setButtonPopup] = useState(false);
-  
-    
+    //jennifer add this  to your code useEffect(() 
+    useEffect(() => {
+        setButtonDisabled(props.status); // Disable the start button if status is true
+        setStartDisabled(!props.status); // Enable the start button if status is false
+        console.log("my status is :", props.status);
+    }, [props.status]);
+    // add this also to your code  handleScaleWeightACB()
     function handleScaleWeightACB() {
         // resey  the value to 0 for 1 sec
         setTimeout(() => props.setWeight(0), 1000);
@@ -27,10 +32,14 @@ function MainPageView(props) {
         
         props.scaleChange(true);
         props.setWeight(props.weight);
-
+        
         // false after 6 seconds
         setTimeout(() => props.scaleChange(false), 6000);
     }
+
+
+
+    
     function buttonHandlerStart() {
         setStartDisabled(false);
     }
