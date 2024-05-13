@@ -78,8 +78,7 @@ function AccountView(props) {
                     {props.userHard.Location && props.userHard.Location} {props.userHard.Hardness && props.userHard.Hardness}°dH
                 </div>
                 <div className="profile-water">
-                    
-                <select value={props.userHard.Location &&  props.userHard.Location || 'no side effect'} onChange={selectTypeChangeACB}>
+                    <select value={props.userHard.Location &&  props.userHard.Location || 'no side effect'} onChange={selectTypeChangeACB}>
                         <option value={props.userHard.Location &&  props.userHard.Location}>
                             {props.userHard.Location && props.userHard.Location || 'no side effect'} {props.userHard.Hardness && props.userHard.Hardness + '°dH' || ''}
                         </option>
@@ -89,25 +88,24 @@ function AccountView(props) {
                                         {someOption.Location && someOption.Location || 'no internet connection'} {someOption.Hardness}°dH
                                     </option>)
                         )}                     
-                </select>
-
+                    </select>
                 </div>
             </div>
             <div className="manual-waterhardness">
-                        <h6>Choose water hardness manually</h6>
-                        {/*Gränsvärden för hårdhet tagen ifrån https://sv.wikipedia.org/wiki/Vattenh%C3%A5rdhet 07052024 */}
-                        <button id="soft" 
-                                onClick={() => buttonClickHandlerWater("soft")} 
-                                disabled={activeButtonWater ==="soft"}>SOFT 0-6°dH</button>
-                        <button id="medium" 
-                                onClick={() => buttonClickHandlerWater("medium")} 
-                                disabled={activeButtonWater ==="medium"}>MEDIUM 7-13°dH</button>
-                        <button id="hard" 
-                                onClick={() => buttonClickHandlerWater("hard")} 
-                                disabled={activeButtonWater ==="hard"}>HARD 14-20°dH</button>
+                    <h6>Choose water hardness manually</h6>
+                    {/*Gränsvärden för hårdhet tagen ifrån https://sv.wikipedia.org/wiki/Vattenh%C3%A5rdhet 07052024 */}
+                    <button id="soft" 
+                            onClick={() => buttonClickHandlerWater("soft")} 
+                            disabled={activeButtonWater ==="soft"}>SOFT 0-6°dH</button>
+                    <button id="medium" 
+                            onClick={() => buttonClickHandlerWater("medium")} 
+                            disabled={activeButtonWater ==="medium"}>MEDIUM 7-13°dH</button>
+                    <button id="hard" 
+                            onClick={() => buttonClickHandlerWater("hard")} 
+                            disabled={activeButtonWater ==="hard"}>HARD 14-20°dH</button>
             </div>
-                    <br/>
-                    <br/>
+            <br/>
+            <br/>
             <div className="profile-detergent">
                 <h6>Recently used detergent types</h6>
                 <div>
@@ -121,7 +119,6 @@ function AccountView(props) {
                                      onClick={() => { setButtonPopupWhite(true)}}>
                                      {props.userWhiteDetergent?.name || 'not chosen yet' }
                                 </div>
-                                 
                             </div>
                         </div>
                         <div className="detergent-WC">
@@ -133,7 +130,6 @@ function AccountView(props) {
                                      onClick ={() => {setButtonPopupColor(true)}}>
                                      {props.userColorDetergent?.name || 'not chosen yet' }
                                 </div>
-                                   
                             </div>
                         </div>
                     </div>
@@ -176,8 +172,8 @@ function AccountView(props) {
                     <br />
                     <br />
                     <select className="dropdown" 
-                                value={props.userColorDetergent && props.userColorDetergent.name ? props.userColorDetergent.name : 'not chosen yet'} 
-                                onChange={selectDetergentACB}>
+                            value={props.userColorDetergent && props.userColorDetergent.name ? props.userColorDetergent.name : 'not chosen yet'} 
+                            onChange={selectDetergentACB}>
                             <option value={'not chosen yet'}>
                                 Choose color detergent...
                             </option>
@@ -187,7 +183,7 @@ function AccountView(props) {
                                         {detergent.name && detergent.name || 'error in data'}
                                     </option>)
                             )}                     
-                        </select>
+                    </select>
                 </div>
             </Popup>
         </div>
