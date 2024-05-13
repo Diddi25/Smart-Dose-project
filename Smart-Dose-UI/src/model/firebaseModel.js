@@ -8,59 +8,84 @@ import { fetchLocation } from "../geoSource";
 
 const app= initializeApp(firebaseConfig);
 const db= getDatabase(app);
-const ref_hardness = ref(db, "hardnessData");
-const ref_users = ref(db, "userIDs")
+const ref_hardness = ref(db, "HardnessData");
+const ref_users = ref(db, "USERIDs")
 const ref_root = ref(db);
 export const auth = getAuth(app);
+// test purposes :  
+//set(ref(db, "/GuestUSER1"), {"bug": 5});
 
 set(ref(db, "/GuestUSER"), {"bug": 5});
 
 export function modelToPersistence(model) {
-    console.log('Did it come here?')
     return {
-        HardnessData: model.HardnessData,
         userLocation: model.user_location,
         userHardness: model.user_hardness,
+        userRegionName: model.user_regionName_without_county,
+        userAddedDetergents: model.user_added_detergents !== undefined ? model.user_added_detergents : null,
+        userWhiteDetergent: model.user_white_detergent,
+        userColorDetergent: model.user_color_detergent,
+        userDetergentChoice: model.detergent_choice,
+        dispenserStatus: model.dispenser_status,
+        userScaleWeight: model.scale_weight,
+        userSelectedWeight: model.selected_weight,
+        userWeightChoice: model.weight_choice,
+        servoMotorOption: model.servomotor_option,
+        optimalDosage: model.optimal_dosage
     };
 }
 
-export function modelToPersistence2(model) {
-    console.log('Did it come here?')
+function PushDetergentData(model) {
     return {
-
+        detergentData: model.DetergentData
     };
 }
 
-export async function persistenceToModel(data, model) {    
-    console.log('Or here? Dumb duplicate')
-    function saveToModelACB(fromFB) {
-        model.HardnessData = fromFB;
+export function persistenceToModel(data, model) {    
+    function saveWeightToModelACB(userLocation) {
+        if(userLocation.city != model.user_location.city) {
+            model.user_location = userLocation;
+        }
     }
     if(data) {
-        model.user_location = data.userLocation;
+        //model.user_location = data.userLocation;
         model.user_hardness = data.userHardness;
-        return saveToModelACB(data.HardnessData);
+        model.user_regionName_without_county = data.userRegionName;
+        model.user_added_detergents = data.userAddedDetergents;
+        model.user_white_detergent = data.userWhiteDetergent;
+        model.user_color_detergent = data.userColorDetergent;
+        model.detergent_choice = data.userDetergentChoice;
+        model.dispenser_status = data.dispenserStatus;
+        model.servomotor_option = data.servoMotorOption;
+        model.scale_weight = data.userScaleWeight;
+        model.selected_weight = data.userSelectedWeight;
+        model.weight_choice = data.userWeightChoice;
+        model.optimal_dosage = data.optimalDosage;
+        return saveWeightToModelACB(data.userLocation);
     }
-    console.log('Did I find it?')
 }
 
 export function saveToFirebase(model) {
-    /*
     if(model.user) {
-        const ref_user = ref(db, PATH+"/"+model.user.uid);
-        set(ref_users, modelToPersistence2(model))
+        set(ref(db, "USERID:S"+"/" + model.user.displayName + ": " + model.user.uid), modelToPersistence(model));
+    } else {
+        set(ref(db, "/GuestUSER"), modelToPersistence(model));
     }
-    */
-    set(ref_root, modelToPersistence(model))
 }
 
 async function fetchGeographicalInfo() {
-    console.log('Here')
-    model.user_location = await fetchLocation();
+    const newLocation = await fetchLocation();
+    if(newLocation.city != model.user_location.city) {
+        model.user_location = newLocation;
+    }
 }
 
-export function readFromFirebase(model) {
+export function readFromDatabase() {
     model.ready = false;
+    function userConvertACB(snapshot) {
+        console.log(model.user.displayName,'s firebase object : ', snapshot.val());
+        return persistenceToModel(snapshot.val(), model)
+    }
     function convertACB(snapshot) {
         console.log(snapshot.val());
         return persistenceToModel(snapshot.val(), model)
@@ -68,32 +93,43 @@ export function readFromFirebase(model) {
     function setModelReadyACB() {
         model.ready = true;
     }
-    return get(ref_root).then(convertACB).then(setModelReadyACB);
+    if(model.user) {
+        return get(ref(db, "USERID:S/"+ model.user.displayName  + ": " + model.user.uid)).then(userConvertACB).then(setModelReadyACB);
+    } else {
+        return get(ref(db, "GuestUSER")).then(convertACB).then(setModelReadyACB);
+    }
 }
 
 export default function connectToFirebase(model, watchFunction){
-    //const readFirebaseObject = readFromFirebase(model); //Den ska kunna läsa oavsett user?
-    console.log('Before fetching')
+    console.log('Its ok with display name error');
     fetchGeographicalInfo();
     function loginOrOutACB(user) {
         if (user) {
             model.user=user;
-            model.ready=false;
-        }
-        readFromFirebase(model);
+        };
+        readFromDatabase(model);
     }
     onAuthStateChanged(auth, loginOrOutACB);
     watchFunction(checkACB, sideEffectACB);
     function checkACB() {
-        console.log('In CheckACB')
         return [
-            model.HardnessData,
             model.user_location,
             model.user_hardness,
+            model.user_regionName_without_county,
+            model.user_added_detergents,
+            model.user_white_detergent,
+            model.user_color_detergent,
+            model.detergent_choice,
+            model.dispenser_status,
+            model.scale_weight,
+            model.selected_weight,
+            model.weight_choice,
+            model.servomotor_option,
+            model.optimal_dosage
         ];
     };
     function sideEffectACB() {
-        saveToFirebase(model);
         model.setUserHardness(); //this have to be evoked at this point
+        saveToFirebase(model);
     };
 }

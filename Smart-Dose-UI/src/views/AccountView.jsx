@@ -3,31 +3,32 @@ import "../css/account.css";
 import { auth } from '../model/firebaseModel.js'
 import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { deleteUser } from "firebase/auth";
+import Popup from "../components/popup";
 
 function AccountView(props) {
 
     const [activeButtonWater, setactiveButtonWater] = useState(" ");
     const [activeButtonRemoveW, setactiveButtonRemoveW] = useState(" ");
     const [activeButtonRemoveC, setactiveButtonRemoveC] = useState(" ");
+    const [buttonPopupWhite, setButtonPopupWhite] = useState(false);
+    const [buttonPopupColor, setButtonPopupColor] = useState(false);
 
     const buttonClickHandlerWater =(buttonID) =>{
         setactiveButtonWater(buttonID);
-    }
+    };
     const buttonRemoveWhite =(buttonID) =>{
         setactiveButtonRemoveW(buttonID);
-    }
+    };
     const buttonRemoveColor =(buttonID) =>{
         setactiveButtonRemoveC(buttonID);
-    }  
-
+    } ;
     function logOutACB() {
         if(auth.currentUser) {
           signOut(auth)
           window.location.href = "#/"; 
           console.log('Logged out')
         }
-    }
-
+    };
     function deleteAccount() {
         if(auth.currentUser) {
             if(window.confirm("Are you sure you want to permanently delete your account?")) {
@@ -39,15 +40,25 @@ function AccountView(props) {
                 .catch((error) => {
                     console.error('Error deleting account', error);
                 });
-            }
-        }
-    }
-
-
-
+            };
+        };
+    };
     function selectTypeChangeACB(evt) {
         props.selectLocationOption(evt.target.value);
-    }
+    };
+    function selectDetergentACB(evt) {
+        props.selectDetergentType(evt.target.value);
+    };
+    function filterWhiteDetergentsACB(detergent) {
+        if(detergent.type === 'white') {
+            return detergent;
+        }
+    };
+    function filterColorDetergentsACB(detergent) {
+        if(detergent.type === 'color') {
+            return detergent;
+        }
+    };
 
     return (
         <div className="profile-container">
@@ -66,7 +77,7 @@ function AccountView(props) {
             <div>
                 <div className="profile-water">
                     <h6>Water hardness based on your location:</h6>
-                    {props.userHard.Location} {props.userHard.Hardness}°dH
+                    {props.userHard.Location && props.userHard.Location} {props.userHard.Hardness && props.userHard.Hardness}°dH
                 </div>
                 <div className="profile-water">
                     
@@ -74,10 +85,11 @@ function AccountView(props) {
                     <option value={props.userHard.Location}>{props.userHard.Location} {props.userHard.Hardness}°dH</option>
                         {props.hardData.map( 
                             (someOption, index) => (
-                                    <option key={index} value={someOption.Location}>{someOption.Location} {someOption.Hardness}°dH</option>)
+                                    <option key={index} value={someOption.Location && someOption.Location || 'no internet connection'}>
+                                        {someOption.Location && someOption.Location || 'no internet connection'} {someOption.Hardness}°dH
+                                    </option>)
                         )}                     
-                </select>
-
+                    </select>
                 </div>
             </div>
             <div className="manual-waterhardness">
