@@ -21,6 +21,8 @@ export default {
     user_added_detergents: {},
     detergent_choice: 0, // 0 == white 1 == color
     scale_weight: 0,
+    scale_status: true,
+
     selected_weight: null, // 1,5 / 4,5 / 6
     weight_choice: 0, // 0 == selected 1 == scale 
     sensor_weight: 0,
@@ -110,11 +112,11 @@ export default {
     },
 
     setScaleStatus(state){
-        this.scaleStatus = state
+        this.scale_status = state
     },
     
     setScaleWeight(weight){
-        this.scaleWeight = weight;
+        this.scale_weight = weight;
     },
 
     setSelectedScaleWeight(manualWeight) {
