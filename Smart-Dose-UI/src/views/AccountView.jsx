@@ -116,17 +116,22 @@ function AccountView(props) {
                                     <h6>WHITE</h6>
                                     <div>
                                         <button className="remove-button">Remove</button>
-                                        <div className="detergent-type">Coop white</div>
-                                        {/* Saved white detergent */}
+                                            <div className="detergent-type" 
+                                                 id="white" 
+                                                 onClick={() => { setButtonPopupWhite(true)}}>
+                                                {props.userWhiteDetergent?.name || 'not chosen yet' }
+                                            </div>
                                     </div>
                                 </div>
                                 <div className="detergent-WC">
                                     <h6>COLOR</h6>
                                     <div>
                                         <button className="remove-button">Remove</button>
-                                        <div className="detergent-type">Ariel color
+                                        <div className="detergent-type" 
+                                             id="color" 
+                                             onClick ={() => {setButtonPopupColor(true)}}>
+                                             {props.userColorDetergent?.name || 'not chosen yet' }
                                         </div>
-                                        {/* Saved colored detergent */}
                                     </div>
                                 </div>
                             </div>
@@ -134,6 +139,48 @@ function AccountView(props) {
                     </div>
                 </div>
             </div>
+            <Popup trigger={buttonPopupWhite} setTrigger = {setButtonPopupWhite} className="card"> 
+                <div > 
+                    WHITE DETERGENTS <br />
+                    Select a detergent <br />
+                    <br />
+                    <br />
+                    <select className="dropdown" 
+                                value={props.userWhiteDetergent && props.userWhiteDetergent.name ? props.userWhiteDetergent.name : 'not chosen yet'} 
+                                onChange={selectDetergentACB}>
+                            <option value={'not chosen yet'}>
+                                Choose white detergent...
+                            </option>
+                            {props.detergentData.filter(filterWhiteDetergentsACB).map( 
+                                (detergent, id) => (
+                                    <option key={id} value={detergent.name && detergent.name || 'error in data'}>
+                                        {detergent.name && detergent.name || 'error in data'}
+                                    </option>)
+                            )}                     
+                    </select>
+                </div>
+            </Popup>
+            <Popup trigger={buttonPopupColor} setTrigger = {setButtonPopupColor} className="card"> 
+                <div >
+                    COLOR DETERGENTS  <br />
+                    Select a detergent <br />
+                    <br />
+                    <br />
+                    <select className="dropdown" 
+                            value={props.userColorDetergent && props.userColorDetergent.name ? props.userColorDetergent.name : 'not chosen yet'} 
+                            onChange={selectDetergentACB}>
+                            <option value={'not chosen yet'}>
+                                Choose color detergent...
+                            </option>
+                            {props.detergentData.filter(filterColorDetergentsACB).map( 
+                                (detergent, id) => (
+                                    <option key={id} value={detergent.name && detergent.name || 'error in data'}>
+                                        {detergent.name && detergent.name || 'error in data'}
+                                    </option>)
+                            )}                     
+                    </select>
+                </div>
+            </Popup>
             <div>
                 <button className="button-style" onClick={logOutACB}>Log out</button>
                 <button className="button-style" onClick={deleteAccount}>Delete account</button>
