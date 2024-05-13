@@ -51,16 +51,18 @@ function AccountView(props) {
 
     return (
         <div className="profile-container">
-            <div>
-                <title>My Profile</title>
-            </div>
-            <div className="profile-name">
-                <h5>Welcome Diddi</h5>
+            <div className="header">
+            <header >Welcome {auth.currentUser ? auth.currentUser.displayName : 'Guest'}</header >
                 <p>{/*google account name*/}</p>
             </div>
+            <div className="card-container">
+            <div className="card">
                 <div className="profile-title">
                     <h5>Water hardness</h5>
                 </div>
+                <br />
+                <br />
+                <br />
             <div>
                 <div className="profile-water">
                     <h6>Water hardness based on your location:</h6>
@@ -85,16 +87,18 @@ function AccountView(props) {
                         <button id="medium" onClick={() => buttonClickHandlerWater("medium")} disabled={activeButtonWater ==="medium"}>MEDIUM</button>
                         <button id="soft" onClick={() => buttonClickHandlerWater("soft")} disabled={activeButtonWater ==="soft"}>SOFT</button>
             </div>
-                    <br/>
-                    <br/>
+            </div>
+            <div className="card">
             <div className="profile-detergent">
-                <h6>Recently used detergent types</h6>
+            <div className="profile-title">
+                <h5>Recently used detergent types</h5>
+            </div>   
                 <div>
                     <div className="detergent-container">
                         <div className="detergent-WC">
                             <h6>WHITE</h6>
                             <div>
-                                <button>Remove</button>
+                                <button className="remove-button">Remove</button>
                                 <div className="detergent-type">Coop white</div>
                                  {/* Saved white detergent */}
                             </div>
@@ -102,7 +106,7 @@ function AccountView(props) {
                         <div className="detergent-WC">
                             <h6>COLOR</h6>
                             <div>
-                                <button>Remove</button>
+                            <button className="remove-button">Remove</button>
                                 <div className="detergent-type">Ariel color</div>
                                     {/* Saved colored detergent */}
                             </div>
@@ -110,18 +114,15 @@ function AccountView(props) {
                     </div>
                 </div>
             </div>
-            
-            <div>
-                <br />
-                <br />
-                <br />
-                <button onClick={logOutACB}>Log out</button>
+            </div>
             </div>
             <div>
-                <button onClick={deleteAccount}>Delete account</button>
+                <button className="button-style" onClick={logOutACB}>Log out</button>
+                <button className="button-style" onClick={deleteAccount}>Delete account</button>
             </div>
         </div>
     );
 }
 
 export default AccountView;
+

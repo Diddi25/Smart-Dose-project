@@ -3,6 +3,7 @@ import "../css/instructionpage.css";
 
 function InstructionPageView(props) {
     return (
+        <div className="profile-container">
         <div>
             <div>
                 <title>
@@ -14,8 +15,7 @@ function InstructionPageView(props) {
                     <h1>HOW TO USE SMART DOSE?</h1>
                 </div>
                 <br />
-
-                <div>
+                <div className="card-container">
                     <div className="card-container2">
                         <div className="card-intructions">
                             <div className="instr-text">
@@ -29,8 +29,6 @@ function InstructionPageView(props) {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
                     <div className="card-container2">
                         <div className="card-intructions">
                             <div className="instr-text">
@@ -44,8 +42,6 @@ function InstructionPageView(props) {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
                     <div className="card-container2">
                         <div className="card-intructions">
                             <div className="instr-text">
@@ -57,8 +53,6 @@ function InstructionPageView(props) {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
                     <div className="card-container2">
                         <div className="card-intructions">
                             <div className="instr-text">
@@ -73,8 +67,9 @@ function InstructionPageView(props) {
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
+        </div>
+        </div>
         </div>
     );
 

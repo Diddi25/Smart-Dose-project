@@ -13,6 +13,8 @@ const ref_users = ref(db, "userIDs")
 const ref_root = ref(db);
 export const auth = getAuth(app);
 
+set(ref(db, "/GuestUSER"), {"bug": 5});
+
 export function modelToPersistence(model) {
     console.log('Did it come here?')
     return {
