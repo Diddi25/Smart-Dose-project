@@ -1,7 +1,7 @@
 // you will find 2 imports already there, add the configuration and instantiate the app and database:
 import firebaseConfig from "/src/firebaseConfig.js";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, get, set, onValue, child, onChildAdded, onChildRemoved, off} from "firebase/database";
+import { getDatabase, ref, get, set, update, onValue } from "firebase/database";
 import React, { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { fetchLocation } from "../geoSource";
@@ -47,6 +47,8 @@ export function persistenceToModel(data, model) {
     }
     if(data.userWhiteDetergent) {
         model.user_white_detergent = data.userWhiteDetergent;
+    } else {
+        console.log('no white detergent');
     }
     if(data.userColorDetergent) {
         model.user_color_detergent = data.userColorDetergent;
