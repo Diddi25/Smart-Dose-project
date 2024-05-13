@@ -8,6 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: ease-in-out 10000ms; 
+                
 
 }
 
