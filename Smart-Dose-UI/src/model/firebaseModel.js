@@ -75,7 +75,7 @@ export function checkUpdatesFirebase(model) {
 
     // Listener for weigh2
     const weigh2Ref = ref(db, `${PATH}/weight2`);
-    onValue(weigh2Ref, (snapshot) => {
+    on(weigh2Ref, (snapshot) => {
         const newWeigh2 = snapshot.val();
         console.log("Real-time weigh2 update:", newWeigh2);  // Logging for debugging
         model.setScaleWeight(newWeigh2);
