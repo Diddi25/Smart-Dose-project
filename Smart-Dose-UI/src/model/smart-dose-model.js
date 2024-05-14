@@ -74,6 +74,12 @@ export default {
     setScaleWeight(weight){
         this.scaleWeight = weight;
     },
+
+    setServomotor(option){
+        this.servomotor_option = option;
+    },
+    
+
     
 
     

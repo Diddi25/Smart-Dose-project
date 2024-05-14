@@ -104,12 +104,12 @@ function MainPageView(props) {
                     <div className="main-button">
                         <button 
                             id="white" 
-                            onClick={() => { buttonClickHandlerDetergent("white"); setButtonPopupWhite(true) }} 
+                            onClick={() => { buttonClickHandlerDetergent("white"); setButtonPopupWhite(true), props.servomotor("1") }} 
                             disabled={activeButtonDetergent === "white"}>WHITE
                         </button>
                         <button 
                             id="color" 
-                            onClick={() => { buttonClickHandlerDetergent("color"); setButtonPopupColor(true) }} 
+                            onClick={() => { buttonClickHandlerDetergent("color"); setButtonPopupColor(true), props.servomotor("2") }} 
                             disabled={activeButtonDetergent === "color"}>COLOR
                         </button>
                     </div>

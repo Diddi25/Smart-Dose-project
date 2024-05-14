@@ -26,9 +26,20 @@ export default observer(
  
         console.log("Model scale status updated to: ", props.model.status);
     }
+    function handleServomotor(option){
+        console.log("Detergent choosen: ", option)
+
+        props.model.setServomotor(option);
+        
+        console.log("Model servo_motor option updated to: ", props.model.servomotor_option);
+    }
+
+
+
 
     return <MainPageView 
-                                status={props.model.dispenser_status}      
+                                status={props.model.dispenser_status} 
+                                servomotor={handleServomotor}     
                                 statusChange={handleSetChange}
                                 weight={props.model.scaleWeight}      
                                 setWeight={handleWeightChange}
