@@ -4,7 +4,7 @@
 #include <ArduinoHttpClient.h>
 #include <ArduinoJson.h>
 #include <Servo.h>
-const int SERVO1_START_POSITION=45;
+const int SERVO1_START_POSITION=70;
 const int SERVO2_START_POSITION = 112;
 
 const int SERVO1_STOP_POSITION = 90;
@@ -27,13 +27,13 @@ HX711 scale1; // First scale
 HX711 scale2;  //second scale 
 HX711 scale3;  // third scale
 
-#define FIREBASE_HOST "best-938eb-default-rtdb.europe-west1.firebasedatabase.app"
-#define FIREBASE_AUTH "eWAV2ZA8vL0WFJcj2TE3BVOLXNdIf66hVluB8a1i"
+#define FIREBASE_HOST "smartdose-51796-default-rtdb.europe-west1.firebasedatabase.app"
+#define FIREBASE_AUTH "AIzaSyA9xQO9pLQ7-WJgjTmYIuwD2dG8IKTrcsE"
 const char ssid[] = "Best";
 const char pass[] = "test12345";
 String serverAddress = FIREBASE_HOST;
 int port = 443;
-String path = "/smartdose.json?auth=" + String(FIREBASE_AUTH);
+String path = "/GuestUSER.json?auth=" + String(FIREBASE_AUTH);
 
 WiFiSSLClient wifi;
 HttpClient client = HttpClient(wifi, serverAddress, port);
@@ -142,12 +142,13 @@ void checkWeightAndControlServo(HX711& scale, Servo& servo, float dosage, bool& 
             servo.write(startPosition);
             scaleActive = true;
             Serial.println("Reduced weight detected, servo started.");
+            updateFirebaseStatus("true");
         }
     }
 }
 void updateFirebaseStatus(String dispenserStatus) {
   DynamicJsonDocument jsonBuffer(1024);
-  jsonBuffer["dispenser_status"] = dispenserStatus;
+  jsonBuffer["dispenserStatus"] = dispenserStatus;
   String output;
   serializeJson(jsonBuffer, output);
   client.patch(path, "application/json", output); // Use PATCH to update part of the JSON
@@ -191,15 +192,15 @@ void fetchAndUpdateFromFirebase() {
         deserializeJson(doc, response);
 
         // Process optimal dosage
-        if (doc.containsKey("optimal_dosage")) {
-            optimalDosage = doc["optimal_dosage"].as<float>();
+        if (doc.containsKey("optimalDosage")) {
+            optimalDosage = doc["optimalDosage"].as<float>();
             Serial.print("Updated optimalDosage: ");
             Serial.println(optimalDosage);
         }
 
         // Process servomotor option
-        if (doc.containsKey("dispenser_option")) {
-    int newOption = doc["dispenser_option"].as<int>();
+        if (doc.containsKey("servoMotorOption")) {
+    int newOption = doc["servoMotorOption"].as<int>();
     if (newOption != servomotorOption) {
         servomotorOption = newOption;
         Serial.print("Updated servomotorOption to: ");
@@ -219,8 +220,8 @@ void fetchAndUpdateFromFirebase() {
         }
 
         // Process dispenser status
-        if (doc.containsKey("dispenser_status")) {
-    String command = doc["dispenser_status"].as<String>();
+        if (doc.containsKey("dispenserStatus")) {
+    String command = doc["dispenserStatus"].as<String>();
     if (command != lastCommand) {
         lastCommand = command;
         Serial.println("Command changed to: " + command);
