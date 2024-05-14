@@ -19,8 +19,7 @@ createRoot(document.getElementById('root'))
 // react.html, with the content <div id="root"></div> is configured in vite.config.js
 
 // ------ for debug purposes ----------
-window.model= reactiveModel;             // make the model available in the Console
-window.model= reactiveModel;             // make the model available in the Console
+window.model= reactiveModel;             // make the model available in the Console          // make the model available in the Console
 //window.myModel= reactiveModel;  
 
 /*Glöm inte bort makerouter + connectToFirebase*/
