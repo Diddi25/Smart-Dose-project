@@ -106,9 +106,9 @@ export function readFromDatabase() {
     }
 }
 
-export default function connectToFirebase(model, watchFunction){
+export default async function connectToFirebase(model, watchFunction){
     console.log('Its ok with display name error');
-    fetchGeographicalInfo();
+    await fetchGeographicalInfo();
     function loginOrOutACB(user) {
         if (user) {
             model.user=user;

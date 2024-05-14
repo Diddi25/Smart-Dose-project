@@ -37,7 +37,7 @@ export default observer(
     return <MainPageView 
                                 status = {props.model.dispenser_status}      
                                 statusChange = {handleSetChange}
-                                weight = {props.model.scaleWeight}      
+                                weight = {props.model.scale_weight}      
                                 setWeight = {handleWeightChange}
                                 scaleChange = {handleScaleStatus}
                                 selectLocationOption = {setLocationACB}
