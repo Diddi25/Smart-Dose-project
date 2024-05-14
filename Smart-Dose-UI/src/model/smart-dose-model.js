@@ -69,6 +69,9 @@ export default {
         if (this.user_hardness === undefined) {
             this.setHardnessWithRegionName();
         }
+        if (this.setHardnessWithRegionName() === undefined){
+            return 
+        }
     },
 
     setHardnessWithRegionName() {
