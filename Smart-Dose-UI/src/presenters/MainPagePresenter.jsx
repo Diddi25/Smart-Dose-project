@@ -34,11 +34,21 @@ export default observer(
         props.model.calculateOptimalDosage();
     };
 
+
+    function handleServomotor(option){
+        console.log("Detergent choosen: ", option)
+
+        props.model.setServomotor(option);
+        
+        console.log("Model servo_motor option updated to: ", props.model.servomotor_option);
+    }
+
     return <MainPageView 
                                 status = {props.model.dispenser_status}      
                                 statusChange = {handleSetChange}
                                 weight = {props.model.scale_weight}      
                                 setWeight = {handleWeightChange}
+                                servomotor={handleServomotor}
                                 scaleChange = {handleScaleStatus}
                                 selectLocationOption = {setLocationACB}
                                 hardData = {props.model.HardnessData}

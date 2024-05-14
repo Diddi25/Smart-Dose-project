@@ -18,9 +18,28 @@ function MainPageView(props) {
     const [buttonPopupStatus, setButtonPopupStatus] = useState(false);
 
 
+
+    useEffect(() => {
+        setButtonDisabled(props.status); // Disable the start button if status is true
+        setStartDisabled(!props.status); // Enable the start button if status is false
+        console.log("my status is :", props.status);
+    }, [props.status]);
+
+
     function handleScaleWeightACB() {
+        // resey  the value to 0 for 1 sec
+        setTimeout(() => props.setWeight(0), 1000);
+        //show the firebase scale value
+        
+        props.scaleChange(true);
         props.setWeight(props.weight);
-    };
+        
+        // false after 6 seconds
+        setTimeout(() => props.scaleChange(false), 6000);
+    }
+
+
+   
     function buttonHandlerStart() {
         setStartDisabled(false);
     };
@@ -103,12 +122,12 @@ function MainPageView(props) {
                     <div className="main-button">
                         <button 
                             id="white" 
-                            onClick={() => { buttonClickHandlerDetergent("white"); setButtonPopupWhite(true) }} 
+                            onClick={() => { buttonClickHandlerDetergent("white"); setButtonPopupWhite(true),props.servomotor("1") }} 
                             disabled={activeButtonDetergent === "white"}>WHITE
                         </button>
                         <button 
                             id="color" 
-                            onClick={() => { buttonClickHandlerDetergent("color"); setButtonPopupColor(true) }} 
+                            onClick={() => { buttonClickHandlerDetergent("color"); setButtonPopupColor(true),props.servomotor("2") }} 
                             disabled={activeButtonDetergent === "color"}>COLOR
                         </button>
                         <br />
@@ -173,6 +192,7 @@ function MainPageView(props) {
                     <br />
                     <br />
                     <div className="ss-button">
+                        <br />
                         <br />
                         <button
                             id="start"
