@@ -29,7 +29,7 @@ export default {
     calculateOptimalDosage() {
         if(this.weight_choice === 0){
             if(this.user_white_detergent){
-            this.optimal_dosage = mainAlgoritm(this.choosenDetergent,this.user_hardness); //convertToGram /// dosageConversion, literDosage
+                this.optimal_dosage = mainAlgoritm(this.choosenDetergent,this.selected_weight,this.user_hardness); //convertToGram /// dosageConversion, literDosage
             }
         }
         else{

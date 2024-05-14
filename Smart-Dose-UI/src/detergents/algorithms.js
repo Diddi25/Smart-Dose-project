@@ -5,7 +5,7 @@ import { calculateIcaSkonaDetergent } from "./algorithms/IcaSkona.js";
 import { calculateViaDetergent } from "./algorithms/Via.js";
 
 
-function mainAlgoritm(detergent, weight, hardness) {
+export function mainAlgoritm(detergent, weight, hardness) {
     const waterHardness = hardnessToString(hardness);
     const weightFactor = calculateFactor(detergent.dosage);
 
@@ -95,3 +95,4 @@ const testWeight = 6;
 
 
 console.log("Recommended dosage:", mainAlgoritm(testDetergent, testWeight, wH));
+
