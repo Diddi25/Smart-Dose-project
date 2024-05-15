@@ -11,6 +11,12 @@ export default observer(
     function selectDetergent(detergentChoice) {
         props.model.setDetergentType(detergentChoice);
     };
+    function removeUserWhiteDetergent() {
+        props.model.removeUserWhiteDetergent();
+    };
+    function removeUserColorDetergent() {
+        props.model.removeUserColorDetergent();
+    };
     return <AccountView 
                                 hardData = {props.model.HardnessData}/*properties used in view*/
                                 userHard = {props.model.user_hardness}
@@ -19,5 +25,7 @@ export default observer(
                                 userWhiteDetergent = {props.model.user_white_detergent}
                                 userColorDetergent = {props.model.user_color_detergent}
                                 selectDetergentType = {selectDetergent}
+                                removeWhiteDetergent = {removeUserWhiteDetergent}
+                                removeColorDetergent = {removeUserColorDetergent}
                                 />;
 }) // needed for the presenter to update (its view) when relevant parts of the model change
