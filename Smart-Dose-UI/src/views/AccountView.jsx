@@ -16,11 +16,11 @@ function AccountView(props) {
     const buttonClickHandlerWater =(buttonID) =>{
         setactiveButtonWater(buttonID);
     };
-    const buttonRemoveWhite =(buttonID) =>{
-        setactiveButtonRemoveW(buttonID);
+    const buttonRemoveWhite =() =>{
+        props.removeWhiteDetergent();
     };
-    const buttonRemoveColor =(buttonID) =>{
-        setactiveButtonRemoveC(buttonID);
+    const buttonRemoveColor =() =>{
+        props.removeColorDetergent();
     } ;
     function logOutACB() {
         if(auth.currentUser) {
@@ -49,6 +49,7 @@ function AccountView(props) {
     };
     function selectDetergentACB(evt) {
         props.selectDetergentType(evt.target.value);
+        console.log(evt.target);
     };
     function filterWhiteDetergentsACB(detergent) {
         if(detergent.type === 'white') {
@@ -116,22 +117,26 @@ function AccountView(props) {
                                 <div className="detergent-WC">
                                     <h6>WHITE</h6>
                                     <div>
-                                        <button className="remove-button">Remove</button>
-                                            <div className="detergent-type" 
-                                                 id="white" 
-                                                 onClick={() => { setButtonPopupWhite(true)}}>
-                                                {props.userWhiteDetergent?.name || 'not chosen yet' }
-                                            </div>
+                                        <button className="remove-button" onClick={buttonRemoveWhite}>
+                                            Remove
+                                        </button>
+                                        <div className="detergent-type" 
+                                            id="white" 
+                                            onClick={() => { setButtonPopupWhite(true)}}>
+                                            {props.userWhiteDetergent?.name || 'not chosen yet' }
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="detergent-WC">
                                     <h6>COLOR</h6>
                                     <div>
-                                        <button className="remove-button">Remove</button>
+                                        <button className="remove-button" onClick={buttonRemoveColor}>
+                                            Remove
+                                        </button>
                                         <div className="detergent-type" 
-                                             id="color" 
-                                             onClick ={() => {setButtonPopupColor(true)}}>
-                                             {props.userColorDetergent?.name || 'not chosen yet' }
+                                            id="color" 
+                                            onClick ={() => {setButtonPopupColor(true)}}>
+                                            {props.userColorDetergent?.name || 'not chosen yet' }
                                         </div>
                                     </div>
                                 </div>
