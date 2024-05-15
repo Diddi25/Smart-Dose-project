@@ -65,7 +65,6 @@ function AccountView(props) {
         <div className="profile-container">
             <div className="header-2">
                 <header >Welcome {auth.currentUser ? auth.currentUser.displayName : 'Guest'}</header >
-                <p>{/*google account name*/}</p>
             </div>
             <div className="card-container">
                 <div className="card-profile">
