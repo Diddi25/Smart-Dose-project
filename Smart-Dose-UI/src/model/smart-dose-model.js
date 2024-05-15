@@ -26,7 +26,7 @@ export default {
     selected_weight: null, // 1,5 / 4,5 / 6
     weight_choice: 0, // 0 == selected 1 == scale 
     sensor_weight: 0,
-    dispenser_status : true,
+    dispenser_status : false,
     servomotor_option: 0, //0 == WHITE container 1 == COLOR container
     optimal_dosage: 0,
     selected_detergent: {},
@@ -56,6 +56,12 @@ export default {
         */
     },
 
+
+
+    setWeightChoice(choice){
+
+        this.weight_choice=choice
+    },
     changeUserHardness(location) { //here comes the string
         const findCityACB = hardnessTuple => {
             if (hardnessTuple.Location === location) {

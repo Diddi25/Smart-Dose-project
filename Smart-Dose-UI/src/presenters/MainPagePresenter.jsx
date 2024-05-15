@@ -42,6 +42,16 @@ export default observer(
     };
 
 
+    function userWeightChoice (choice){
+    props.model.setWeightChoice(choice);
+
+
+    console.log("this is the choise" ,props.model.weight_choice );
+
+
+    };
+    
+
 
 
     return <MainPageView 
@@ -61,6 +71,7 @@ export default observer(
                                 userColorDetergent = {props.model.user_color_detergent}
                                 selectDetergentType = {selectDetergent}
                                 setSelectedWeight = {selectWeight}
+                                userWeightChoice ={userWeightChoice}
                                 startCalculateDosage = {startCalculationProcess}
                                 />;
                                 
