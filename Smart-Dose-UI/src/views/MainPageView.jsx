@@ -3,7 +3,10 @@ import "../css/mainpage.css";
 import logo from '../images/logo3.png';
 import { useState, React, useEffect } from 'react';
 import Popup from "../components/popup";
-import { set } from "firebase/database";
+import { db } from '../model/firebaseModel.js'; 
+import { PushDetergentData } from '../model/firebaseModel.js';
+import { getDatabase, ref, set } from "firebase/database";
+
 
 function MainPageView(props) {
 
@@ -21,7 +24,6 @@ function MainPageView(props) {
         setStartDisabled(!props.status); // Enable the start button if status is false
         console.log("my status is :", props.status);
     }, [props.status]);
-
 
     function handleScaleWeightACB() {
         // resey  the value to 0 for 1 sec

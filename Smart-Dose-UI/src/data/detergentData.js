@@ -489,6 +489,7 @@ const DetergentDataTable = [
             }
         }
     }
+    
 ];
 
 export default DetergentDataTable;

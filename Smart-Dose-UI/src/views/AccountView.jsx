@@ -63,87 +63,82 @@ function AccountView(props) {
 
     return (
         <div className="profile-container">
-            <div>
-                <title>My Profile</title>
-            </div>
-            <div className="profile-name">
-                <h5>Welcome Diddi</h5>
+            <div className="header-2">
+                <header >Welcome {auth.currentUser ? auth.currentUser.displayName : 'Guest'}</header >
                 <p>{/*google account name*/}</p>
             </div>
-                <div className="profile-title">
-                    <h5>Water hardness</h5>
-                </div>
-            <div>
-                <div className="profile-water">
-                    <h6>Water hardness based on your location:</h6>
-                    {props.userHard.Location && props.userHard.Location} {props.userHard.Hardness && props.userHard.Hardness}°dH
-                </div>
-                <div className="profile-water">
-                    <select value={props.userHard.Location &&  props.userHard.Location || 'no side effect'} onChange={selectTypeChangeACB}>
-                        <option value={props.userHard.Location &&  props.userHard.Location}>
-                            {props.userHard.Location && props.userHard.Location || 'no side effect'} {props.userHard.Hardness && props.userHard.Hardness + '°dH' || ''}
-                        </option>
-                        {props.hardData.map( 
-                            (someOption, index) => (
+            <div className="card-container">
+                <div className="card-profile">
+                    <div className="profile-title">
+                        <h5>Water hardness</h5>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div>
+                        <div className="profile-water">
+                            <h6>Water hardness based on your location:</h6>
+                            {props.userHard.Location && props.userHard.Location} {props.userHard.Hardness && props.userHard.Hardness}°dH
+                        </div>
+                        <div className="profile-water">   
+                            <select value={props.userHard.Location} onChange={selectTypeChangeACB}>
+                                <option value={props.userHard.Location}>{props.userHard.Location} {props.userHard.Hardness}°dH</option>
+                                {props.hardData.map( 
+                                (someOption, index) => (
                                     <option key={index} value={someOption.Location && someOption.Location || 'no internet connection'}>
                                         {someOption.Location && someOption.Location || 'no internet connection'} {someOption.Hardness}°dH
                                     </option>)
-                        )}                     
-                    </select>
-                </div>
-            </div>
-            <div className="manual-waterhardness">
-                    <h6>Choose water hardness manually</h6>
-                    {/*Gränsvärden för hårdhet tagen ifrån https://sv.wikipedia.org/wiki/Vattenh%C3%A5rdhet 07052024 */}
-                    <button id="soft" 
+                                )}                     
+                            </select>
+                        </div>
+                    </div>
+                    <div className="manual-waterhardness">
+                        <h6>Choose water hardness manually</h6>
+                        {/*Gränsvärden för hårdhet tagen ifrån https://sv.wikipedia.org/wiki/Vattenh%C3%A5rdhet 07052024 */}
+                        <button id="soft" 
                             onClick={() => buttonClickHandlerWater("soft")} 
                             disabled={activeButtonWater ==="soft"}>SOFT 0-6°dH</button>
-                    <button id="medium" 
+                        <button id="medium" 
                             onClick={() => buttonClickHandlerWater("medium")} 
                             disabled={activeButtonWater ==="medium"}>MEDIUM 7-13°dH</button>
-                    <button id="hard" 
+                        <button id="hard" 
                             onClick={() => buttonClickHandlerWater("hard")} 
                             disabled={activeButtonWater ==="hard"}>HARD 14-20°dH</button>
-            </div>
-            <br/>
-            <br/>
-            <div className="profile-detergent">
-                <h6>Recently used detergent types</h6>
-                <div>
-                    <div className="detergent-container">
-                        <div className="detergent-WC">
-                            <h6>WHITE</h6>
-                            <div>
-                                <button>Remove</button>
-                                <div className="detergent-type" 
-                                     id="white" 
-                                     onClick={() => { setButtonPopupWhite(true)}}>
-                                     {props.userWhiteDetergent?.name || 'not chosen yet' }
+                    </div>
+                </div>
+                <div className="card-profile">
+                    <div className="profile-detergent">
+                        <div className="profile-title">
+                            <h5>Recently used detergent types</h5>
+                        </div>   
+                        <div>
+                            <div className="detergent-container">
+                                <div className="detergent-WC">
+                                    <h6>WHITE</h6>
+                                    <div>
+                                        <button className="remove-button">Remove</button>
+                                            <div className="detergent-type" 
+                                                 id="white" 
+                                                 onClick={() => { setButtonPopupWhite(true)}}>
+                                                {props.userWhiteDetergent?.name || 'not chosen yet' }
+                                            </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="detergent-WC">
-                            <h6>COLOR</h6>
-                            <div>
-                                <button>Remove</button>
-                                <div className="detergent-type" 
-                                     id="color" 
-                                     onClick ={() => {setButtonPopupColor(true)}}>
-                                     {props.userColorDetergent?.name || 'not chosen yet' }
+                                <div className="detergent-WC">
+                                    <h6>COLOR</h6>
+                                    <div>
+                                        <button className="remove-button">Remove</button>
+                                        <div className="detergent-type" 
+                                             id="color" 
+                                             onClick ={() => {setButtonPopupColor(true)}}>
+                                             {props.userColorDetergent?.name || 'not chosen yet' }
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <br />
-                <br />
-                <br />
-                <button onClick={logOutACB}>Log out</button>
-            </div>
-            <div>
-                <button onClick={deleteAccount}>Delete account</button>
             </div>
             <Popup trigger={buttonPopupWhite} setTrigger = {setButtonPopupWhite} className="card"> 
                 <div > 
@@ -187,8 +182,13 @@ function AccountView(props) {
                     </select>
                 </div>
             </Popup>
+            <div>
+                <button className="button-style" onClick={logOutACB}>Log out</button>
+                <button className="button-style" onClick={deleteAccount}>Delete account</button>
+            </div>
         </div>
     );
 }
 
 export default AccountView;
+
