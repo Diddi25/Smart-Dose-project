@@ -24,6 +24,26 @@ export default observer(
         props.model.setScaleStatus(status);
         console.log("Model scale status updated to: ", props.model.status);
     };
+    function handleServomotor(option){
+        console.log("Detergent choosen: ", option)
+
+        props.model.setServomotor(option);
+        
+        console.log("Model servo_motor option updated to: ", props.model.servomotor_option);
+    };
+
+
+
+
+    return <MainPageView 
+                                status={props.model.dispenser_status} 
+                                servomotor={handleServomotor}     
+                                statusChange={handleSetChange}
+                                weight={props.model.scaleWeight}      
+                                setWeight={handleWeightChange}
+                                scaleChange={handleScaleStatus}
+                                hardData = {props.model.HardnessData}/*properties used in view*/
+    };
     function selectDetergent(detergentChoice) {
         props.model.setDetergentType(detergentChoice);
     };
