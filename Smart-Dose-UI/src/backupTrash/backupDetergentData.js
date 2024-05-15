@@ -1,5 +1,6 @@
 
-const DetergentDataTable = [
+
+const DetergentDataTable2 = [
     {
         "id": 1,
         "name": "Kulörtvättmedel Parfymfri Ekologisk 750ml ICA Skona",
@@ -398,7 +399,7 @@ const DetergentDataTable = [
         "name": "Tvättmedel Kulörtvätt Morgonsol 1kg Miljömärkt ICA Skona",
         "brand": "ICA Skona",
         "link": "https://handla.ica.se/produkt/2021932",
-        "type": "color",
+        "type": "white",
         "weight": "1kg",
         "dosage": "100ml = 86g",
         "articleNumber": "?",

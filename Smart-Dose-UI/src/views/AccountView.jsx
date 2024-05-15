@@ -15,24 +15,20 @@ function AccountView(props) {
 
     const buttonClickHandlerWater =(buttonID) =>{
         setactiveButtonWater(buttonID);
-    }
-   
+    };
     const buttonRemoveWhite =(buttonID) =>{
         setactiveButtonRemoveW(buttonID);
-    }
+    };
     const buttonRemoveColor =(buttonID) =>{
         setactiveButtonRemoveC(buttonID);
-    }  
-
-
+    } ;
     function logOutACB() {
         if(auth.currentUser) {
           signOut(auth)
           window.location.href = "#/"; 
           console.log('Logged out')
         }
-    }
-
+    };
     function deleteAccount() {
         if(auth.currentUser) {
             if(window.confirm("Are you sure you want to permanently delete your account?")) {
@@ -44,20 +40,24 @@ function AccountView(props) {
                 .catch((error) => {
                     console.error('Error deleting account', error);
                 });
-            }
-        }
-    }
-
+            };
+        };
+    };
     function selectTypeChangeACB(evt) {
         props.selectLocationOption(evt.target.value);
     };
-
-    function LocationShallNotBeUndefined(userHardnessObject) {
-        if(userHardnessObject.Location) {
-            return [userHardnessObject.Location, userHardnessObject.Hardness, "°dH"];
-        } else {
-            return "No internet connection";
-        };
+    function selectDetergentACB(evt) {
+        props.selectDetergentType(evt.target.value);
+    };
+    function filterWhiteDetergentsACB(detergent) {
+        if(detergent.type === 'white') {
+            return detergent;
+        }
+    };
+    function filterColorDetergentsACB(detergent) {
+        if(detergent.type === 'color') {
+            return detergent;
+        }
     };
 
     return (
@@ -96,9 +96,15 @@ function AccountView(props) {
             <div className="manual-waterhardness">
                         <h6>Choose water hardness manually</h6>
                         {/*Gränsvärden för hårdhet tagen ifrån https://sv.wikipedia.org/wiki/Vattenh%C3%A5rdhet 07052024 */}
-                        <button id="soft" onClick={() => buttonClickHandlerWater("soft")} disabled={activeButtonWater ==="soft"}>SOFT 0-6°dH</button>
-                        <button id="medium" onClick={() => buttonClickHandlerWater("medium")} disabled={activeButtonWater ==="medium"}>MEDIUM 7-13°dH</button>
-                        <button id="hard" onClick={() => buttonClickHandlerWater("hard")} disabled={activeButtonWater ==="hard"}>HARD 14-20°dH</button>
+                        <button id="soft" 
+                                onClick={() => buttonClickHandlerWater("soft")} 
+                                disabled={activeButtonWater ==="soft"}>SOFT 0-6°dH</button>
+                        <button id="medium" 
+                                onClick={() => buttonClickHandlerWater("medium")} 
+                                disabled={activeButtonWater ==="medium"}>MEDIUM 7-13°dH</button>
+                        <button id="hard" 
+                                onClick={() => buttonClickHandlerWater("hard")} 
+                                disabled={activeButtonWater ==="hard"}>HARD 14-20°dH</button>
             </div>
                     <br/>
                     <br/>
@@ -110,7 +116,11 @@ function AccountView(props) {
                             <h6>WHITE</h6>
                             <div>
                                 <button>Remove</button>
-                                <div className="detergent-type" id="white" onClick={() => { setButtonPopupWhite(true)}}>Coop white {/* Saved white detergent */}</div>
+                                <div className="detergent-type" 
+                                     id="white" 
+                                     onClick={() => { setButtonPopupWhite(true)}}>
+                                     {props.userWhiteDetergent?.name || 'not chosen yet' }
+                                </div>
                                  
                             </div>
                         </div>
@@ -118,14 +128,17 @@ function AccountView(props) {
                             <h6>COLOR</h6>
                             <div>
                                 <button>Remove</button>
-                                <div className="detergent-type" id="color" onClick ={() => {setButtonPopupColor(true)}}>Ariel color {/* Saved white detergent */}</div>
+                                <div className="detergent-type" 
+                                     id="color" 
+                                     onClick ={() => {setButtonPopupColor(true)}}>
+                                     {props.userColorDetergent?.name || 'not chosen yet' }
+                                </div>
                                    
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
             <div>
                 <br />
                 <br />
@@ -135,41 +148,49 @@ function AccountView(props) {
             <div>
                 <button onClick={deleteAccount}>Delete account</button>
             </div>
-
             <Popup trigger={buttonPopupWhite} setTrigger = {setButtonPopupWhite} className="card"> 
-            <div > 
-                    WHITE DETERGENTS  <br/>  <br/>
-                    Select a detergent 
-                    <br/>
-                    <br/>
-        
-                   <h6> Detergent 1  <br/> 
-                    Detergent 2  </h6>
-                    <br/>  
-
-            </div>
-        
-
+                <div > 
+                    WHITE DETERGENTS <br />
+                    Select a detergent <br />
+                    <br />
+                    <br />
+                    <select className="dropdown" 
+                                value={props.userWhiteDetergent && props.userWhiteDetergent.name ? props.userWhiteDetergent.name : 'not chosen yet'} 
+                                onChange={selectDetergentACB}>
+                            <option value={'not chosen yet'}>
+                                Choose white detergent...
+                            </option>
+                            {props.detergentData.filter(filterWhiteDetergentsACB).map( 
+                                (detergent, id) => (
+                                    <option key={id} value={detergent.name && detergent.name || 'error in data'}>
+                                        {detergent.name && detergent.name || 'error in data'}
+                                    </option>)
+                            )}                     
+                    </select>
+                </div>
             </Popup>
-
             <Popup trigger={buttonPopupColor} setTrigger = {setButtonPopupColor} className="card"> 
-            <div >
-                    COLOR DETERGENTS  <br/>  <br/>
-                    
-                    Select a detergent  
-                    <br/>
-                    <br/>
-        
-                   <h6> Detergent 1  <br/> 
-                    Detergent 2  </h6>
-                    <br/>  
-
-            </div>
-        
-
+                <div >
+                    COLOR DETERGENTS  <br />
+                    Select a detergent <br />
+                    <br />
+                    <br />
+                    <select className="dropdown" 
+                                value={props.userColorDetergent && props.userColorDetergent.name ? props.userColorDetergent.name : 'not chosen yet'} 
+                                onChange={selectDetergentACB}>
+                            <option value={'not chosen yet'}>
+                                Choose color detergent...
+                            </option>
+                            {props.detergentData.filter(filterColorDetergentsACB).map( 
+                                (detergent, id) => (
+                                    <option key={id} value={detergent.name && detergent.name || 'error in data'}>
+                                        {detergent.name && detergent.name || 'error in data'}
+                                    </option>)
+                            )}                     
+                        </select>
+                </div>
             </Popup>
         </div>
-        
     );
 }
 
