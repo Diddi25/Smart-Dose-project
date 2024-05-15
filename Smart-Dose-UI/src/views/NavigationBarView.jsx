@@ -54,16 +54,7 @@ function NavigationBarView(props) {
         setactiveLink(location)
     },[]);
 */
-    function returnSignInButton() {
-        return(
-            <button className='signInButton'
-                    onClick={signInACB}
-                    id="signIn"
-                    >{setButtonTextCB()}
-                    {}
-            </button>
-        );
-      }
+   
 
     return (
         <div>
@@ -102,8 +93,14 @@ function NavigationBarView(props) {
                                 Instruction
                         </a>
                     </li>
-                    <li> 
-                        {returnSignInButton()}
+                    <li>
+                        <a
+                            className={activeLink === "#/account" ? "active" : ""} 
+                            onClick={()=>{setactiveLink("#/account");signInACB();setSignText()}}
+                            id="#/account">
+                                {setButtonTextCB()}  
+                        </a>
+                    
                     </li>
                 </ul>
             </div>

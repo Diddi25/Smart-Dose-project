@@ -21,7 +21,7 @@
 
 
 .navItems ul {
-    font-size: x-small;
+    font-size: 15px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -67,32 +67,9 @@
 
 .header {
     font-family: 'Roboto', sans-serif;
-    
     padding-left: 20px;
     letter-spacing: 10px;
     color: black;
 }
 
-.signInButton {
-    display: inline-block; 
-    color: #000000; 
-    text-decoration: none;
-    transition: all 0.3s ease 0s;
-    cursor: pointer; 
-    background: none;
-    border: none;
-    font-size: 1em;
-}
 
-.signInButton:hover {
-    color: rgb(142, 142, 142);
-}
-
-.signInButton:active {
-    background-color: #0000B2;
-    padding: 8px 10px;
-    margin-bottom: 12px;
-    border-radius: 50px;
-    box-shadow: 0 2px 5px 0 rgba(128, 128, 128, 0.683);
-    color: rgb(255, 255, 255);
-}

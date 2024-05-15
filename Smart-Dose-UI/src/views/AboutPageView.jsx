@@ -1,5 +1,5 @@
 import "../css/AboutPage.css";
-import logo from '../images/logo3.png';
+import logo5 from '../images/logo5.png';
 function AboutPageView(props) {
     return (
 
@@ -13,7 +13,7 @@ function AboutPageView(props) {
             <div className="header-about">
                 <h1>SMART DOSE</h1>
                 </div>
-                <img src={logo} alt="logo" className="logo-image"></img>
+                <img src={logo5} alt="logo5" className="logo-image"></img>
             <div>
              <div className="card-container">
             <div className="creators">
