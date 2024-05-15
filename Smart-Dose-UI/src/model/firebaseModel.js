@@ -7,14 +7,12 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { fetchLocation } from "../geoSource";
 
 const app= initializeApp(firebaseConfig);
-const db= getDatabase(app);
+export const db= getDatabase(app);
 const ref_hardness = ref(db, "HardnessData");
 const ref_users = ref(db, "USERIDs")
 const ref_root = ref(db);
 export const auth = getAuth(app);
-export { db };
 // test purposes :  
-//set(ref(db, "/GuestUSER1"), {"bug": 5});
 //set(ref(db, "/GuestUSER"), {"bug": 5});
 
 export function modelToPersistence(model) {
@@ -40,14 +38,6 @@ export function PushDetergentData(model) {
         detergentData: model.DetergentData
     };
 }
-
-/*
-export function PushDetergentData(model) {
-    return {
-        detergentData: [model]
-    };
-}
-*/ 
 
 export function persistenceToModel(data, model) {    
     function saveWeightToModelACB(userLocation) {
@@ -89,11 +79,8 @@ export function saveToFirebase(model) {
     }
 }
 
-async function fetchGeographicalInfo() {
-    const newLocation = await fetchLocation();
-    if(newLocation.city != model.user_location.city) {
-        model.user_location = newLocation;
-    }
+async function fetchGeographicalInfo(model) {
+    model.user_location = await fetchLocation();
 }
 
 export function readFromDatabase() {
@@ -118,7 +105,7 @@ export function readFromDatabase() {
 
 export default async function connectToFirebase(model, watchFunction){
     console.log('Its ok with display name error');
-    await fetchGeographicalInfo();
+    fetchGeographicalInfo(model);
     function loginOrOutACB(user) {
         if (user) {
             model.user=user;
