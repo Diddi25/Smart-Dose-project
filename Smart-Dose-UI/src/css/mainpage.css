@@ -40,7 +40,7 @@
     border-radius: 20px;
     border-style:groove;
     margin-top: 9vh;
-    padding: 15px 10px 30px 10px;
+    padding: 55px 10px 30px 10px;
     width: 300px;
     height: 400px;
     text-align: center;
@@ -51,7 +51,7 @@
     border-style:none;
 }
 .main-button button {
-    margin: 20px;
+    margin: 20px 5px;
     padding: 5px 10px;
     font-size: 15px;
     border:none;
@@ -135,6 +135,16 @@
 }
 .status img{
    margin-top: 40px;
+}
+.selected-detergent{
+    display: flex;
+    justify-content: center;
+    border: 3px;
+    border-radius: 6px;
+    border-style: groove;
+    padding: 10px 60px;
+    margin: 0 10px;
+    background-color: rgb(244, 244, 244);
 }
 
 
