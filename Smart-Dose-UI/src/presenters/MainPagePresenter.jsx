@@ -24,6 +24,13 @@ export default observer(
         props.model.setScaleStatus(status);
         console.log("Model scale status updated to: ", props.model.status);
     };
+    function handleServomotor(option){
+        console.log("Detergent choosen: ", option)
+
+        props.model.setServomotor(option);
+        
+        console.log("Model servo_motor option updated to: ", props.model.servomotor_option);
+    };
     function selectDetergent(detergentChoice) {
         props.model.setDetergentType(detergentChoice);
     };
@@ -34,14 +41,20 @@ export default observer(
         props.model.calculateOptimalDosage();
     };
 
+
+
+
     return <MainPageView 
-                                status = {props.model.dispenser_status}      
-                                statusChange = {handleSetChange}
+ 
                                 weight = {props.model.scale_weight}      
-                                setWeight = {handleWeightChange}
-                                scaleChange = {handleScaleStatus}
+                                status={props.model.dispenser_status} 
+                                servomotor={handleServomotor}     
+                                statusChange={handleSetChange}
+                                //weight={props.model.scaleWeight}      
+                                setWeight={handleWeightChange}
+                                scaleChange={handleScaleStatus}
+                                hardData = {props.model.HardnessData}/*properties used in view*/
                                 selectLocationOption = {setLocationACB}
-                                hardData = {props.model.HardnessData}
                                 userHard = {props.model.user_hardness}
                                 detergentData = {props.model.DetergentData}
                                 userWhiteDetergent = {props.model.user_white_detergent}
@@ -50,4 +63,5 @@ export default observer(
                                 setSelectedWeight = {selectWeight}
                                 startCalculateDosage = {startCalculationProcess}
                                 />;
+                                
 })// needed for the presenter to update (its view) when relevant parts of the model change

@@ -122,6 +122,12 @@ export default {
         this.selected_weight = manualWeight;
         this.weight_choice = 0; //means the user wants to select weight
     },
+
+    setServomotor(option){
+        this.servomotor_option = option;
+    },
+    
+
     
 
     

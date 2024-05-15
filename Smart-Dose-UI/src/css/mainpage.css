@@ -45,7 +45,6 @@
     height: 400px;
     text-align: center;
     border-width: 2px;
-    
 }
 
 .popup button{
@@ -131,7 +130,7 @@
 }
 
 .status{
-    padding: 0px 40px 100px;
+    padding: 0px 40px 50px;
     
 }
 .status img{
