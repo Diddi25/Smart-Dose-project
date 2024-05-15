@@ -38,21 +38,30 @@ function signInACB() {
 function NavigationBarView(props) {
     const [activeLink, setactiveLink] = useState("/");
     
+    useEffect(() => {
+        const handleHashChange = () => {
+            setactiveLink(window.location.hash);
+        }
+        window.addEventListener('hashchange', handleHashChange);
+        return () => {
+            window.removeEventListener('hashchange', handleHashChange);
+        }
+    }, []);
+
+    /*
     useEffect(()=> {
         const location = window.location.hash;
         setactiveLink(location)
     },[]);
-
+*/
     function returnSignInButton() {
         return(
-          <div className="singInContainer">
             <button className='signInButton'
                     onClick={signInACB}
                     id="signIn"
                     >{setButtonTextCB()}
-                    {/*console.log("The error from clicking on signin button is ok")*/}
+                    {}
             </button>
-          </div>
         );
       }
 
@@ -93,7 +102,7 @@ function NavigationBarView(props) {
                                 Instruction
                         </a>
                     </li>
-                    <li>
+                    <li> 
                         {returnSignInButton()}
                     </li>
                 </ul>

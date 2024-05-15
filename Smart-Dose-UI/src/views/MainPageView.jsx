@@ -3,7 +3,10 @@ import "../css/mainpage.css";
 import logo from '../images/logo3.png';
 import { useState, React, useEffect } from 'react';
 import Popup from "../components/popup";
-import { set } from "firebase/database";
+import { db } from '../model/firebaseModel.js'; 
+import { PushDetergentData } from '../model/firebaseModel.js';
+import { getDatabase, ref, set } from "firebase/database";
+
 
 function MainPageView(props) {
 
@@ -16,11 +19,24 @@ function MainPageView(props) {
     const [buttonPopupWhite, setButtonPopupWhite] = useState(false);
     const [buttonPopupColor, setButtonPopupColor] = useState(false);
     const [buttonPopupStatus, setButtonPopupStatus] = useState(false);
-
+    useEffect(() => {
+        setButtonDisabled(props.status); // Disable the start button if status is true
+        setStartDisabled(!props.status); // Enable the start button if status is false
+        console.log("my status is :", props.status);
+    }, [props.status]);
 
     function handleScaleWeightACB() {
+        // resey  the value to 0 for 1 sec
+        setTimeout(() => props.setWeight(0), 1000);
+        //show the firebase scale value
+        
+        props.scaleChange(true);
         props.setWeight(props.weight);
+        
+        // false after 6 seconds
+        setTimeout(() => props.scaleChange(false), 6000);
     };
+  
     function buttonHandlerStart() {
         setStartDisabled(false);
     };
@@ -34,6 +50,7 @@ function MainPageView(props) {
         if(props.status){
             return(
             <div className="status">
+                <div>The dispenser is pouring/running</div>
                 <img id="gif" src="https://brfenergi.se/iprog/loading.gif" height="100" />
             </div> 
             )
@@ -41,7 +58,9 @@ function MainPageView(props) {
             return(
             <div>
                 Ready!
+                <div>You can now take the cup</div>
             </div>
+
             )
         }
     };
@@ -64,6 +83,23 @@ function MainPageView(props) {
     function setSelectedWeight(weight) {
         props.setSelectedWeight(weight);
     };
+    function showChosenDetergent() {
+        if(activeButtonDetergent === " " || activeButtonDetergent === "white") {
+            if(props.userWhiteDetergent) {
+                return props.userWhiteDetergent.name;
+            } else {
+                return "not chosen yet";
+            }
+        } else {
+            if(activeButtonDetergent === " " || activeButtonDetergent === "color") {
+                if(props.userColorDetergent) {
+                    return props.userColorDetergent.name;
+                } else {
+                    return "not chosen yet";
+                }
+            }
+        }
+    }
     function startDevice() {
         //if detergentChoice + weight choice + hardness {}
         props.statusChange(true);
@@ -79,7 +115,6 @@ function MainPageView(props) {
                 <h6>“Precision in Every Wash”</h6>
             </div>
             <div className="card-container">
-
                 <div className="card">
                     DETERGENT
                     <br />
@@ -87,22 +122,19 @@ function MainPageView(props) {
                     <div className="main-button">
                         <button 
                             id="white" 
-                            onClick={() => { buttonClickHandlerDetergent("white"); setButtonPopupWhite(true) }} 
+                            onClick={() => { buttonClickHandlerDetergent("white"); setButtonPopupWhite(true), props.servomotor("1") }} 
                             disabled={activeButtonDetergent === "white"}>WHITE
                         </button>
                         <button 
                             id="color" 
-                            onClick={() => { buttonClickHandlerDetergent("color"); setButtonPopupColor(true) }} 
+                            onClick={() => { buttonClickHandlerDetergent("color"); setButtonPopupColor(true), props.servomotor("2") }} 
                             disabled={activeButtonDetergent === "color"}>COLOR
                         </button>
                         <br />
                         <button>
-                            Chosen: {activeButtonDetergent === "white" ? 
-                                        props.userWhiteDetergent?.name || 'not chosen yet' : 
-                                        props.userColorDetergent?.name || 'not chosen yet'} 
+                            Chosen: {showChosenDetergent()} 
                         </button>
                     </div>
-
                 </div>
                 <div className="card">
                     <div className="water-hardness">
@@ -229,7 +261,7 @@ function MainPageView(props) {
             <Popup trigger={buttonPopupStatus} setTrigger={setButtonPopupStatus} className="card">
                 <div >
                     <div className="status">
-                        <h5>Smart Dose will soon pour your detergent</h5>
+                    
                         {showStatus()}
                         <div className="ss-button">
                             <div className="ss-button-cancle">

@@ -7,6 +7,7 @@ import { getDosageConversion } from "../algoritm.js";
 import { getWeightRanges } from "../algoritm.js";
 import { getDosageInLiter } from "../algoritm.js";
 import { convertToGram } from "../algoritm.js";
+import { mainAlgoritm } from "../detergents/algorithm.js";
 
 export default {
     /*properties that can be persisted*/
@@ -22,16 +23,22 @@ export default {
     detergent_choice: 0, // 0 == white 1 == color
     scale_weight: 0,
     scale_status: true,
-
     selected_weight: null, // 1,5 / 4,5 / 6
     weight_choice: 0, // 0 == selected 1 == scale 
     sensor_weight: 0,
     dispenser_status : true,
     servomotor_option: 0, //0 == WHITE container 1 == COLOR container
-    optimal_dosage: 0, 
+    optimal_dosage: 0,
+    selected_detergent: {},
 
     calculateOptimalDosage() {
-        let relevantDosageTable = {}; //behöver detergentChoice, whiteDetergent, colorDetergent
+        if (this.weight_choice === 1) {
+            this.optimal_dosage = mainAlgoritm(this.selected_detergent, this.scale_weight, this.user_hardness);
+        } else {
+            this.optimal_dosage = mainAlgoritm(this.selected_detergent, this.selected_weight, this.user_hardness);
+        }
+        
+        /*let relevantDosageTable = {}; //behöver detergentChoice, whiteDetergent, colorDetergent
         let relevantWeightRange = {};
         let dosageConversion = ""; //detergentChoice whiteDetergent, colorDetergent
         let literDosage = "";
@@ -46,6 +53,7 @@ export default {
         }
 
         this.optimal_dosage = convertToGram(dosageConversion, literDosage); //convertToGram /// dosageConversion, literDosage
+        */
     },
 
     changeUserHardness(location) { //here comes the string
@@ -64,13 +72,20 @@ export default {
             }
         };
         if(this.user_hardness.Location === undefined) {
+            console.log('first undefined')
             this.user_hardness = this.HardnessData.find(findCityACB);
         }
         if (this.user_hardness === undefined) {
+            console.log('second undefined')
             this.setHardnessWithRegionName();
         }
-        if (this.setHardnessWithRegionName() === undefined){
-            return 
+        const findStockholmACB = hardnessTuple => {
+            if (hardnessTuple.Location === "Stockholm") {
+                return hardnessTuple;
+            }
+        };
+        if(this.user_hardness === undefined) {
+            this.user_hardness = this.HardnessData.find(findStockholmACB)
         }
     },
 
@@ -100,12 +115,12 @@ export default {
                 return detergent;
             }
         };
-        const foundDetergent = this.DetergentData.find(findDetergentACB)
-        if(foundDetergent.type === 'white') {
-            this.user_white_detergent = foundDetergent;
+        this.selected_detergent = this.DetergentData.find(findDetergentACB)
+        if(this.selected_detergent.type === 'white') {
+            this.user_white_detergent = this.selected_detergent;
             this.detergent_choice = 0; //user wants to use white
         } else {
-            this.user_color_detergent = foundDetergent;
+            this.user_color_detergent = this.selected_detergent;
             this.detergent_choice = 1; //user wants to use color
         }
     },
@@ -126,6 +141,12 @@ export default {
         this.selected_weight = manualWeight;
         this.weight_choice = 0; //means the user wants to select weight
     },
+
+    setServomotor(option){
+        this.servomotor_option = option;
+    },
+    
+
     
 
     

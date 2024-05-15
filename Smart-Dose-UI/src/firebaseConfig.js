@@ -1,5 +1,6 @@
 
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  
 const firebaseConfig = {
   apiKey: "AIzaSyA9xQO9pLQ7-WJgjTmYIuwD2dG8IKTrcsE",
   authDomain: "smartdose-51796.firebaseapp.com",
@@ -9,11 +10,23 @@ const firebaseConfig = {
   messagingSenderId: "416265139288",
   appId: "1:416265139288:web:a2bae185094d7fbeb9862d",
   measurementId: "G-E605MZ0WSW"
-}; 
+};
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+/*const firebaseConfig = {
+  apiKey: "AIzaSyAykT-kpQjYH5zdWrjw1y_kNZORtmWTcjY",
+  authDomain: "smart-dose-sumeya.firebaseapp.com",
+  databaseURL: "https://smart-dose-sumeya-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "smart-dose-sumeya",
+  storageBucket: "smart-dose-sumeya.appspot.com",
+  messagingSenderId: "644897119708",
+  appId: "1:644897119708:web:c3bb5ccb55cc5b66000319",
+  measurementId: "G-4GBEYLTTQ1"
+};*/
+
 
 /*
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  /*
 const firebaseConfig = {
   apiKey: "AIzaSyC7EJN1EbLAf6ECjb1x-gj8evgHyhEDGkE",
   authDomain: "best-938eb.firebaseapp.com",
@@ -25,5 +38,4 @@ const firebaseConfig = {
   measurementId: "G-K5Y84E1DPQ"
 };
 */
-
 export default firebaseConfig;

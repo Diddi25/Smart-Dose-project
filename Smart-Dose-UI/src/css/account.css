@@ -1,19 +1,79 @@
 .profile-container{
-    display: flex;
-    flex-direction: column;
-    padding: 120px 100px 27px 100px;
-    font-family: 'Roboto', sans-serif;
+    background-image: url('../images/pic.jpg');
+    background-size: cover;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
+
+/*
+.card{
+    font-family: 'Roboto', sans-serif ;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    border-style:groove;
+    margin-top: 9vh;
+    padding: 15px 10px 30px 10px;
+    width: 590px;
+    text-align: center;
+    border-width: 2px; 
+    background-color: #f9f5f5b9;
+}*/
+
+.card-profile{
+    font-family: 'Roboto', sans-serif ;
+    font-weight: 700;
+    justify-content: center;
+    border-radius: 20px;
+    border-style:groove;
+    margin-top: 9vh;
+    padding: 15px 10px 30px 10px;
+    width: 590px;
+    height: 400px;
+    text-align: center;
+    border-width: 2px; 
+    background-color: #FFFFFF; 
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+}
+
+.header-2 {
+    font-family: 'Roboto', sans-serif;
+    background-color: #FFFFFF;
+    font-weight: bold;
+    justify-content: center;
+    letter-spacing: 6px;
+    color: black;
+    text-align: center;
+    margin: 80px 80px 0px 80px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    font-size: 35px;
+    min-width: 350px;
+    
+}
+
+/*
 .profile-name h5, p{
     font-size: 40px;
     padding-bottom: 40px;
     justify-content: center;
     display: flex;
 }
-
+*/
 .profile-title h5{
     font-size: 25px;
 }
+
 .profile-water{
     font-family: 'Roboto', sans-serif;  
     width: 50%;   /*sets scroll and text side by side*/
@@ -22,7 +82,6 @@
 }
 .profile-water h6{
     font-size: 15px;
-    
 }
 
 .profile-water select{
@@ -37,17 +96,21 @@
 
 .profile-detergent h6{
     font-size: 25px;
+    margin-right: 40px;
 }
-.remove-button button{
+
+.remove-button{
     font-size: xx-small;
     border-radius: 50px;
-    margin: 0px 50px 10px;
+    margin: 0px 200px 5px 0px;
     
     border: none;
     background-color:#f3f3f3b9;
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
     padding: 0px 10px  1px;
 }
+
+/*
 .remove-button button:disabled{
     font-size: xx-small;
     border-radius: 50px;
@@ -60,7 +123,7 @@
 .remove-button button:enabled:hover{
     background-color: #0000B2; 
     transform: scale(1.1);
-}
+}*/
 
 .detergent-container{
     font-family: 'Roboto', sans-serif;
@@ -90,7 +153,6 @@
    padding: 0px 0px 0px 52px;
 }
 
-
 .manual-waterhardness button {
     margin: 10px;
     padding: 10px 10px;
@@ -103,7 +165,6 @@
     box-shadow: -3px 2px 5px rgba(164, 164, 164, 0.273); 
     text-decoration: none;
 }
-
 
 .manual-waterhardness button:disabled {
     margin: 10px;
@@ -121,6 +182,17 @@
     transform: scale(1.1);
 }
 
+.button-style {
+    margin: 20px;
+    padding: 5px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    color: #000000;
+    background-color: #cacacab9;
+    cursor: pointer;
+    box-shadow: -3px 2px 5px rgba(164, 164, 164, 0.273);
+}
 
 
   /* -----------------MEDIA CSS-----------*/
