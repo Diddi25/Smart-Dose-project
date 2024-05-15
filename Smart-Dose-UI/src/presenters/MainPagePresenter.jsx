@@ -31,6 +31,15 @@ export default observer(
         
         console.log("Model servo_motor option updated to: ", props.model.servomotor_option);
     };
+    function selectDetergent(detergentChoice) {
+        props.model.setDetergentType(detergentChoice);
+    };
+    function selectWeight(manualWeight) {
+        props.model.setSelectedScaleWeight(manualWeight);
+    };
+    function startCalculationProcess() {
+        props.model.calculateOptimalDosage();
+    };
 
 
 
@@ -52,17 +61,5 @@ export default observer(
                                 setSelectedWeight = {selectWeight}
                                 startCalculateDosage = {startCalculationProcess}
                                 />;
-
-    
-    function selectDetergent(detergentChoice) {
-        props.model.setDetergentType(detergentChoice);
-    };
-    function selectWeight(manualWeight) {
-        props.model.setSelectedScaleWeight(manualWeight);
-    };
-    function startCalculationProcess() {
-        props.model.calculateOptimalDosage();
-    };
-
                                 
 })// needed for the presenter to update (its view) when relevant parts of the model change
