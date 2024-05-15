@@ -45,13 +45,15 @@ export default observer(
 
 
     return <MainPageView 
+ 
+                                weight = {props.model.scale_weight}      
                                 status={props.model.dispenser_status} 
                                 servomotor={handleServomotor}     
                                 statusChange={handleSetChange}
-                                weight={props.model.scaleWeight}      
+                                //weight={props.model.scaleWeight}      
                                 setWeight={handleWeightChange}
                                 scaleChange={handleScaleStatus}
-                                hardData = {props.model.HardnessData}/*properties used in view*/      
+                                hardData = {props.model.HardnessData}/*properties used in view*/
                                 selectLocationOption = {setLocationACB}
                                 userHard = {props.model.user_hardness}
                                 detergentData = {props.model.DetergentData}

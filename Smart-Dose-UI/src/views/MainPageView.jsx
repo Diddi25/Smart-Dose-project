@@ -81,6 +81,23 @@ function MainPageView(props) {
     function setSelectedWeight(weight) {
         props.setSelectedWeight(weight);
     };
+    function showChosenDetergent() {
+        if(activeButtonDetergent === " " || activeButtonDetergent === "white") {
+            if(props.userWhiteDetergent) {
+                return props.userWhiteDetergent.name;
+            } else {
+                return "not chosen yet";
+            }
+        } else {
+            if(activeButtonDetergent === " " || activeButtonDetergent === "color") {
+                if(props.userColorDetergent) {
+                    return props.userColorDetergent.name;
+                } else {
+                    return "not chosen yet";
+                }
+            }
+        }
+    }
     function startDevice() {
         //if detergentChoice + weight choice + hardness {}
         props.statusChange(true);
@@ -96,7 +113,6 @@ function MainPageView(props) {
                 <h6>“Precision in Every Wash”</h6>
             </div>
             <div className="card-container">
-
                 <div className="card">
                     DETERGENT
                     <br />
@@ -114,12 +130,9 @@ function MainPageView(props) {
                         </button>
                         <br />
                         <button>
-                            Chosen: {activeButtonDetergent === "white" ? 
-                                        props.userWhiteDetergent?.name || 'not chosen yet' : 
-                                        props.userColorDetergent?.name || 'not chosen yet'} 
+                            Chosen: {showChosenDetergent()} 
                         </button>
                     </div>
-
                 </div>
                 <div className="card">
                     <div className="water-hardness">

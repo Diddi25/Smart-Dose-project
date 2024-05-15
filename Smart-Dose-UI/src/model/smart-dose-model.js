@@ -22,7 +22,6 @@ export default {
     detergent_choice: 0, // 0 == white 1 == color
     scale_weight: 0,
     scale_status: true,
-
     selected_weight: null, // 1,5 / 4,5 / 6
     weight_choice: 0, // 0 == selected 1 == scale 
     sensor_weight: 0,
@@ -63,7 +62,7 @@ export default {
                 return hardnessTuple;
             }
         };
-        if(this.user_hardness.Location === undefined) {
+        if(this.user_hardness === undefined) {
             this.user_hardness = this.HardnessData.find(findCityACB);
         }
         if (this.user_hardness === undefined) {

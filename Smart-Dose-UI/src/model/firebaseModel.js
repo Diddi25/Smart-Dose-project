@@ -1,7 +1,7 @@
 // you will find 2 imports already there, add the configuration and instantiate the app and database:
 import firebaseConfig from "/src/firebaseConfig.js";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, get, set, onValue, child, onChildAdded, onChildRemoved, off} from "firebase/database";
+import { getDatabase, ref, get, set, update, onValue } from "firebase/database";
 import React, { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { fetchLocation } from "../geoSource";
@@ -45,18 +45,26 @@ export function persistenceToModel(data, model) {
             model.user_location = userLocation;
         }
     }
+    if(data.userWhiteDetergent) {
+        model.user_white_detergent = data.userWhiteDetergent;
+    } else {
+        console.log('no white detergent');
+    }
+    if(data.userColorDetergent) {
+        model.user_color_detergent = data.userColorDetergent;
+    }
+    if(data.userSelectedWeight) {
+        model.selected_weight = data.userSelectedWeight;
+    }
     if(data) {
-        //model.user_location = data.userLocation;
+        model.user_location = data.userLocation;
         model.user_hardness = data.userHardness;
         model.user_regionName_without_county = data.userRegionName;
         model.user_added_detergents = data.userAddedDetergents;
-        model.user_white_detergent = data.userWhiteDetergent;
-        model.user_color_detergent = data.userColorDetergent;
         model.detergent_choice = data.userDetergentChoice;
         model.dispenser_status = data.dispenserStatus;
         model.servomotor_option = data.servoMotorOption;
         model.scale_weight = data.userScaleWeight;
-        model.selected_weight = data.userSelectedWeight;
         model.weight_choice = data.userWeightChoice;
         model.optimal_dosage = data.optimalDosage;
         return saveWeightToModelACB(data.userLocation);
@@ -98,9 +106,9 @@ export function readFromDatabase() {
     }
 }
 
-export default function connectToFirebase(model, watchFunction){
+export default async function connectToFirebase(model, watchFunction){
     console.log('Its ok with display name error');
-    fetchGeographicalInfo();
+    await fetchGeographicalInfo();
     function loginOrOutACB(user) {
         if (user) {
             model.user=user;
