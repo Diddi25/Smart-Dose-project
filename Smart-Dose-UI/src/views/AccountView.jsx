@@ -62,12 +62,12 @@ function AccountView(props) {
 
     return (
         <div className="profile-container">
-            <div className="header">
+            <div className="header-2">
                 <header >Welcome {auth.currentUser ? auth.currentUser.displayName : 'Guest'}</header >
                 <p>{/*google account name*/}</p>
             </div>
             <div className="card-container">
-                <div className="card">
+                <div className="card-profile">
                     <div className="profile-title">
                         <h5>Water hardness</h5>
                     </div>
@@ -105,7 +105,7 @@ function AccountView(props) {
                             disabled={activeButtonWater ==="hard"}>HARD 14-20°dH</button>
                     </div>
                 </div>
-                <div className="card">
+                <div className="card-profile">
                     <div className="profile-detergent">
                         <div className="profile-title">
                             <h5>Recently used detergent types</h5>

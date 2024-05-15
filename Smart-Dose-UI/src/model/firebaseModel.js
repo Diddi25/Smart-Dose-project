@@ -12,10 +12,10 @@ const ref_hardness = ref(db, "HardnessData");
 const ref_users = ref(db, "USERIDs")
 const ref_root = ref(db);
 export const auth = getAuth(app);
+export { db };
 // test purposes :  
 //set(ref(db, "/GuestUSER1"), {"bug": 5});
-
-set(ref(db, "/GuestUSER"), {"bug": 5});
+//set(ref(db, "/GuestUSER"), {"bug": 5});
 
 export function modelToPersistence(model) {
     return {
@@ -35,11 +35,19 @@ export function modelToPersistence(model) {
     };
 }
 
-function PushDetergentData(model) {
+export function PushDetergentData(model) {
     return {
         detergentData: model.DetergentData
     };
 }
+
+/*
+export function PushDetergentData(model) {
+    return {
+        detergentData: [model]
+    };
+}
+*/ 
 
 export function persistenceToModel(data, model) {    
     function saveWeightToModelACB(userLocation) {
@@ -48,7 +56,7 @@ export function persistenceToModel(data, model) {
         }
     }
     if(data) {
-        //model.user_location = data.userLocation;
+        model.user_location = data.userLocation;
         model.user_hardness = data.userHardness;
         model.user_regionName_without_county = data.userRegionName;
         model.user_added_detergents = data.userAddedDetergents;

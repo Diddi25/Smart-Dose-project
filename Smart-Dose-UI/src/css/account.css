@@ -9,6 +9,7 @@
     right: 0;
 }
 
+/*
 .card{
     font-family: 'Roboto', sans-serif ;
     font-weight: 700;
@@ -22,6 +23,21 @@
     text-align: center;
     border-width: 2px; 
     background-color: #f9f5f5b9;
+}*/
+
+.card-profile{
+    font-family: 'Roboto', sans-serif ;
+    font-weight: 700;
+    justify-content: center;
+    border-radius: 20px;
+    border-style:groove;
+    margin-top: 9vh;
+    padding: 15px 10px 30px 10px;
+    width: 590px;
+    height: 400px;
+    text-align: center;
+    border-width: 2px; 
+    background-color: #FFFFFF; 
 }
 
 .card-container {
@@ -30,10 +46,9 @@
     flex-wrap: wrap; 
 }
 
-
-.header {
-    font-family: 'Roboto', sans-serif ;
-    background-color: #cacacab9;
+.header-2 {
+    font-family: 'Roboto', sans-serif;
+    background-color: #FFFFFF;
     font-weight: bold;
     justify-content: center;
     letter-spacing: 6px;
@@ -44,6 +59,7 @@
     border-radius: 10px;
     font-size: 35px;
     min-width: 350px;
+    
 }
 
 /*
@@ -137,7 +153,6 @@
    padding: 0px 0px 0px 52px;
 }
 
-
 .manual-waterhardness button {
     margin: 10px;
     padding: 10px 10px;
@@ -150,7 +165,6 @@
     box-shadow: -3px 2px 5px rgba(164, 164, 164, 0.273); 
     text-decoration: none;
 }
-
 
 .manual-waterhardness button:disabled {
     margin: 10px;
@@ -179,7 +193,6 @@
     cursor: pointer;
     box-shadow: -3px 2px 5px rgba(164, 164, 164, 0.273);
 }
-
 
 
   /* -----------------MEDIA CSS-----------*/

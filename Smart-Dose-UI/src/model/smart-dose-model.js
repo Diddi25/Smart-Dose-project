@@ -64,10 +64,20 @@ export default {
             }
         };
         if(this.user_hardness.Location === undefined) {
+            console.log('first undefined')
             this.user_hardness = this.HardnessData.find(findCityACB);
         }
         if (this.user_hardness === undefined) {
+            console.log('second undefined')
             this.setHardnessWithRegionName();
+        }
+        const findStockholmACB = hardnessTuple => {
+            if (hardnessTuple.Location === "Stockholm") {
+                return hardnessTuple;
+            }
+        };
+        if(this.user_hardness === undefined) {
+            this.user_hardness = this.HardnessData.find(findStockholmACB)
         }
     },
 

@@ -3,7 +3,10 @@ import "../css/mainpage.css";
 import logo from '../images/logo3.png';
 import { useState, React, useEffect } from 'react';
 import Popup from "../components/popup";
-import { set } from "firebase/database";
+import { db } from '../model/firebaseModel.js'; 
+import { PushDetergentData } from '../model/firebaseModel.js';
+import { getDatabase, ref, set } from "firebase/database";
+
 
 function MainPageView(props) {
 
@@ -16,7 +19,6 @@ function MainPageView(props) {
     const [buttonPopupWhite, setButtonPopupWhite] = useState(false);
     const [buttonPopupColor, setButtonPopupColor] = useState(false);
     const [buttonPopupStatus, setButtonPopupStatus] = useState(false);
-
 
     function handleScaleWeightACB() {
         props.setWeight(props.weight);
@@ -79,7 +81,6 @@ function MainPageView(props) {
                 <h6>“Precision in Every Wash”</h6>
             </div>
             <div className="card-container">
-
                 <div className="card">
                     DETERGENT
                     <br />
@@ -102,7 +103,6 @@ function MainPageView(props) {
                                         props.userColorDetergent?.name || 'not chosen yet'} 
                         </button>
                     </div>
-
                 </div>
                 <div className="card">
                     <div className="water-hardness">
