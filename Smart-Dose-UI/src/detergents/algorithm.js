@@ -54,7 +54,7 @@ function calculateFactor(factorInfo){
     return factor;
 }
 
-
+export { mainAlgoritm };
 
 // TEST
 const testDetergent = {

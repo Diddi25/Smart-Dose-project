@@ -26,7 +26,8 @@ function AccountView(props) {
         if(auth.currentUser) {
           signOut(auth)
           window.location.href = "#/"; 
-          console.log('Logged out')
+          window.location.reload();
+          console.log('Logged out');
         }
     };
     function deleteAccount() {
