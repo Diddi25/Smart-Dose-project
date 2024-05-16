@@ -37,7 +37,6 @@ export default {
     setWeightChoice(choice){
         this.weight_choice=choice
     },
-
     changeUserHardness(location) { //here comes the string
         const findCityACB = hardnessTuple => {
             if (hardnessTuple.Location === location) {

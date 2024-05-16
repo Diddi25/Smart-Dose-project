@@ -48,6 +48,14 @@ export default observer(
         console.log("this is the choise" ,props.model.weight_choice );
     };
 
+
+    function userWeightChoice (choice){
+    props.model.setWeightChoice(choice);
+
+    console.log("this is the choise" ,props.model.weight_choice );
+
+    };
+
     return <MainPageView 
                                 weight = {props.model.scale_weight}      
                                 status={props.model.dispenser_status} 
@@ -64,6 +72,7 @@ export default observer(
                                 userWhiteDetergent = {props.model.user_white_detergent}
                                 userColorDetergent = {props.model.user_color_detergent}
                                 //userWeightChoice = {props.model.weight_choice}
+                                weightChoice = {props.model.weight_choice}
                                 userSelectedDetergent = {props.model.selected_detergent}
                                 selectDetergentType = {selectDetergent}
                                 setSelectedWeight = {selectWeight}
