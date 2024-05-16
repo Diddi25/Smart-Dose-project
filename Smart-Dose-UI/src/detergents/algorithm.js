@@ -3,6 +3,7 @@ import { calculateAplusDetergent } from "./algorithms/Aplus.js";
 import { calculateIcaBasicDetergent } from "./algorithms/IcaBasic.js";
 import { calculateIcaSkonaDetergent } from "./algorithms/IcaSkona.js";
 import { calculateViaDetergent } from "./algorithms/Via.js";
+import { calculateDefaultDetergent } from "./algorithms/Default.js";
 
 
 function mainAlgoritm(detergent, weight, hardness) {
@@ -26,8 +27,9 @@ function mainAlgoritm(detergent, weight, hardness) {
         // Case algoritm for Via    
         case 'via':
             return calculateViaDetergent(detergent, weight, waterHardness, weightFactor);
+        // Default case
         default:
-            return "Ingen hantering för det angivna varumärket.";
+            return calculateDefaultDetergent(detergent, weight, waterHardness, weightFactor);
     }
 }
 
