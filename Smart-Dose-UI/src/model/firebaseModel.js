@@ -110,7 +110,11 @@ export default async function connectToFirebase(model, watchFunction){
     function loginOrOutACB(user) {
         if (user) {
             model.user=user;
-        };
+            checkUpdatesForUserFirebase(model);
+        } else {
+            console.log("no user");
+            checkUpdatesAsGuest(model);
+        }
         readFromDatabase();
     }
     
@@ -140,13 +144,23 @@ export default async function connectToFirebase(model, watchFunction){
         model.setUserHardness(); //this has to be evoked at this point
         saveToFirebase(model);
     };
-
-    checkUpdatesFirebase(model);
 }
 
-export function checkUpdatesFirebase(model) {
+export function checkUpdatesForUserFirebase(model) {
     // Listener for userScaleWeight
+    console.log("setup listener for user");
     const userScaleWeightRef = ref(db, "USERID:S/" + model.user.displayName + ": " + model.user.uid + "/userScaleWeight");
+    onValue(userScaleWeightRef, (snapshot) => {
+        const newUserScaleWeight = snapshot.val();
+        console.log("Real-time userScaleWeight update:", newUserScaleWeight);  // Logging for debugging
+        model.setScaleWeight(newUserScaleWeight);
+    });
+}
+
+export function checkUpdatesAsGuest(model) {
+    // Listener for userScaleWeight
+    console.log("setup listener for user as guest");
+    const userScaleWeightRef = ref(db, "GuestUSER/ScaleWeight");
     onValue(userScaleWeightRef, (snapshot) => {
         const newUserScaleWeight = snapshot.val();
         console.log("Real-time userScaleWeight update:", newUserScaleWeight);  // Logging for debugging
