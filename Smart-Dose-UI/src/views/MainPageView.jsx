@@ -36,7 +36,7 @@ function MainPageView(props) {
         props.userWeightChoice(1);
         
         // false after 6 seconds
-        setTimeout(() => props.scaleChange(false), 12000);
+        setTimeout(() => props.scaleChange(false), 10000);
     };
   
     function buttonHandlerStart() {

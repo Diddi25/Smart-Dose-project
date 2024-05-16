@@ -73,9 +73,9 @@ void setup() {
   Serial.begin(9600);
   pinMode(LED_BUILTIN, OUTPUT);
   myservo1.attach(SERVO1_PIN);
-  myservo1.write(87);
+  myservo1.write(SERVO1_STOP_POSITION);
   myservo2.attach(SERVO2_PIN);  // Attach the second servo to its pin
-  myservo2.write(93);           // Initialize position
+  myservo2.write(SERVO2_STOP_POSITION);           // Initialize position
 
 
   scale1.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
