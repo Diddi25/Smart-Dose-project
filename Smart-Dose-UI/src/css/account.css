@@ -1,4 +1,13 @@
 
+.main-2{
+        background-image: url('../images/pic.jpg');
+        background-size: cover;
+        height: 100vh;
+        padding: 0 1vh;
+        overflow: hidden; 
+
+}
+
 .card-profile{
     margin-top: 5%;
     font-family: 'Roboto', sans-serif ;
@@ -11,8 +20,8 @@
     text-align: center;
     border-width: 2px; 
     background-color: #FFFFFF; 
-    min-width: 580px;
-    min-height: 540px;
+    min-width: 500px;
+    min-height: 450px;
 }
 
 .card-container-profile {
@@ -161,7 +170,7 @@
 .button-style {
     display: flex;
     position: relative;
-    margin: 8% 10px 10px 40px;
+    margin: 3% 10px 10px 40px;
     padding: 5px 10px;
 }
 

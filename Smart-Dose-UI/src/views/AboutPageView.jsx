@@ -29,9 +29,12 @@ function AboutPageView(props) {
             <div className="about">
             <div className="creators-text">
                 <h2> The story about Smart Dose</h2>
-                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
-                    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
+                <p>  Imagine a world where laundry day is a breeze, where you never have to second-guess how much detergent to use. 
+                    That's the promise of Smart Dose. Smart Dose isn't just another laundry accessory – it's a game-changer. With its built-in scale, 
+                    this ingenious device takes the stress out of laundry by accurately measuring your load. Just pick your detergent type, and Smart Dose handles the rest, 
+                    dispensing the perfect amount every time. No more wasted detergent. No more worrying about whether your clothes are getting clean enough. 
+                    Smart Dose gives you the confidence that your laundry will come out fresh and spotless, without the guesswork. Experience the freedom and ease of Smart Dose – 
+                    join the revolution in laundry care today.
                 </p>
             </div>
             </div>
