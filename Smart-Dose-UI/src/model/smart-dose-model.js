@@ -25,7 +25,8 @@ export default {
 
     calculateOptimalDosage() {
         if (this.weight_choice === 1) {
-            this.optimal_dosage = mainAlgoritm(this.selected_detergent, this.scale_weight, this.user_hardness);
+            const weight_kg = this.selected_detergent/1000;
+            this.optimal_dosage = mainAlgoritm(weight_kg, this.scale_weight, this.user_hardness);
         } else {
             this.optimal_dosage = mainAlgoritm(this.selected_detergent, this.selected_weight, this.user_hardness);
         };
