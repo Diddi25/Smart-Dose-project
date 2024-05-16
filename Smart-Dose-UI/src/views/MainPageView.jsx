@@ -306,7 +306,7 @@ function MainPageView(props) {
                         <button
                             id="cancel"
                             onClick={() => { setButtonDisabled(false); props.statusChange(false); }}
-                            disabled={!isButtonDisabled}>CANCEL remove</button>
+                            disabled={!isButtonDisabled}>CANCEL</button>
                     </div>
                     <div>
                         {informUser()}
@@ -444,7 +444,6 @@ function MainPageView(props) {
                                 </tbody>
                             </table>
                             <br />
-                            <input type="submit" value="Add Detergent" onClick={addDetergentACB}/>
                             <button value="Add Detergent" onClick={addDetergentACB}>ADD</button>
                         </form>
                     </div>
