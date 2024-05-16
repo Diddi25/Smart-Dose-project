@@ -143,10 +143,11 @@ export default async function connectToFirebase(model, watchFunction){
 
     // Real-time listener for changes in userScaleWeight
     function scaleWeightListener(snapshot) {
+        console.log("scaleWeight canged in the DB");
         const scaleWeight = snapshot.val();
         model.scale_weight = scaleWeight; // Update the model
         watchFunction(checkACB, sideEffectACB);
-    }
+    };
 
     onValue(ref(db, "USERID:S/" + model.user.displayName + ": " + model.user.uid + "/userScaleWeight"), scaleWeightListener);
 }
