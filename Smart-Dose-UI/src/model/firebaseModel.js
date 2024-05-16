@@ -112,7 +112,6 @@ export default async function connectToFirebase(model, watchFunction){
             model.user=user;
             checkUpdatesForUserFirebase(model);
         } else {
-            console.log("no user");
             checkUpdatesAsGuest(model);
         }
         readFromDatabase();
