@@ -106,14 +106,16 @@ function MainPageView(props) {
 
     function handleScaleWeightACB() {
         // resey  the value to 0 for 1 sec
-        setTimeout(() => props.setWeight(0), 1000);
+       // setTimeout(() => props.setWeight(0), 1000);
         //show the firebase scale value
 
         props.scaleChange(true);
         props.setWeight(props.weight);
 
+        props.userWeightChoice(1);
+        
         // false after 6 seconds
-        setTimeout(() => props.scaleChange(false), 6000);
+        setTimeout(() => props.scaleChange(false), 10000);
     };
 
     function buttonHandlerStart() {
@@ -192,10 +194,13 @@ function MainPageView(props) {
             return ('Cannot start before setting type and weight')
         };
     };
+
+    
     function addDetergentACB() {
         console.log('new detergent: ',newDetergent)
         console.log('detergent: ',props.userAddedDetergents)
-        props.userAddedDetergents.name = newDetergent.name;
+        //props.userAddedDetergents.name = newDetergent.name;
+        console.log(props.userAddedDetergents.name, newDetergent.name)
         props.userAddedDetergents.brand = newDetergent.brand;
         props.userAddedDetergents.type = newDetergent.type;
         props.userAddedDetergents.weight = newDetergent.weight;
@@ -204,6 +209,7 @@ function MainPageView(props) {
         console.log(' detergent update: ',props.userAddedDetergents)
         props.addDetergent()
     }
+
 
     return (
         <div className="main">
@@ -408,8 +414,6 @@ function MainPageView(props) {
                             </li>
                             </ul>
                             </div>
-                      
-
                             <h5>Dosage Table:</h5>
                             <table>
                                 <thead>

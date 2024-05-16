@@ -12,7 +12,7 @@ export default {
     user_regionName_without_county : "undefined",
     user_white_detergent: {},
     user_color_detergent: {},
-    user_added_detergents: {name: "almostThere", brand: "t", type: "y", dosage: "u", weight: "r", dosageTable: {}},
+    user_added_detergents: {name: "NAME", brand: "t", type: "y", dosage: "u", weight: "r", dosageTable: {}},
     scale_weight: 0,
     scale_status: false,
     selected_weight: null, // 1,5 / 4,5 / 6
@@ -23,38 +23,20 @@ export default {
     optimal_dosage: 0,
     selected_detergent: {},
 
-            /**
-         *         articleNumber: "?",
-        brand: "",
-        dosage: "",
-        dosageTable: {
-            "Hard Water >14°dH": {
-                "3-5kg": "",
-                "5-8kg": ""
-            },
-            "Medium Water 8-14°dH": {
-                "3-5kg": "",
-                "5-8kg": ""
-            },
-            "Soft Water <8°dH": {
-                "3-5kg": "",
-                "5-8kg": ""
-            }
-        },
-        link: "",
-        name: "",
-        type: "",
-        weight: ""
-         */
-
     calculateOptimalDosage() {
         if (this.weight_choice === 1) {
-            this.optimal_dosage = mainAlgoritm(this.selected_detergent, this.scale_weight, this.user_hardness);
+            const weight_kg = this.scale_weight/1000;
+            console.log("Calculating using scale: ", this.scale_weight);
+            this.optimal_dosage = mainAlgoritm(this.selected_detergent, weight_kg, this.user_hardness);
         } else {
+            console.log("calculating using selected weight: ", this.selected_weight);
             this.optimal_dosage = mainAlgoritm(this.selected_detergent, this.selected_weight, this.user_hardness);
         };
     },
 
+    setWeightChoice(choice){
+        this.weight_choice=choice
+    },
     changeUserHardness(location) { //here comes the string
         const findCityACB = hardnessTuple => {
             if (hardnessTuple.Location === location) {
@@ -65,7 +47,7 @@ export default {
     },
 
     addNewDetergent() {
-        console.log(this.user_added_detergents)
+        console.log('In smart dose model', this.user_added_detergents)
         this.DetergentData = [...this.DetergentData, this.user_added_detergents];
     },
 

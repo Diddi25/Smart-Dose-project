@@ -11,7 +11,6 @@ const firebaseConfig = {
   appId: "1:416265139288:web:a2bae185094d7fbeb9862d",
   measurementId: "G-E605MZ0WSW"
 };
-
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 /*const firebaseConfig = {
@@ -26,6 +25,7 @@ const firebaseConfig = {
 };*/
 
 
+
 /*
 const firebaseConfig = {
   apiKey: "AIzaSyC7EJN1EbLAf6ECjb1x-gj8evgHyhEDGkE",
@@ -38,5 +38,6 @@ const firebaseConfig = {
   measurementId: "G-K5Y84E1DPQ"
 };
 */
+
 
 export default firebaseConfig;

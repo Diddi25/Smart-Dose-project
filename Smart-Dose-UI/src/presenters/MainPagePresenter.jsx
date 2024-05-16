@@ -10,6 +10,7 @@ export default observer(
         console.log("Changing status to:", weight); 
         props.model.setScaleWeight(weight);
         console.log("Model weight updated to:", props.model.scale_weight);
+        console.log("Updated from firebase:", props.model.scale_weight);
     };
     function handleSetChange(status) {
         console.log("Changing status to:", status); 
@@ -42,6 +43,14 @@ export default observer(
         props.model.addNewDetergent();
     }
 
+
+    function userWeightChoice (choice){
+    props.model.setWeightChoice(choice);
+
+    console.log("this is the choise" ,props.model.weight_choice );
+
+    };
+
     return <MainPageView 
                                 weight = {props.model.scale_weight}      
                                 status={props.model.dispenser_status} 
@@ -57,10 +66,11 @@ export default observer(
                                 userAddedDetergents = {props.model.user_added_detergents}
                                 userWhiteDetergent = {props.model.user_white_detergent}
                                 userColorDetergent = {props.model.user_color_detergent}
-                                userWeightChoice = {props.model.weight_choice}
+                                //userWeightChoice = {props.model.weight_choice}
                                 userSelectedDetergent = {props.model.selected_detergent}
                                 selectDetergentType = {selectDetergent}
                                 setSelectedWeight = {selectWeight}
+                                userWeightChoice ={userWeightChoice}
                                 startCalculateDosage = {startCalculationProcess}
                                 />;
                                 
