@@ -40,18 +40,19 @@
     border-radius: 20px;
     border-style:groove;
     margin-top: 9vh;
-    padding: 15px 10px 30px 10px;
-    width: 700px;
-    height: 500px;
+    margin: 9vh 0.05vh;
+    padding: 55px 10px 30px 10px;
+    width: 300px;
+    height: 400px;
     text-align: center;
-    border-width: 2px;  
+    border-width: 2px;
 }
 
 .popup button{
     border-style:none;
 }
 .main-button button {
-    margin: 20px;
+    margin: 20px 5px;
     padding: 5px 10px;
     font-size: 15px;
     border:none;
@@ -130,11 +131,21 @@
 }
 
 .status{
-    padding: 0px 40px 100px;
+    padding: 0px 40px 50px;
     
 }
 .status img{
    margin-top: 40px;
+}
+.selected-detergent{
+    display: flex;
+    justify-content: center;
+    border: 3px;
+    border-radius: 6px;
+    border-style: groove;
+    padding: 10px 60px;
+    margin: 0 10px;
+    background-color: rgb(244, 244, 244);
 }
 
 
