@@ -23,7 +23,7 @@ export function modelToPersistence(model) {
         userAddedDetergents: model.user_added_detergents !== undefined ? model.user_added_detergents : null,
         userWhiteDetergent: model.user_white_detergent,
         userColorDetergent: model.user_color_detergent,
-        userDetergentChoice: model.detergent_choice,
+        userSelectedDetergent: model.selected_detergent,
         dispenserStatus: model.dispenser_status,
         userScaleWeight: model.scale_weight,
         userSelectedWeight: model.selected_weight,
@@ -31,87 +31,78 @@ export function modelToPersistence(model) {
         servoMotorOption: model.servomotor_option,
         optimalDosage: model.optimal_dosage
     };
-}
+};
 
 export function PushDetergentData(model) {
     return {
         detergentData: model.DetergentData
     };
-}
+};
 
 export function persistenceToModel(data, model) {    
     function saveWeightToModelACB(userLocation) {
         if(userLocation.city != model.user_location.city) {
             model.user_location = userLocation;
-        }
-    }
-    if(data.userWhiteDetergent) {
-        model.user_white_detergent = data.userWhiteDetergent;
-    } else {
-        console.log('no white detergent');
-    }
-    if(data.userColorDetergent) {
-        model.user_color_detergent = data.userColorDetergent;
-    }
-    if(data.userSelectedWeight) {
-        model.selected_weight = data.userSelectedWeight;
-    }
+        };
+    };
     if(data) {
         model.user_location = data.userLocation;
         model.user_hardness = data.userHardness;
         model.user_regionName_without_county = data.userRegionName;
         model.user_added_detergents = data.userAddedDetergents;
-        model.detergent_choice = data.userDetergentChoice;
+        model.user_white_detergent = data.userWhiteDetergent || {};
+        model.user_color_detergent = data.userColorDetergent || {};
+        model.selected_detergent = data.userSelectedDetergent || {};
         model.dispenser_status = data.dispenserStatus;
         model.servomotor_option = data.servoMotorOption;
         model.scale_weight = data.userScaleWeight;
-        model.weight_choice = data.userWeightChoice;
+        model.selected_weight = data.userSelectedWeight || 0;
+        model.weight_choice = data.userWeightChoice || -1;
         model.optimal_dosage = data.optimalDosage;
         return saveWeightToModelACB(data.userLocation);
-    }
-}
+    };
+};
 
 export function saveToFirebase(model) {
     if(model.user) {
         set(ref(db, "USERID:S"+"/" + model.user.displayName + ": " + model.user.uid), modelToPersistence(model));
     } else {
         set(ref(db, "/GuestUSER"), modelToPersistence(model));
-    }
-}
+    };
+};
 
 async function fetchGeographicalInfo(model) {
     model.user_location = await fetchLocation();
-}
+};
 
 export function readFromDatabase() {
     model.ready = false;
     function userConvertACB(snapshot) {
         console.log(model.user.displayName,'s firebase object : ', snapshot.val());
         return persistenceToModel(snapshot.val(), model)
-    }
+    };
     function convertACB(snapshot) {
         console.log(snapshot.val());
         return persistenceToModel(snapshot.val(), model)
-    }
+    };
     function setModelReadyACB() {
         model.ready = true;
-    }
+    };
     if(model.user) {
         return get(ref(db, "USERID:S/"+ model.user.displayName  + ": " + model.user.uid)).then(userConvertACB).then(setModelReadyACB);
     } else {
         return get(ref(db, "GuestUSER")).then(convertACB).then(setModelReadyACB);
-    }
-}
+    };
+};
 
 export default async function connectToFirebase(model, watchFunction){
-    console.log('Its ok with display name error');
     fetchGeographicalInfo(model);
     function loginOrOutACB(user) {
         if (user) {
             model.user=user;
         };
         readFromDatabase(model);
-    }
+    };
     onAuthStateChanged(auth, loginOrOutACB);
     watchFunction(checkACB, sideEffectACB);
     function checkACB() {
@@ -122,7 +113,7 @@ export default async function connectToFirebase(model, watchFunction){
             model.user_added_detergents,
             model.user_white_detergent,
             model.user_color_detergent,
-            model.detergent_choice,
+            model.selected_detergent,
             model.dispenser_status,
             model.scale_weight,
             model.selected_weight,
@@ -135,4 +126,8 @@ export default async function connectToFirebase(model, watchFunction){
         model.setUserHardness(); //this have to be evoked at this point
         saveToFirebase(model);
     };
-}
+};
+
+function checkArduinoUpdates(model) {
+
+};

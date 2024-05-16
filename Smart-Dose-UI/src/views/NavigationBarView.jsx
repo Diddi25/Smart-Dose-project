@@ -59,8 +59,8 @@ function NavigationBarView(props) {
             <button className='signInButton'
                     onClick={signInACB}
                     id="signIn"
-                    >{setButtonTextCB()}
-                    {}
+                    >
+                    {setButtonTextCB()}
             </button>
         );
       }
