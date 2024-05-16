@@ -9,25 +9,6 @@
     right: 0;
 }
 
-.header-instr {
-    font-family: 'Roboto', sans-serif ;
-    background-color: #FFFFFF;
-    font-weight: bold;
-    justify-content: center;
-    letter-spacing: 6px;
-    color: black;
-    text-align: center;
-    margin: 80px 80px 0px 80px;
-    padding: 10px 10px 10px 10px;
-    border-radius: 10px;
-    font-size: 35px;
-    min-width: 350px;
-}
-.header-intr h1 {
-    padding-top: 15px;
-    font-size: 50px;
-    margin: 0;
-}
 .logo-image{
     display: block;
     margin-left: auto;

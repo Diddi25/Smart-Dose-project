@@ -6,7 +6,7 @@ function InstructionPageView(props) {
             <div>
                 <title>Intructions</title>
             </div>
-            <div className="header-instr">
+            <div className="header-about">
                 <h1>HOW TO USE SMART DOSE?</h1>
             </div>
             <br />
