@@ -28,13 +28,13 @@ HX711 scale1; // First scale
 HX711 scale2;  //second scale 
 HX711 scale3;  // third scale
 
-#define FIREBASE_HOST "best-938eb-default-rtdb.europe-west1.firebasedatabase.app"
-#define FIREBASE_AUTH "AIzaSyC7EJN1EbLAf6ECjb1x-gj8evgHyhEDGkE"
+#define FIREBASE_HOST "smartdose-51796-default-rtdb.europe-west1.firebasedatabase.app"
+#define FIREBASE_AUTH "AIzaSyA9xQO9pLQ7-WJgjTmYIuwD2dG8IKTrcsE"
 const char ssid[] = "test55";
 const char pass[] = "test1234";
 String serverAddress = FIREBASE_HOST;
 int port = 443;
-String path = "/GuestUSER.json?auth=" + String(FIREBASE_AUTH);
+String path = "/USERID:S/Samuel Lövkvist: XynfcVTcSAP047sHrwynFlPaqR12.json?auth=" + String(FIREBASE_AUTH);
 
 WiFiSSLClient wifi;
 HttpClient client = HttpClient(wifi, serverAddress, port);
@@ -110,7 +110,7 @@ void loop() {
      static unsigned long lastCheck = 0;
     unsigned long currentCheck = millis();
 
-    if (currentCheck - lastCheck > 100) {
+    if (currentCheck - lastCheck > 10) {
         if (servomotorOption == 1) {
           checkWeightAndControlServo(scale1, myservo1, optimalDosage, scale1Active, lastSensorWeight1, lastSensorWeight1Change);
 
@@ -124,7 +124,7 @@ void loop() {
         lastCheck = currentCheck;
     }
   static unsigned long lastNetUpdate = 0;
-    if (millis() - lastNetUpdate > 500) {
+    if (millis() - lastNetUpdate > 1000) {
         fetchAndUpdateFromFirebase();
         lastNetUpdate = millis();
     }
