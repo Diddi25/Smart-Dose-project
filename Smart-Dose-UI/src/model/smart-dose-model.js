@@ -12,7 +12,7 @@ export default {
     user_regionName_without_county : "undefined",
     user_white_detergent: {},
     user_color_detergent: {},
-    user_added_detergents: {},
+    user_added_detergents: {name: "almostThere", brand: "t", type: "y", dosage: "u", weight: "r", dosageTable: {}},
     scale_weight: 0,
     scale_status: false,
     selected_weight: null, // 1,5 / 4,5 / 6
@@ -22,6 +22,30 @@ export default {
     servomotor_option: 0, //0 == WHITE container 1 == COLOR container
     optimal_dosage: 0,
     selected_detergent: {},
+
+            /**
+         *         articleNumber: "?",
+        brand: "",
+        dosage: "",
+        dosageTable: {
+            "Hard Water >14°dH": {
+                "3-5kg": "",
+                "5-8kg": ""
+            },
+            "Medium Water 8-14°dH": {
+                "3-5kg": "",
+                "5-8kg": ""
+            },
+            "Soft Water <8°dH": {
+                "3-5kg": "",
+                "5-8kg": ""
+            }
+        },
+        link: "",
+        name: "",
+        type: "",
+        weight: ""
+         */
 
     calculateOptimalDosage() {
         if (this.weight_choice === 1) {
@@ -38,6 +62,11 @@ export default {
             }
         };
         this.user_hardness = this.HardnessData.find(findCityACB);
+    },
+
+    addNewDetergent() {
+        console.log(this.user_added_detergents)
+        this.DetergentData = [...this.DetergentData, this.user_added_detergents];
     },
 
     setUserHardness() {

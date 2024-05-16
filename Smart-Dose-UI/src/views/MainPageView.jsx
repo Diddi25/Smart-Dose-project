@@ -192,6 +192,18 @@ function MainPageView(props) {
             return ('Cannot start before setting type and weight')
         };
     };
+    function addDetergentACB() {
+        console.log('new detergent: ',newDetergent)
+        console.log('detergent: ',props.userAddedDetergents)
+        props.userAddedDetergents.name = newDetergent.name;
+        props.userAddedDetergents.brand = newDetergent.brand;
+        props.userAddedDetergents.type = newDetergent.type;
+        props.userAddedDetergents.weight = newDetergent.weight;
+        props.userAddedDetergents.dosage = newDetergent.dosage;
+        props.userAddedDetergents.dosageTable = newDetergent.dosageTable;
+        console.log(' detergent update: ',props.userAddedDetergents)
+        props.addDetergent()
+    }
 
     return (
         <div className="main">
@@ -430,7 +442,8 @@ function MainPageView(props) {
                                 </tbody>
                             </table>
                             <br />
-                            <input type="submit" value="Add Detergent" />
+                            <input type="submit" value="Add Detergent" onClick={addDetergentACB}/>
+                            <button value="Add Detergent" onClick={addDetergentACB}>ADD</button>
                         </form>
                     </div>
              

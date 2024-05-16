@@ -38,6 +38,9 @@ export default observer(
     function startCalculationProcess() {
         props.model.calculateOptimalDosage();
     };
+    function addNewDetergentACB() {
+        props.model.addNewDetergent();
+    }
 
     return <MainPageView 
                                 weight = {props.model.scale_weight}      
@@ -50,6 +53,8 @@ export default observer(
                                 selectLocationOption = {setLocationACB}
                                 userHard = {props.model.user_hardness}
                                 detergentData = {props.model.DetergentData}
+                                addDetergent = {addNewDetergentACB}
+                                userAddedDetergents = {props.model.user_added_detergents}
                                 userWhiteDetergent = {props.model.user_white_detergent}
                                 userColorDetergent = {props.model.user_color_detergent}
                                 userWeightChoice = {props.model.weight_choice}
