@@ -37,23 +37,6 @@ export default {
         } else {
             this.optimal_dosage = mainAlgoritm(this.selected_detergent, this.selected_weight, this.user_hardness);
         }
-        
-        /*let relevantDosageTable = {}; //behöver detergentChoice, whiteDetergent, colorDetergent
-        let relevantWeightRange = {};
-        let dosageConversion = ""; //detergentChoice whiteDetergent, colorDetergent
-        let literDosage = "";
-
-        relevantDosageTable = getDosageTable(this.detergent_choice, this.user_white_detergent, this.user_color_detergent);
-        dosageConversion = getDosageConversion(this.detergent_choice, this.user_white_detergent, this.user_color_detergent);
-        relevantWeightRange = getWeightRanges(this.user_hardness.Hardness, relevantDosageTable);
-        if(this.weight_choice == 0) {
-            literDosage = getDosageInLiter(this.selected_weight, relevantWeightRange)
-        } else {
-            literDosage = getDosageInLiter(this.scale_weight, relevantWeightRange)
-        }
-
-        this.optimal_dosage = convertToGram(dosageConversion, literDosage); //convertToGram /// dosageConversion, literDosage
-        */
     },
 
     changeUserHardness(location) { //here comes the string
@@ -153,9 +136,5 @@ export default {
     setServomotor(option){
         this.servomotor_option = option;
     },
-    
-
-    
-
     
 }

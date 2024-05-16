@@ -41,16 +41,12 @@ export default observer(
         props.model.calculateOptimalDosage();
     };
 
-
-
-
     return <MainPageView 
  
                                 weight = {props.model.scale_weight}      
                                 status={props.model.dispenser_status} 
                                 servomotor={handleServomotor}     
-                                statusChange={handleSetChange}
-                                //weight={props.model.scaleWeight}      
+                                statusChange={handleSetChange}     
                                 setWeight={handleWeightChange}
                                 scaleChange={handleScaleStatus}
                                 hardData = {props.model.HardnessData}/*properties used in view*/

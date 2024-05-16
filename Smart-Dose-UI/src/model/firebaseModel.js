@@ -119,14 +119,22 @@ export function readFromDatabase() {
 export default async function connectToFirebase(model, watchFunction){
     console.log('Its ok with display name error');
     fetchGeographicalInfo(model);
+    
     function loginOrOutACB(user) {
         if (user) {
             model.user=user;
-        };
-        readFromDatabase(model);
+            checkUpdatesForUserFirebase(model);
+        } else {
+            console.log("no user");
+            checkUpdatesAsGuest(model);
+        }
+        readFromDatabase();
     }
+    
     onAuthStateChanged(auth, loginOrOutACB);
+    
     watchFunction(checkACB, sideEffectACB);
+    
     function checkACB() {
         return [
             model.user_location,
@@ -144,8 +152,31 @@ export default async function connectToFirebase(model, watchFunction){
             model.optimal_dosage
         ];
     };
+    
     function sideEffectACB() {
-        model.setUserHardness(); //this have to be evoked at this point
+        model.setUserHardness(); //this has to be evoked at this point
         saveToFirebase(model);
     };
+}
+
+export function checkUpdatesForUserFirebase(model) {
+    // Listener for userScaleWeight
+    console.log("setup listener for user");
+    const userScaleWeightRef = ref(db, "USERID:S/" + model.user.displayName + ": " + model.user.uid + "/userScaleWeight");
+    onValue(userScaleWeightRef, (snapshot) => {
+        const newUserScaleWeight = snapshot.val();
+        console.log("Real-time userScaleWeight update:", newUserScaleWeight);  // Logging for debugging
+        model.setScaleWeight(newUserScaleWeight);
+    });
+}
+
+export function checkUpdatesAsGuest(model) {
+    // Listener for userScaleWeight
+    console.log("setup listener for user as guest");
+    const userScaleWeightRef = ref(db, "GuestUSER/userScaleWeight");
+    onValue(userScaleWeightRef, (snapshot) => {
+        const newUserScaleWeight = snapshot.val();
+        console.log("Real-time userScaleWeight update:", newUserScaleWeight);  // Logging for debugging
+        model.setScaleWeight(newUserScaleWeight);
+    });
 }
