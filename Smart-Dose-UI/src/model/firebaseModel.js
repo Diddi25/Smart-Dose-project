@@ -141,13 +141,15 @@ export default async function connectToFirebase(model, watchFunction){
         saveToFirebase(model);
     };
 
-    // Real-time listener for changes in userScaleWeight
-    function scaleWeightListener(snapshot) {
-        console.log("scaleWeight canged in the DB");
-        const scaleWeight = snapshot.val();
-        model.scale_weight = scaleWeight; // Update the model
-        watchFunction(checkACB, sideEffectACB);
-    };
+    checkUpdatesFirebase
+}
 
-    onValue(ref(db, "USERID:S/" + model.user.displayName + ": " + model.user.uid + "/userScaleWeight"), scaleWeightListener);
+export function checkUpdatesFirebase(model) {
+    // Listener for userScaleWeight
+    const userScaleWeightRef = ref(db, "USERID:S/" + model.user.displayName + ": " + model.user.uid + "/userScaleWeight");
+    onValue(userScaleWeightRef, (snapshot) => {
+        const newUserScaleWeight = snapshot.val();
+        console.log("Real-time userScaleWeight update:", newUserScaleWeight);  // Logging for debugging
+        model.setScaleWeight(newUserScaleWeight);
+    });
 }
