@@ -63,22 +63,19 @@ function AccountView(props) {
     };
 
     return (
-        <div className="profile-container">
-            <div className="header-2">
+        <div className="main">
+            <div className="header">
                 <header >Welcome {auth.currentUser ? auth.currentUser.displayName : 'Guest'}</header >
             </div>
-            <div className="card-container">
+            <div className="card-container-profile">
                 <div className="card-profile">
                     <div className="profile-title">
-                        <h5>Water hardness</h5>
+                        <header>Water hardness</header>
                     </div>
-                    <br />
-                    <br />
-                    <br />
                     <div>
                         <div className="profile-water">
                             <h6>Water hardness based on your location:</h6>
-                            {props.userHard.Location && props.userHard.Location} {props.userHard.Hardness && props.userHard.Hardness}°dH
+                           
                         </div>
                         <div className="profile-water">   
                             <select value={props.userHard.Location} onChange={selectTypeChangeACB}>
@@ -92,28 +89,33 @@ function AccountView(props) {
                             </select>
                         </div>
                     </div>
-                    <div className="manual-waterhardness">
-                        <h6>Choose water hardness manually</h6>
+                       <div className="manual-waterhardness"> <h6>Choose water hardness manually</h6> </div>
+                    <div >
                         {/*Gränsvärden för hårdhet tagen ifrån https://sv.wikipedia.org/wiki/Vattenh%C3%A5rdhet 07052024 */}
-                        <button id="soft" 
+                      <div className="manual-waterhardness"><button id="soft" 
                             onClick={() => buttonClickHandlerWater("soft")} 
-                            disabled={activeButtonWater ==="soft"}>SOFT 0-6°dH</button>
+                            disabled={activeButtonWater ==="soft"}>SOFT 0-6°dH</button> 
+                            
                         <button id="medium" 
                             onClick={() => buttonClickHandlerWater("medium")} 
                             disabled={activeButtonWater ==="medium"}>MEDIUM 7-13°dH</button>
-                        <button id="hard" 
+                       <button id="hard" 
                             onClick={() => buttonClickHandlerWater("hard")} 
                             disabled={activeButtonWater ==="hard"}>HARD 14-20°dH</button>
                     </div>
+                    </div>
                 </div>
+
+
+
                 <div className="card-profile">
                     <div className="profile-detergent">
                         <div className="profile-title">
-                            <h5>Recently used detergent types</h5>
+                            <header>Recently used detergent types</header>
                         </div>   
                         <div>
                             <div className="detergent-container">
-                                <div className="detergent-WC">
+                                <div className="detergent-WCP">
                                     <h6>WHITE</h6>
                                     <div>
                                         <button className="remove-button" onClick={buttonRemoveWhite}>
@@ -126,7 +128,7 @@ function AccountView(props) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="detergent-WC">
+                                <div className="detergent-WCP">
                                     <h6>COLOR</h6>
                                     <div>
                                         <button className="remove-button" onClick={buttonRemoveColor}>
@@ -143,6 +145,10 @@ function AccountView(props) {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="button-style">
+                <button onClick={logOutACB}>Log out</button>
+                <button onClick={deleteAccount}>Delete account</button>
             </div>
             <Popup trigger={buttonPopupWhite} setTrigger = {setButtonPopupWhite} className="card"> 
                 <div > 
@@ -186,10 +192,6 @@ function AccountView(props) {
                     </select>
                 </div>
             </Popup>
-            <div>
-                <button className="button-style" onClick={logOutACB}>Log out</button>
-                <button className="button-style" onClick={deleteAccount}>Delete account</button>
-            </div>
         </div>
     );
 }

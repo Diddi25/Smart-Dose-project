@@ -116,9 +116,7 @@ function MainPageView(props) {
             </div>
             <div className="card-container">
                 <div className="card">
-                    DETERGENT
-                    <br />
-                    <br />
+                <div className="card-title"> DETERGENT</div>
                     <div className="main-button">
                         <button 
                             id="white" 
@@ -130,17 +128,15 @@ function MainPageView(props) {
                             onClick={() => { buttonClickHandlerDetergent("color"); setButtonPopupColor(true), props.servomotor("2") }} 
                             >COLOR
                         </button>
-                        <br />
+                 
                         <div className="selected-detergent">
                             Chosen: {showChosenDetergent()} 
                         </div>
                     </div>
                 </div>
                 <div className="card">
-                    <div className="water-hardness">
-                        WATER HARDNESS <br />
-                        <br />
-                        <br />
+                    <div>
+                    <div className="card-title"> WATER HARDNESS</div>
                         <h6>Based on current location:</h6>
                         <select className="dropdown" 
                                 value={props.userHard.Location &&  props.userHard.Location || 'no side effect'} 
@@ -158,7 +154,7 @@ function MainPageView(props) {
                     </div>
                 </div>
                 <div className="card">
-                    SELECT WEIGHT
+                <div className="card-title"> SELECTED WEIGHT</div>
                     <div className="main-button">
                         <button 
                             id="0-3" 
@@ -186,13 +182,11 @@ function MainPageView(props) {
                             disabled={activeButtonWeight === "scale"}>SCALE
                         </button>
                     </div>
+                    
                 </div>
                 <div className="card">
-                    START or STOP
-                    <br />
-                    <br />
+                <div className="card-title"> START SMART DOSE </div>
                     <div className="ss-button">
-                        <br />
                         <button
                             id="start"
                             onClick={() => { setButtonDisabled(true); startDevice(); setButtonPopupStatus(true) }}
@@ -200,19 +194,15 @@ function MainPageView(props) {
                         <button
                             id="cancel"
                             onClick={() => { setButtonDisabled(false); props.statusChange(false); }}
-                            disabled={!isButtonDisabled}>CANCEL</button>
-                        <br />
+                            disabled={!isButtonDisabled}>CANCEL remove</button>
                     </div>
                 </div>
             </div>
             <Popup trigger={buttonPopupScale} setTrigger={setButtonPopupScale} className="card">
                 <div >
-                    SCALE WEIGHT
-                    <br />
-                    <br />
+                <div className="card-title"> SCALE WEIGHT </div>
                     <h6>Hold the scale device still and wait <br />
                         5-10 seconds for the weight to stabilize </h6>
-                    <br />
                     <div>
                         <input className="dropdown" type="number" value={props.weight} onChange={handleScaleWeightACB} name="quantity" min="0" placeholder="Scale weight.." readOnly />
                     </div>
@@ -220,8 +210,8 @@ function MainPageView(props) {
             </Popup>
             <Popup trigger={buttonPopupWhite} setTrigger={setButtonPopupWhite} className="card">
                 <div >
-                    WHITE DETERGENTS <br />
-                    Select a detergent <br />
+                    <div className="card-title"> WHITE DETERGENTS </div>
+                    <div>Select a detergent</div>
                     <select className="dropdown" 
                                 value={props.userWhiteDetergent && props.userWhiteDetergent.name ? 
                                         props.userWhiteDetergent.name : 'not chosen yet'} 
@@ -240,8 +230,8 @@ function MainPageView(props) {
             </Popup>
             <Popup trigger={buttonPopupColor} setTrigger={setButtonPopupColor} className="card">
                 <div >
-                    COLOR DETERGENTS  <br />
-                    Select a detergent <br />
+                <div className="card-title">COLOR DETERGENTS</div>
+                <div>Select a detergent</div>
                     <select className="dropdown" 
                                 value={props.userColorDetergent && props.userColorDetergent.name ? 
                                         props.userColorDetergent.name : 'not chosen yet'} 
