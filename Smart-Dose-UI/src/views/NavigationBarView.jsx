@@ -29,7 +29,6 @@ function NavigationBarView(props) {
     },[]);
 */
 
-
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user) {
@@ -58,7 +57,6 @@ function NavigationBarView(props) {
         }
       
     }
-   
 
     return (
         <div>

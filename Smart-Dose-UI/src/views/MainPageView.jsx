@@ -5,7 +5,6 @@ import Popup from "../components/popup";
 import { db } from '../model/firebaseModel.js'; 
 import { ref, set, push } from "firebase/database";
 
-
 function MainPageView(props) {
     const [isButtonDisabled, setButtonDisabled] = useState(false);
     const [isStartDisabled, setStartDisabled] = useState(true);
@@ -16,6 +15,7 @@ function MainPageView(props) {
     const [buttonPopupWhite, setButtonPopupWhite] = useState(false);
     const [buttonPopupColor, setButtonPopupColor] = useState(false);
     const [buttonPopupStatus, setButtonPopupStatus] = useState(false);
+
     useEffect(() => {
         setButtonDisabled(props.status); // Disable the start button if status is true
         setStartDisabled(!props.status); // Enable the start button if status is false
@@ -172,28 +172,26 @@ function MainPageView(props) {
     };
 
     function showChosenDetergent() {
-        if(activeButtonDetergent === " " || activeButtonDetergent === "white") {
-            if(props.userWhiteDetergent) {
-                return props.userWhiteDetergent.name;
-            } else {
-                return "not chosen yet";
-            }
+        if(props.userSelectedDetergent) {
+            return props.userSelectedDetergent.name;
         } else {
-            if(activeButtonDetergent === " " || activeButtonDetergent === "color") {
-                if(props.userColorDetergent) {
-                    return props.userColorDetergent.name;
-                } else {
-                    return "not chosen yet";
-                }
-            }
-        }
-    }
+            return "not chosen yet";
+        };
+    };
 
     function startDevice() {
-        //if detergentChoice + weight choice + hardness {}
-        props.statusChange(true);
-        props.startCalculateDosage();
-    }
+        if(props.userSelectedDetergent && props.userHard && props.userWeightChoice != -1) {
+            props.statusChange(true);
+            props.startCalculateDosage();
+        };
+    };
+    function informUser() {
+        if(props.userSelectedDetergent && props.userHard && props.userWeightChoice != -1) {
+            return ('Ready to start')
+        } else {
+            return ('Cannot start before setting type and weight')
+        };
+    };
 
     return (
         <div className="main">
@@ -338,11 +336,16 @@ function MainPageView(props) {
                         <button
                             id="start"
                             onClick={() => { setButtonDisabled(true); startDevice(); setButtonPopupStatus(true) }}
-                            disabled={isStartDisabled || isButtonDisabled}>START</button>
+                            disabled={isStartDisabled || isButtonDisabled}>
+                            START
+                        </button>
                         <button
                             id="cancel"
                             onClick={() => { setButtonDisabled(false); props.statusChange(false); }}
                             disabled={!isButtonDisabled}>CANCEL remove</button>
+                    </div>
+                    <div>
+                        {informUser()}
                     </div>
                 </div>
             </div>
@@ -373,7 +376,7 @@ function MainPageView(props) {
                                         {detergent.name && detergent.name || 'error in data'}
                                     </option>)
                             )}                     
-                        </select>
+                    </select>
                 </div>
             </Popup>
             <Popup trigger={buttonPopupColor} setTrigger={setButtonPopupColor} className="card">
@@ -399,11 +402,14 @@ function MainPageView(props) {
             <Popup trigger={buttonPopupStatus} setTrigger={setButtonPopupStatus} className="card">
                 <div >
                     <div className="status">
-                    
                         {showStatus()}
                         <div className="ss-button">
                             <div className="ss-button-cancle">
-                                <button id="cancel" onClick={() => { setButtonDisabled(false); props.statusChange(false); }} disabled={!isButtonDisabled}>CANCEL</button>
+                                <button id="cancel" 
+                                        onClick={() => { setButtonDisabled(false); props.statusChange(false); }} 
+                                        disabled={!isButtonDisabled}>
+                                        CANCEL
+                                </button>
                             </div>
                         </div>
                     </div>
