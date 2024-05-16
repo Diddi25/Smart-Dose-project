@@ -106,14 +106,18 @@ export function readFromDatabase() {
 export default async function connectToFirebase(model, watchFunction){
     console.log('Its ok with display name error');
     fetchGeographicalInfo(model);
+    
     function loginOrOutACB(user) {
         if (user) {
             model.user=user;
         };
         readFromDatabase(model);
     }
+    
     onAuthStateChanged(auth, loginOrOutACB);
+    
     watchFunction(checkACB, sideEffectACB);
+    
     function checkACB() {
         return [
             model.user_location,
@@ -131,8 +135,18 @@ export default async function connectToFirebase(model, watchFunction){
             model.optimal_dosage
         ];
     };
+    
     function sideEffectACB() {
-        model.setUserHardness(); //this have to be evoked at this point
+        model.setUserHardness(); //this has to be evoked at this point
         saveToFirebase(model);
     };
+
+    // Real-time listener for changes in userScaleWeight
+    function scaleWeightListener(snapshot) {
+        const scaleWeight = snapshot.val();
+        model.scale_weight = scaleWeight; // Update the model
+        watchFunction(checkACB, sideEffectACB);
+    }
+
+    onValue(ref(db, "USERID:S/" + model.user.displayName + ": " + model.user.uid + "/userScaleWeight"), scaleWeightListener);
 }
