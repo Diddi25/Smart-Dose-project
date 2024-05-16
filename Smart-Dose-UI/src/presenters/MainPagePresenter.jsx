@@ -10,6 +10,7 @@ export default observer(
         console.log("Changing status to:", weight); 
         props.model.setScaleWeight(weight);
         console.log("Model weight updated to:", props.model.scale_weight);
+        console.log("Updated from firebase:", props.model.scale_weight);
     };
     function handleSetChange(status) {
         console.log("Changing status to:", status); 
@@ -60,7 +61,7 @@ export default observer(
                                 detergentData = {props.model.DetergentData}
                                 userWhiteDetergent = {props.model.user_white_detergent}
                                 userColorDetergent = {props.model.user_color_detergent}
-                                userWeightChoice = {props.model.weight_choice}
+                                //userWeightChoice = {props.model.weight_choice}
                                 userSelectedDetergent = {props.model.selected_detergent}
                                 selectDetergentType = {selectDetergent}
                                 setSelectedWeight = {selectWeight}
