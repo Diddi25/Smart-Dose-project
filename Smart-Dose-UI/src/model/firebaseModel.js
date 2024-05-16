@@ -14,7 +14,7 @@ const ref_root = ref(db);
 export const auth = getAuth(app);
 export { db };
 // test purposes :  
-//set(ref(db, "/GuestUSER1"), {"bug": 5});
+set(ref(db, "/GuestUSER1"), {"bug": 5});
 //set(ref(db, "/GuestUSER"), {"bug": 5});
 
 export function modelToPersistence(model) {
@@ -41,13 +41,11 @@ export function PushDetergentData(model) {
     };
 }
 
-/*
-export function PushDetergentData(model) {
+export function PushData(model) {
     return {
         detergentData: [model]
     };
 }
-*/ 
 
 export function persistenceToModel(data, model) {    
     function saveWeightToModelACB(userLocation) {
@@ -60,13 +58,13 @@ export function persistenceToModel(data, model) {
         model.user_hardness = data.userHardness;
         model.user_regionName_without_county = data.userRegionName;
         model.user_added_detergents = data.userAddedDetergents;
-        model.user_white_detergent = data.userWhiteDetergent;
-        model.user_color_detergent = data.userColorDetergent;
+        model.user_white_detergent = data.userWhiteDetergent || {};
+        model.user_color_detergent = data.userColorDetergent || {};
         model.detergent_choice = data.userDetergentChoice;
         model.dispenser_status = data.dispenserStatus;
         model.servomotor_option = data.servoMotorOption;
         model.scale_weight = data.userScaleWeight;
-        model.selected_weight = data.userSelectedWeight;
+        model.selected_weight = data.userSelectedWeight || 0;
         model.weight_choice = data.userWeightChoice;
         model.optimal_dosage = data.optimalDosage;
         return saveWeightToModelACB(data.userLocation);
@@ -82,10 +80,7 @@ export function saveToFirebase(model) {
 }
 
 async function fetchGeographicalInfo() {
-    const newLocation = await fetchLocation();
-    if(newLocation.city != model.user_location.city) {
-        model.user_location = newLocation;
-    }
+    model.user_location = await fetchLocation();
 }
 
 export function readFromDatabase() {
@@ -110,7 +105,7 @@ export function readFromDatabase() {
 
 export default function connectToFirebase(model, watchFunction){
     console.log('Its ok with display name error');
-    fetchGeographicalInfo();
+    fetchGeographicalInfo(model);
     function loginOrOutACB(user) {
         if (user) {
             model.user=user;
