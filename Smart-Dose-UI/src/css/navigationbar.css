@@ -73,3 +73,18 @@
 }
 
 
+.navItems button {
+    display: inline-block; 
+    color: #000000; 
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+    cursor: pointer; 
+    background: none;
+    border: none;
+    font-size: 1em;
+}
+
+.navItems button:hover {
+    color: rgb(142, 142, 142);
+}
+
