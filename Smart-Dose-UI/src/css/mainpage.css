@@ -119,7 +119,6 @@
 
 
 .ss-button button:disabled{
-
     background-color: rgb(226, 226, 226);
     color: rgb(121, 121, 121); 
     font-size: 15px; 
@@ -133,7 +132,6 @@
 
 .status{
     padding: 0px 40px 50px;
-    
 }
 .status img{
    margin-top: 40px;
@@ -148,6 +146,33 @@
     margin: 0 10px;
     background-color: rgb(244, 244, 244);
 }
+
+.detergent-form {
+    display:flex;
+    justify-content: left;
+}
+
+.list-detergent{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.list-detergent li{
+    margin: 5px 0;
+    padding: 0px 10px ;
+}
+
+.list-detergent input{
+    width: 200px;     /* Set the desired width */
+    height: 30px;
+    padding: 4px;     /* Adjust padding as needed */
+    font-size: 10px;
+}
+
+
+
+
+
 
 
 
