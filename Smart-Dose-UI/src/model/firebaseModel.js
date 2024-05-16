@@ -160,7 +160,7 @@ export function checkUpdatesForUserFirebase(model) {
 export function checkUpdatesAsGuest(model) {
     // Listener for userScaleWeight
     console.log("setup listener for user as guest");
-    const userScaleWeightRef = ref(db, "GuestUSER/ScaleWeight");
+    const userScaleWeightRef = ref(db, "GuestUSER/userScaleWeight");
     onValue(userScaleWeightRef, (snapshot) => {
         const newUserScaleWeight = snapshot.val();
         console.log("Real-time userScaleWeight update:", newUserScaleWeight);  // Logging for debugging
