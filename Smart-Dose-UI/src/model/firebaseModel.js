@@ -13,7 +13,6 @@ const ref_root = ref(db);
 export const auth = getAuth(app);
 // test purposes :  
 
-//set(ref(db, "/GuestUSER1"), {"bug": 5});
 //set(ref(db, "/GuestUSER"), {"bug": 5});
 
 export function modelToPersistence(model) {
@@ -66,7 +65,7 @@ export function persistenceToModel(data, model) {
         model.selected_detergent = data.userSelectedDetergent || {};
         model.dispenser_status = data.dispenserStatus || false;
         model.servomotor_option = data.servoMotorOption;
-        model.scale_weight = data.userScaleWeight;
+        model.scale_weight = data.userScaleWeight || 0;
         model.scale_status = data.userScaleStatus || false;
         model.selected_weight = data.userSelectedWeight || 0;
         model.weight_choice = data.userWeightChoice || -1;
@@ -75,10 +74,19 @@ export function persistenceToModel(data, model) {
     };
 };
 
+function arduinoInfo(model) {
+    return {
+        userStatus: true,
+        goToID: model.user.uid
+    };
+}
+
 export function saveToFirebase(model) {
     if(model.user) {
+        set(ref(db, "/UserStatus"), arduinoInfo(model));
         set(ref(db, "USERID:S"+"/" + model.user.displayName + ": " + model.user.uid), modelToPersistence(model));
     } else {
+        set(ref(db, "/UserStatus"), {userStatus: false, goToID: "notDefined"});
         set(ref(db, "/GuestUSER"), modelToPersistence(model));
     };
 };
@@ -143,8 +151,7 @@ export default async function connectToFirebase(model, watchFunction){
         model.setUserHardness(); //this has to be evoked at this point
         saveToFirebase(model);
     };
-
-}
+};
 
 export function checkUpdatesForUserFirebase(model) {
     // Listener for userScaleWeight
