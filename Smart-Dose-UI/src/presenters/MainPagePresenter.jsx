@@ -61,7 +61,7 @@ export default observer(
                                 detergentData = {props.model.DetergentData}
                                 userWhiteDetergent = {props.model.user_white_detergent}
                                 userColorDetergent = {props.model.user_color_detergent}
-                                //userWeightChoice = {props.model.weight_choice}
+                                weightChoice = {props.model.weight_choice}
                                 userSelectedDetergent = {props.model.selected_detergent}
                                 selectDetergentType = {selectDetergent}
                                 setSelectedWeight = {selectWeight}

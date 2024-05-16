@@ -182,13 +182,13 @@ function MainPageView(props) {
     };
 
     function startDevice() {
-        if(props.userSelectedDetergent && props.userHard && props.userWeightChoice != -1) {
+        if(props.userSelectedDetergent && props.userHard && props.weightChoice != -1) {
             props.statusChange(true);
             props.startCalculateDosage();
         };
     };
     function informUser() {
-        if(props.userSelectedDetergent && props.userHard && props.userWeightChoice != -1) {
+        if(props.userSelectedDetergent && props.userHard && props.weightChoice != -1) {
             return ('Ready to start')
         } else {
             return ('Cannot start before setting type and weight')
