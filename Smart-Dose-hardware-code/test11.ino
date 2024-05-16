@@ -6,6 +6,7 @@
 #include <Servo.h>
 const int SERVO1_START_POSITION=83;
 const int SERVO2_START_POSITION = 112;
+;
 
 const int SERVO1_STOP_POSITION = 87;
 const int SERVO2_STOP_POSITION = 95;
@@ -79,12 +80,12 @@ void setup() {
 
 
   scale1.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
-  scale1.set_scale(-1038);
+  scale1.set_scale(-967);
   scale1.tare();
 
 
   scale2.begin(LOADCELL2_DOUT_PIN, LOADCELL2_SCK_PIN);
-  scale2.set_scale(-1038.46);      
+  scale2.set_scale(-967);      
   scale2.tare();
 
   scale3.begin(LOADCELL3_DOUT_PIN, LOADCELL3_SCK_PIN);
@@ -109,7 +110,7 @@ void loop() {
      static unsigned long lastCheck = 0;
     unsigned long currentCheck = millis();
 
-    if (currentCheck - lastCheck > 10) {
+    if (currentCheck - lastCheck > 100) {
         if (servomotorOption == 1) {
           checkWeightAndControlServo(scale1, myservo1, optimalDosage, scale1Active, lastSensorWeight1, lastSensorWeight1Change);
 
@@ -123,7 +124,7 @@ void loop() {
         lastCheck = currentCheck;
     }
   static unsigned long lastNetUpdate = 0;
-    if (millis() - lastNetUpdate > 50) {
+    if (millis() - lastNetUpdate > 500) {
         fetchAndUpdateFromFirebase();
         lastNetUpdate = millis();
     }
@@ -135,8 +136,9 @@ void checkWeightAndControlServo(HX711& scale, Servo& servo, float dosage, bool& 
     Serial.print(sensorWeight);
     Serial.println(" gr");
 
-     if (abs(sensorWeight - lastSensorWeight) > hysteresis && millis() - lastSensorWeightChange > debounceTime) {
+     /*if (abs(sensorWeight - lastSensorWeight) > hysteresis && millis() - lastSensorWeightChange > debounceTime) {
         lastSensorWeightChange = millis();
+        */
         if (sensorWeight > dosage && servo.read() != stopPosition) {
             servo.write(stopPosition);
             //scaleActive = false;
@@ -149,7 +151,7 @@ void checkWeightAndControlServo(HX711& scale, Servo& servo, float dosage, bool& 
             Serial.println("Reduced weight detected, servo started.");
         }
     }
-}
+
 void updateFirebaseStatus(String dispenserStatus) {
   DynamicJsonDocument jsonBuffer(1024);
   jsonBuffer["dispenserStatus"] = dispenserStatus;
@@ -206,7 +208,7 @@ void updatescaleWeightInFirebase(float scaleWeight) {
 }
 
 void updatescaleWeightInFirebase2(float scaleWeight) {
-  DynamicJsonDocument jsonBuffer(256);
+  DynamicJsonDocument jsonBuffer(1024);
   jsonBuffer["userScaleWeight2"] = scaleWeight;
   String output;
   serializeJson(jsonBuffer, output);
@@ -222,7 +224,7 @@ void fetchAndUpdateFromFirebase() {
     client.get(path);
     if (client.responseStatusCode() == 200) {
         String response = client.responseBody();
-        DynamicJsonDocument doc(1024);
+        DynamicJsonDocument doc(2048);
         deserializeJson(doc, response);
 
 
