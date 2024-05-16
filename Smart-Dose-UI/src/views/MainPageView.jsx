@@ -158,13 +158,13 @@ function MainPageView(props) {
     };
 
     function filterWhiteDetergentsACB(detergent) {
-        if (detergent.type === 'white') {
+        if (detergent.type == "white") {
             return detergent;
         }
     };
 
     function filterColorDetergentsACB(detergent) {
-        if (detergent.type === 'color') {
+        if (detergent.type == "color") {
             return detergent;
         }
     };
@@ -197,17 +197,15 @@ function MainPageView(props) {
 
     
     function addDetergentACB() {
-        console.log('new detergent: ',newDetergent)
-        console.log('detergent: ',props.userAddedDetergents)
-        //props.userAddedDetergents.name = newDetergent.name;
-        console.log(props.userAddedDetergents.name, newDetergent.name)
-        props.userAddedDetergents.brand = newDetergent.brand;
-        props.userAddedDetergents.type = newDetergent.type;
-        props.userAddedDetergents.weight = newDetergent.weight;
-        props.userAddedDetergents.dosage = newDetergent.dosage;
-        props.userAddedDetergents.dosageTable = newDetergent.dosageTable;
-        console.log(' detergent update: ',props.userAddedDetergents)
-        props.addDetergent()
+        const theNewDetergent = {
+            brand : newDetergent.brand,
+            dosage : newDetergent.dosage, 
+            name : newDetergent.name,
+            dosageTable : newDetergent.dosageTable,
+            type: newDetergent.type,
+            weight: newDetergent.weight
+        }
+        props.addDetergent(theNewDetergent)
     }
 
 

@@ -39,16 +39,13 @@ export default observer(
     function startCalculationProcess() {
         props.model.calculateOptimalDosage();
     };
-    function addNewDetergentACB() {
-        props.model.addNewDetergent();
-    }
-
-
+    function addNewDetergentACB(newDetergent) {
+        console.log('new detergent', newDetergent)
+        props.model.addNewDetergent(newDetergent);
+    };
     function userWeightChoice (choice){
-    props.model.setWeightChoice(choice);
-
-    console.log("this is the choise" ,props.model.weight_choice );
-
+        props.model.setWeightChoice(choice);
+        console.log("this is the choise" ,props.model.weight_choice );
     };
 
     return <MainPageView 
