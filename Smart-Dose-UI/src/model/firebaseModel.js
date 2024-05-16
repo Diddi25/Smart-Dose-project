@@ -111,7 +111,7 @@ export default async function connectToFirebase(model, watchFunction){
         if (user) {
             model.user=user;
         };
-        readFromDatabase(model);
+        readFromDatabase();
     }
     
     onAuthStateChanged(auth, loginOrOutACB);
@@ -141,7 +141,7 @@ export default async function connectToFirebase(model, watchFunction){
         saveToFirebase(model);
     };
 
-    checkUpdatesFirebase
+    checkUpdatesFirebase(model);
 }
 
 export function checkUpdatesFirebase(model) {
