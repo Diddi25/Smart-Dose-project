@@ -73,60 +73,12 @@
             }
         },
         {
-            "id": "21",
-            "name": "Tvättmedel Color 1.8kg Via",
-            "brand": "Via",
-            "link": "https://handla.ica.se/produkt/2054395",
-            "type": "color",
-            "weight": "1.8kg",
-            "articleNumber": "?",
-            "dosage": "46ml = 48g",
-            "dosageTable": {
-                "Soft Water <8°dH": {
-                    "3-5kg": "36 ml",
-                    "6-8kg": "63 ml"
-                },
-                "Medium Water 8-14°dH": {
-                    "3-5kg": "46 ml",
-                    "6-8kg": "82 ml"
-                },
-                "Hard Water >14°dH": {
-                    "3-5kg": "58 ml",
-                    "6-8kg": "101 ml"
-                }
-            }
-        },
-        {
             "id": "4",
             "name": "Tvättmedel White 750g Via",
             "brand": "Via",
             "link": "https://handla.ica.se/produkt/2054378",
             "type": "white",
             "weight": "0.75kg",
-            "articleNumber": "?",
-            "dosage": "46ml = 48g",
-            "dosageTable": {
-                "Soft Water <8°dH": {
-                    "3-5kg": "36 ml",
-                    "6-8kg": "63 ml"
-                },
-                "Medium Water 8-14°dH": {
-                    "3-5kg": "46 ml",
-                    "6-8kg": "82 ml"
-                },
-                "Hard Water >14°dH": {
-                    "3-5kg": "58 ml",
-                    "6-8kg": "101 ml"
-                }
-            }
-        },
-        {
-            "id": "22",
-            "name": "Tvättmedel White 1.8kg Via",
-            "brand": "Via",
-            "link": "https://handla.ica.se/produkt/2054378",
-            "type": "white",
-            "weight": "1.8kg",
             "articleNumber": "?",
             "dosage": "46ml = 48g",
             "dosageTable": {
@@ -534,6 +486,54 @@
                 "Hard Water >14°dH": {
                     "4-5kg": "65 ml",
                     "6-8kg": "95 ml"
+                }
+            }
+        },
+        {
+            "id": "21",
+            "name": "Tvättmedel Color 1.8kg Via",
+            "brand": "Via",
+            "link": "https://handla.ica.se/produkt/2054395",
+            "type": "color",
+            "weight": "1.8kg",
+            "articleNumber": "?",
+            "dosage": "46ml = 48g",
+            "dosageTable": {
+                "Soft Water <8°dH": {
+                    "3-5kg": "36 ml",
+                    "6-8kg": "63 ml"
+                },
+                "Medium Water 8-14°dH": {
+                    "3-5kg": "46 ml",
+                    "6-8kg": "82 ml"
+                },
+                "Hard Water >14°dH": {
+                    "3-5kg": "58 ml",
+                    "6-8kg": "101 ml"
+                }
+            }
+        },
+        {
+            "id": "22",
+            "name": "Tvättmedel White 1.8kg Via",
+            "brand": "Via",
+            "link": "https://handla.ica.se/produkt/2054378",
+            "type": "white",
+            "weight": "1.8kg",
+            "articleNumber": "?",
+            "dosage": "46ml = 48g",
+            "dosageTable": {
+                "Soft Water <8°dH": {
+                    "3-5kg": "36 ml",
+                    "6-8kg": "63 ml"
+                },
+                "Medium Water 8-14°dH": {
+                    "3-5kg": "46 ml",
+                    "6-8kg": "82 ml"
+                },
+                "Hard Water >14°dH": {
+                    "3-5kg": "58 ml",
+                    "6-8kg": "101 ml"
                 }
             }
         }
