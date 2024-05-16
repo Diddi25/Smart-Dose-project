@@ -4,39 +4,13 @@ import logo from '../images/logo3.png';
 import { auth } from '../model/firebaseModel.js'
 import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 
-function setButtonTextCB() {
-    const [signInOrOutText, setSignText] = useState('Sign in');
 
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-            if (user) {
-                setSignText('My profile');
-            } else {
-                setSignText('Sign in');
-            }
-        });
-    
-        return () => unsubscribe();
-    }, []);
-    
-
-    return signInOrOutText;
-}
   
-function signInACB() {
-    const provider = new GoogleAuthProvider();
-    if(!auth.currentUser) {
-      console.log('The button text update is slow')
-      signInWithPopup(auth, provider)
-      console.log('Logged in')
-    } else {
-      window.location.href = "#/account"; 
-    }
-}
 
 
 function NavigationBarView(props) {
     const [activeLink, setactiveLink] = useState("/");
+    const [signInOrOutText, setSignText] = useState('Sign in');
     
     useEffect(() => {
         const handleHashChange = () => {
@@ -54,16 +28,35 @@ function NavigationBarView(props) {
         setactiveLink(location)
     },[]);
 */
-    function returnSignInButton() {
-        return(
-            <button className='signInButton'
-                    onClick={signInACB}
-                    id="signIn"
-                    >
-                    {setButtonTextCB()}
-            </button>
-        );
-      }
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if (user) {
+                setSignText('My profile');
+                console.log("LOOOOOGGED IN!!!", signInOrOutText)
+            } else {
+                setSignText('Sign in');
+                console.log("LOOOOOGGED OUUUUT!!!", signInOrOutText)
+            }
+        });
+    
+        return () => unsubscribe();
+    }, []);
+    
+
+    function signInACB() {
+        const provider = new GoogleAuthProvider();
+        if(!auth.currentUser) {
+          console.log('The button text update is slow')
+          signInWithPopup(auth, provider)
+           window.location.href = "#/account"; 
+          console.log('Logged in')
+        } else {
+            
+          window.location.href = "#/account"; 
+        }
+      
+    }
 
     return (
         <div>
@@ -102,8 +95,15 @@ function NavigationBarView(props) {
                                 Instruction
                         </a>
                     </li>
-                    <li> 
-                        {returnSignInButton()}
+                    <li>
+                        <a
+                            className={activeLink === "#/account" ? "active" : ""} 
+                            onClick={()=>{setactiveLink("#/account");signInACB();}}
+                            id="#/account">
+                                {signInOrOutText}  
+                                
+                        </a>
+                    
                     </li>
                 </ul>
             </div>

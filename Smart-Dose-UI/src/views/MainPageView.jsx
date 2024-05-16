@@ -2,9 +2,10 @@ import "../css/navigationbar.css";
 import "../css/mainpage.css";
 import { useState, React, useEffect } from 'react';
 import Popup from "../components/popup";
+import { db } from '../model/firebaseModel.js'; 
+import { ref, set, push } from "firebase/database";
 
 function MainPageView(props) {
-
     const [isButtonDisabled, setButtonDisabled] = useState(false);
     const [isStartDisabled, setStartDisabled] = useState(true);
 
@@ -21,6 +22,88 @@ function MainPageView(props) {
         console.log("my status is :", props.status);
     }, [props.status]);
 
+    const [newDetergent, setNewDetergent] = useState({
+        articleNumber: "?",
+        brand: "",
+        dosage: "",
+        dosageTable: {
+          "Hard Water >14°dH": {
+            "3-5kg": "",
+            "5-8kg": ""
+          },
+          "Medium Water 8-14°dH": {
+            "3-5kg": "",
+            "5-8kg": ""
+          },
+          "Soft Water <8°dH": {
+            "3-5kg": "",
+            "5-8kg": ""
+          }
+        },
+        link: "",
+        name: "",
+        type: "",
+        weight: ""
+      });
+
+    const handleChange = (e) => {
+        setNewDetergent({
+            ...newDetergent,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleDosageChange = (hardness, weight, value) => {
+        setNewDetergent(prevState => ({
+            ...prevState,
+            dosageTable: {
+                ...prevState.dosageTable,
+                [hardness]: {
+                    ...prevState.dosageTable[hardness],
+                    [weight]: value
+                }
+            }
+        }));
+    };
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const newDetergentRef = push(ref(db, 'DetergentData/detergentData'));
+    
+        set(newDetergentRef, {...newDetergent, id: newDetergentRef.key})
+            .then(() => {
+                console.log('Detergent added successfully');
+                setNewDetergent({
+                    articleNumber: "?",
+                    brand: "",
+                    dosage: "",
+                    dosageTable: {
+                       "Hard Water >14°dH": {
+                          "3-5kg": "",
+                          "5-8kg": ""
+                    },
+                    "Medium Water 8-14°dH": {
+                        "3-5kg": "",
+                        "5-8kg": ""
+                    },
+                    "Soft Water <8°dH": {
+                       "3-5kg": "",
+                       "5-8kg": ""
+                    }
+                },
+                link: "",
+                name: "",
+                type: "",
+                weight: ""
+            });
+        })
+        .catch((error) => {
+            console.error('Error adding detergent: ', error);
+        });
+    };
+
+    
     function handleScaleWeightACB() {
         // resey  the value to 0 for 1 sec
         setTimeout(() => props.setWeight(0), 1000);
@@ -32,16 +115,19 @@ function MainPageView(props) {
         // false after 6 seconds
         setTimeout(() => props.scaleChange(false), 6000);
     };
-  
+
     function buttonHandlerStart() {
         setStartDisabled(false);
     };
+
     const buttonClickHandlerDetergent = (buttonID) => {
         setactiveButtonDetergent(buttonID);
     };
+
     const buttonClickHandlerWeight = (buttonID) => {
         setactiveButtonWeight(buttonID);
     };
+
     const showStatus = () => {
         if(props.status){
             return(
@@ -60,25 +146,31 @@ function MainPageView(props) {
             )
         }
     };
+
     function selectTypeChangeACB(evt) {
         props.selectLocationOption(evt.target.value);
     };
+
     function selectDetergentACB(evt) {
         props.selectDetergentType(evt.target.value);
     };
+
     function filterWhiteDetergentsACB(detergent) {
         if(detergent.type === 'white') {
             return detergent;
         }
     };
+
     function filterColorDetergentsACB(detergent) {
         if(detergent.type === 'color') {
             return detergent;
         }
     };
+
     function setSelectedWeight(weight) {
         props.setSelectedWeight(weight);
     };
+
     function showChosenDetergent() {
         if(props.userSelectedDetergent) {
             return props.userSelectedDetergent.name;
@@ -86,6 +178,7 @@ function MainPageView(props) {
             return "not chosen yet";
         };
     };
+
     function startDevice() {
         if(props.userSelectedDetergent && props.userHard && props.userWeightChoice != -1) {
             props.statusChange(true);
@@ -109,37 +202,92 @@ function MainPageView(props) {
                 <h6>“Precision in Every Wash”</h6>
             </div>
             <div className="card-container">
+            <div className="card">
+                ADD DETERGENT
+               <form onSubmit={handleSubmit}>
+                   <label>
+                       Brand:
+                       <input type="text" name="brand" value={newDetergent.brand} onChange={handleChange} required />
+                   </label>
+                   <label>
+                       Dosage:
+                       <input type="text" name="dosage" value={newDetergent.dosage} onChange={handleChange} required />
+                  </label>
+                  <label>
+                       Name:
+                       <input type="text" name="name" value={newDetergent.name}  onChange={handleChange} required />
+                  </label>
+                  <label>
+                        Type:
+                       <input type="text" name="type" value={newDetergent.type} onChange={handleChange} required />
+                  </label>
+                  <label>
+                        Weight:
+                        <input type="text" name="weight" value={newDetergent.weight} onChange={handleChange} required />
+                  </label>
+
+                  <h3>Dosage Table:</h3>
+                  <table>
+                     <thead>
+                         <tr>
+                             <th>Water Hardness</th>
+                             <th>3-5kg</th>
+                             <th>5-8kg</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         {Object.entries(newDetergent.dosageTable).map(([hardness, weights]) => (
+                             <tr key={hardness}>
+                                 <td>{hardness}</td>
+                                 <td>
+                                    <input
+                                        type="text"
+                                        value={weights["3-5kg"]}
+                                        onChange={(e) => handleDosageChange(hardness, "3-5kg", e.target.value)}
+                                    />
+                                 </td>
+                                 <td>
+                                    <input
+                                        type="text"
+                                        value={weights["5-8kg"]}
+                                        onChange={(e) => handleDosageChange(hardness, "5-8kg", e.target.value)}
+                                   />
+                                 </td>
+                             </tr>
+                         ))}
+                    </tbody>
+                   </table>
+                   <br/>
+                   <input type="submit" value="Add Detergent" />
+                </form>
+             </div>
                 <div className="card">
-                    DETERGENT
-                    <br />
-                    <br />
+                <div className="card-title"> DETERGENT</div>
                     <div className="main-button">
                         <button 
                             id="white" 
                             onClick={() => { buttonClickHandlerDetergent("white"); setButtonPopupWhite(true), props.servomotor("1") }} 
-                            disabled={activeButtonDetergent === "white"}>WHITE
+                            >WHITE
                         </button>
                         <button 
                             id="color" 
                             onClick={() => { buttonClickHandlerDetergent("color"); setButtonPopupColor(true), props.servomotor("2") }} 
-                            disabled={activeButtonDetergent === "color"}>COLOR
+                            >COLOR
                         </button>
-                        <br />
-                        <button>
+                 
+                        <div className="selected-detergent">
                             Chosen: {showChosenDetergent()} 
-                        </button>
+                        </div>
                     </div>
                 </div>
                 <div className="card">
-                    <div className="water-hardness">
-                        WATER HARDNESS <br />
-                        <br />
-                        <br />
+                    <div>
+                    <div className="card-title"> WATER HARDNESS</div>
                         <h6>Based on current location:</h6>
                         <select className="dropdown" 
                                 value={props.userHard.Location &&  props.userHard.Location || 'no side effect'} 
                                 onChange={selectTypeChangeACB}>
-                            <option value={props.userHard.Location &&  props.userHard.Location}>
+                            <option value={props.userHard.Location &&  props.userHard.Location || 'no side effect'}>
                                 {props.userHard.Location && props.userHard.Location || 'no side effect'} {props.userHard.Hardness && props.userHard.Hardness + '°dH' || ''}
                             </option>
                             {props.hardData.map( 
@@ -152,7 +300,7 @@ function MainPageView(props) {
                     </div>
                 </div>
                 <div className="card">
-                    SELECT WEIGHT
+                <div className="card-title"> SELECTED WEIGHT</div>
                     <div className="main-button">
                         <button 
                             id="0-3" 
@@ -180,13 +328,11 @@ function MainPageView(props) {
                             disabled={activeButtonWeight === "scale"}>SCALE
                         </button>
                     </div>
+                    
                 </div>
                 <div className="card">
-                    START or STOP
-                    <br />
-                    <br />
+                <div className="card-title"> START SMART DOSE </div>
                     <div className="ss-button">
-                        <br />
                         <button
                             id="start"
                             onClick={() => { setButtonDisabled(true); startDevice(); setButtonPopupStatus(true) }}
@@ -196,10 +342,7 @@ function MainPageView(props) {
                         <button
                             id="cancel"
                             onClick={() => { setButtonDisabled(false); props.statusChange(false); }}
-                            disabled={!isButtonDisabled}>
-                            CANCEL
-                        </button>
-                        <br />
+                            disabled={!isButtonDisabled}>CANCEL remove</button>
                     </div>
                     <div>
                         {informUser()}
@@ -208,12 +351,9 @@ function MainPageView(props) {
             </div>
             <Popup trigger={buttonPopupScale} setTrigger={setButtonPopupScale} className="card">
                 <div >
-                    SCALE WEIGHT
-                    <br />
-                    <br />
+                <div className="card-title"> SCALE WEIGHT </div>
                     <h6>Hold the scale device still and wait <br />
                         5-10 seconds for the weight to stabilize </h6>
-                    <br />
                     <div>
                         <input className="dropdown" type="number" value={props.weight} onChange={handleScaleWeightACB} name="quantity" min="0" placeholder="Scale weight.." readOnly />
                     </div>
@@ -221,8 +361,8 @@ function MainPageView(props) {
             </Popup>
             <Popup trigger={buttonPopupWhite} setTrigger={setButtonPopupWhite} className="card">
                 <div >
-                    WHITE DETERGENTS <br />
-                    Select a detergent <br />
+                    <div className="card-title"> WHITE DETERGENTS </div>
+                    <div>Select a detergent</div>
                     <select className="dropdown" 
                                 value={props.userWhiteDetergent && props.userWhiteDetergent.name ? 
                                         props.userWhiteDetergent.name : 'not chosen yet'} 
@@ -241,8 +381,8 @@ function MainPageView(props) {
             </Popup>
             <Popup trigger={buttonPopupColor} setTrigger={setButtonPopupColor} className="card">
                 <div >
-                    COLOR DETERGENTS  <br />
-                    Select a detergent <br />
+                <div className="card-title">COLOR DETERGENTS</div>
+                <div>Select a detergent</div>
                     <select className="dropdown" 
                                 value={props.userColorDetergent && props.userColorDetergent.name ? 
                                         props.userColorDetergent.name : 'not chosen yet'} 

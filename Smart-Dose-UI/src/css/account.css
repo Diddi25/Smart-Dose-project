@@ -1,52 +1,30 @@
-.profile-container{
-    background-image: url('../images/pic.jpg');
-    background-size: cover;
-    overflow: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-}
-
-/*
-.card{
-    font-family: 'Roboto', sans-serif ;
-    font-weight: 700;
-    display: flex;
-    justify-content: center;
-    border-radius: 20px;
-    border-style:groove;
-    margin-top: 9vh;
-    padding: 15px 10px 30px 10px;
-    width: 590px;
-    text-align: center;
-    border-width: 2px; 
-    background-color: #f9f5f5b9;
-}*/
 
 .card-profile{
+    margin-top: 5%;
     font-family: 'Roboto', sans-serif ;
     font-weight: 700;
     justify-content: center;
     border-radius: 20px;
     border-style:groove;
-    margin-top: 9vh;
-    padding: 15px 10px 30px 10px;
-    width: 590px;
-    height: 400px;
+    padding: 5px 10px 30px 10px;
+    width: 580px;
     text-align: center;
     border-width: 2px; 
     background-color: #FFFFFF; 
+    min-width: 580px;
+    min-height: 540px;
 }
 
-.card-container {
+.card-container-profile {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; 
+    justify-content: center;
+    padding: 20px 20px 20px;
+    gap: 40px; 
+    flex-wrap: wrap;
 }
 
-.header-2 {
+
+/*.header-2 {
     font-family: 'Roboto', sans-serif;
     background-color: #FFFFFF;
     font-weight: bold;
@@ -59,8 +37,7 @@
     border-radius: 10px;
     font-size: 35px;
     min-width: 350px;
-    
-}
+} */
 
 /*
 .profile-name h5, p{
@@ -70,19 +47,23 @@
     display: flex;
 }
 */
-.profile-title h5{
-    font-size: 25px;
+.profile-title header{
+    font-size: 30px;
+    padding: 20px 10px 70px 10px;
 }
 
 .profile-water{
     font-family: 'Roboto', sans-serif;  
-    width: 50%;   /*sets scroll and text side by side*/
-    float: left;   /*sets scroll and text side by side*/
-    padding: 0px 10px 60px;
+       /*sets scroll and text side by side*/
+    /*sets scroll and text side by side*/
+    padding: 0px 10px 40px;
 }
 .profile-water h6{
-    font-size: 15px;
+    font-size: 23px;
+    font-weight: bolder;
+    
 }
+
 
 .profile-water select{
     min-width: 250px;
@@ -110,20 +91,6 @@
     padding: 0px 10px  1px;
 }
 
-/*
-.remove-button button:disabled{
-    font-size: xx-small;
-    border-radius: 50px;
-    margin: 0px 50px 10px;
-    border: none;
-    background-color:#f3f3f3b9;
-    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
-    padding: 0px 10px  1px;
-}
-.remove-button button:enabled:hover{
-    background-color: #0000B2; 
-    transform: scale(1.1);
-}*/
 
 .detergent-container{
     font-family: 'Roboto', sans-serif;
@@ -141,22 +108,31 @@
     padding: 40px;
     cursor: pointer;
     border-style:groove;
-    
 }
 
-.detergent-WC{
+.detergent-WCP{
+    justify-content: center;
     width: 50%;
     float: left;
-    padding: 40px;
 }
-.detergent-WC h6{
+.detergent-WCP h6{
    padding: 0px 0px 0px 52px;
 }
-
+.manual-waterhardness{
+    font-family: 'Roboto', sans-serif;  
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 35px 10px 0px 10px;
+}
+.manual-waterhardness h6{
+    font-size: 23px;
+    font-weight: bolder;
+}
 .manual-waterhardness button {
     margin: 10px;
     padding: 10px 10px;
-    font-size: 10px;
+    font-size: 8px;
     border: none;
     border-radius: 5px;
     color: #fff;
@@ -183,68 +159,22 @@
 }
 
 .button-style {
-    margin: 20px;
+    display: flex;
+    position: relative;
+    margin: 8% 10px 10px 40px;
     padding: 5px 10px;
-    font-size: 15px;
-    border: none;
-    border-radius: 5px;
-    color: #000000;
-    background-color: #cacacab9;
-    cursor: pointer;
-    box-shadow: -3px 2px 5px rgba(164, 164, 164, 0.273);
 }
 
 
-  /* -----------------MEDIA CSS-----------*/
-
-@media (max-width: 768px) {
-
-    .profile-container{
-        display: flex;
-        flex-direction: column;
-        padding: 120px 40px 7px 20px;
-    }
-    .profile-name h5, p{
-        font-size: 40px;
-    }
+.button-style button{
+    margin: 10px 10px 10px 10px;
+    padding: 5px 11px;
+    font-size: 22px;
+    border: none;
+    border-radius: 5px;
+    color: #000000;
+    background-color: #e9e9e9eb;
+    cursor: pointer;
+    box-shadow: -3px 2px 5px rgba(164, 164, 164, 0.273);
     
-    .profile-title h5{
-        font-size: 22px;
-        
-    }
-
-    .profile-water h6{
-        font-size: 15px;
-    }
-    
-    .profile-water select{
-        min-width: 20vh;
-        border-radius: 50px;
-    }
-    
-    .profile-detergent h6{
-        font-size: 22px;
-        padding-left: 1vh;
-    }
-    button{
-        margin: 0 1vh 2vh;
-    }
-  
-    .detergent-type{
-        width: 15vh;
-        padding: 4vh 0;
-      
-    }
-    
-    .detergent-WC{
-        width: 50%;
-        float: left;
-        padding: 3vh 0 0;
-    }
-
-  
-
-
-
-
-  }
+}

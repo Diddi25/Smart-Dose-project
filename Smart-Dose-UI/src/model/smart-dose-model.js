@@ -102,6 +102,14 @@ export default {
         };
     },
 
+    removeUserWhiteDetergent() {
+        this.user_white_detergent = null;
+    },
+    
+    removeUserColorDetergent() {
+        this.user_color_detergent = null;
+    },
+
     setStatus(state){
         this.dispenser_status = state;
     },
@@ -125,9 +133,5 @@ export default {
     setServomotor(option){
         this.servomotor_option = option;
     },
-    
-
-    
-
     
 }
