@@ -151,6 +151,12 @@ export function checkUpdatesForUserFirebase(model) {
         console.log("disp status update:", newUserDispenserStatus);  // Logging for debugging
         model.setScaleWeight(newUserDispenserStatus);
     });
+    const userHardness = ref(db, "USERID:S/" + model.user.displayName + ": " + model.user.uid + "/userHardness");
+    onValue(userHardness, (snapshot) => {
+        const newHardness = snapshot.val();
+        console.log("hard grade update:", newHardness);  // Logging for debugging
+        model.setScaleWeight(newHardness);
+    });
     const userScaleWeightRef = ref(db, "USERID:S/" + model.user.displayName + ": " + model.user.uid + "/userScaleWeight");
     onValue(userScaleWeightRef, (snapshot) => {
         const newUserScaleWeight = snapshot.val();
@@ -173,6 +179,12 @@ export function checkUpdatesAsGuest(model) {
         const newUserDispenserStatus = snapshot.val();
         console.log("disp status update:", newUserDispenserStatus);  // Logging for debugging
         model.setScaleWeight(newUserDispenserStatus);
+    });
+    const userHardness = ref(db, "GuestUSER/userHardness");
+    onValue(userHardness, (snapshot) => {
+        const newHardness = snapshot.val();
+        console.log("hard grade update:", newHardness);  // Logging for debugging
+        model.setScaleWeight(newHardness);
     });
     const userScaleWeightRef = ref(db, "GuestUSER/userScaleWeight");
     onValue(userScaleWeightRef, (snapshot) => {
