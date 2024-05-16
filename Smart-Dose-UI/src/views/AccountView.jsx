@@ -63,7 +63,7 @@ function AccountView(props) {
     };
 
     return (
-        <div className="main">
+        <div className="main-2">
             <div className="header">
                 <header >Welcome {auth.currentUser ? auth.currentUser.displayName : 'Guest'}</header >
             </div>
