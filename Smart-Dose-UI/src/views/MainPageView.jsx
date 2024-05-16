@@ -158,13 +158,13 @@ function MainPageView(props) {
     };
 
     function filterWhiteDetergentsACB(detergent) {
-        if (detergent.type === 'white') {
+        if (detergent.type == "white") {
             return detergent;
         }
     };
 
     function filterColorDetergentsACB(detergent) {
-        if (detergent.type === 'color') {
+        if (detergent.type == "color") {
             return detergent;
         }
     };
@@ -194,6 +194,20 @@ function MainPageView(props) {
             return ('Cannot start before setting type and weight')
         };
     };
+
+    
+    function addDetergentACB() {
+        const theNewDetergent = {
+            brand : newDetergent.brand,
+            dosage : newDetergent.dosage, 
+            name : newDetergent.name,
+            dosageTable : newDetergent.dosageTable,
+            type: newDetergent.type,
+            weight: newDetergent.weight
+        }
+        props.addDetergent(theNewDetergent)
+    }
+
 
     return (
         <div className="main">
@@ -398,8 +412,6 @@ function MainPageView(props) {
                             </li>
                             </ul>
                             </div>
-                      
-
                             <h5>Dosage Table:</h5>
                             <table>
                                 <thead>
@@ -432,7 +444,8 @@ function MainPageView(props) {
                                 </tbody>
                             </table>
                             <br />
-                            <input type="submit" value="Add Detergent" />
+                            <input type="submit" value="Add Detergent" onClick={addDetergentACB}/>
+                            <button value="Add Detergent" onClick={addDetergentACB}>ADD</button>
                         </form>
                     </div>
              

@@ -12,7 +12,7 @@ export default {
     user_regionName_without_county : "undefined",
     user_white_detergent: {},
     user_color_detergent: {},
-    user_added_detergents: {},
+    user_added_detergent: {},
     scale_weight: 0,
     scale_status: false,
     selected_weight: null, // 1,5 / 4,5 / 6
@@ -37,7 +37,6 @@ export default {
     setWeightChoice(choice){
         this.weight_choice=choice
     },
-    
     changeUserHardness(location) { //here comes the string
         const findCityACB = hardnessTuple => {
             if (hardnessTuple.Location === location) {
@@ -45,6 +44,13 @@ export default {
             }
         };
         this.user_hardness = this.HardnessData.find(findCityACB);
+    },
+
+    addNewDetergent(newDetergent) {
+        console.log(newDetergent);
+        this.user_added_detergent = newDetergent;
+        this.DetergentData = [...this.DetergentData, this.user_added_detergent];
+        console.log('The whole detergent DB', this.DetergentData);
     },
 
     setUserHardness() {

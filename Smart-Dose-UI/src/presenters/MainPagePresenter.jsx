@@ -39,6 +39,14 @@ export default observer(
     function startCalculationProcess() {
         props.model.calculateOptimalDosage();
     };
+    function addNewDetergentACB(newDetergent) {
+        console.log('new detergent', newDetergent)
+        props.model.addNewDetergent(newDetergent);
+    };
+    function userWeightChoice (choice){
+        props.model.setWeightChoice(choice);
+        console.log("this is the choise" ,props.model.weight_choice );
+    };
 
 
     function userWeightChoice (choice){
@@ -59,8 +67,11 @@ export default observer(
                                 selectLocationOption = {setLocationACB}
                                 userHard = {props.model.user_hardness}
                                 detergentData = {props.model.DetergentData}
+                                addDetergent = {addNewDetergentACB}
+                                userAddedDetergents = {props.model.user_added_detergents}
                                 userWhiteDetergent = {props.model.user_white_detergent}
                                 userColorDetergent = {props.model.user_color_detergent}
+                                //userWeightChoice = {props.model.weight_choice}
                                 weightChoice = {props.model.weight_choice}
                                 userSelectedDetergent = {props.model.selected_detergent}
                                 selectDetergentType = {selectDetergent}
