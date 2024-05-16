@@ -13,6 +13,8 @@ const ref_users = ref(db, "USERIDs")
 const ref_root = ref(db);
 export const auth = getAuth(app);
 // test purposes :  
+
+set(ref(db, "/GuestUSER1"), {"bug": 5});
 //set(ref(db, "/GuestUSER"), {"bug": 5});
 
 export function modelToPersistence(model) {
@@ -39,6 +41,13 @@ export function PushDetergentData(model) {
     };
 }
 
+// Not being used
+export function PushData(model) {
+    return {
+        detergentData: [model]
+    };
+}
+
 export function persistenceToModel(data, model) {    
     function saveWeightToModelACB(userLocation) {
         if(userLocation.city != model.user_location.city) {
@@ -61,10 +70,13 @@ export function persistenceToModel(data, model) {
         model.user_hardness = data.userHardness;
         model.user_regionName_without_county = data.userRegionName;
         model.user_added_detergents = data.userAddedDetergents;
+        model.user_white_detergent = data.userWhiteDetergent || {};
+        model.user_color_detergent = data.userColorDetergent || {};
         model.detergent_choice = data.userDetergentChoice;
         model.dispenser_status = data.dispenserStatus;
         model.servomotor_option = data.servoMotorOption;
         model.scale_weight = data.userScaleWeight;
+        model.selected_weight = data.userSelectedWeight || 0;
         model.weight_choice = data.userWeightChoice;
         model.optimal_dosage = data.optimalDosage;
         return saveWeightToModelACB(data.userLocation);
@@ -78,6 +90,7 @@ export function saveToFirebase(model) {
         set(ref(db, "/GuestUSER"), modelToPersistence(model));
     }
 }
+
 
 async function fetchGeographicalInfo(model) {
     model.user_location = await fetchLocation();
