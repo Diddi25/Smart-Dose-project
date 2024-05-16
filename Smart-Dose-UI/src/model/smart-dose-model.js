@@ -1,30 +1,22 @@
-import { observer } from "mobx-react-lite";
-import firebaseObject from "../backupTrash/firebaseObject.js";
+
 import HardnessDataTable from "../data/hardnessData.js";
 import DetergentDataTable from "../data/detergentData.js";
-import { getDosageTable } from "../algoritm.js";
-import { getDosageConversion } from "../algoritm.js";
-import { getWeightRanges } from "../algoritm.js";
-import { getDosageInLiter } from "../algoritm.js";
-import { convertToGram } from "../algoritm.js";
 import { mainAlgoritm } from "../detergents/algorithm.js";
 
 export default {
     /*properties that can be persisted*/
-
     HardnessData : HardnessDataTable, // const HardnessDataTable = [{Location: "Stockholm", Hardness: 3, ID: 199}]
     DetergentData : DetergentDataTable,
     user_location : {}, //innehåller .country .city .regionName || countryCode, region, zip, lat, lon, timezone, isp, org, as, query
-    user_hardness : {}, //{Location: , Hardness: , ID:}
+    user_hardness : {Location: "Stockholm", Hardness: 5, ID: 199}, //{Location: , Hardness: , ID:}
     user_regionName_without_county : "undefined",
     user_white_detergent: {},
     user_color_detergent: {},
     user_added_detergents: {},
-    detergent_choice: 0, // 0 == white 1 == color
     scale_weight: 0,
     scale_status: false,
     selected_weight: null, // 1,5 / 4,5 / 6
-    weight_choice: 0, // 0 == selected 1 == scale 
+    weight_choice: -1, // 0 == selected 1 == scale 
     sensor_weight: 0,
     dispenser_status : false,
     servomotor_option: 0, //0 == WHITE container 1 == COLOR container
@@ -33,27 +25,11 @@ export default {
 
     calculateOptimalDosage() {
         if (this.weight_choice === 1) {
-            this.optimal_dosage = mainAlgoritm(this.selected_detergent, this.scale_weight, this.user_hardness);
+            const weight_kg = this.selected_detergent/1000;
+            this.optimal_dosage = mainAlgoritm(weight_kg, this.scale_weight, this.user_hardness);
         } else {
             this.optimal_dosage = mainAlgoritm(this.selected_detergent, this.selected_weight, this.user_hardness);
-        }
-        
-        /*let relevantDosageTable = {}; //behöver detergentChoice, whiteDetergent, colorDetergent
-        let relevantWeightRange = {};
-        let dosageConversion = ""; //detergentChoice whiteDetergent, colorDetergent
-        let literDosage = "";
-
-        relevantDosageTable = getDosageTable(this.detergent_choice, this.user_white_detergent, this.user_color_detergent);
-        dosageConversion = getDosageConversion(this.detergent_choice, this.user_white_detergent, this.user_color_detergent);
-        relevantWeightRange = getWeightRanges(this.user_hardness.Hardness, relevantDosageTable);
-        if(this.weight_choice == 0) {
-            literDosage = getDosageInLiter(this.selected_weight, relevantWeightRange)
-        } else {
-            literDosage = getDosageInLiter(this.scale_weight, relevantWeightRange)
-        }
-
-        this.optimal_dosage = convertToGram(dosageConversion, literDosage); //convertToGram /// dosageConversion, literDosage
-        */
+        };
     },
 
 
@@ -78,57 +54,67 @@ export default {
             }
         };
         if(this.user_hardness.Location === undefined) {
-            console.log('first undefined')
             this.user_hardness = this.HardnessData.find(findCityACB);
-        }
+        };
         if (this.user_hardness === undefined) {
-            console.log('second undefined')
             this.setHardnessWithRegionName();
-        }
-        const findStockholmACB = hardnessTuple => {
-            if (hardnessTuple.Location === "Stockholm") {
-                return hardnessTuple;
-            }
         };
         if(this.user_hardness === undefined) {
-            this.user_hardness = this.HardnessData.find(findStockholmACB)
-        }
+            this.setStockholmAsLocation();
+        };
     },
 
     setHardnessWithRegionName() {
         const findRegionNameACB = hardnessTuple => {
             if (this.user_regionName_without_county === hardnessTuple.Location) {
                 return hardnessTuple;
-            }
+            };
         };
         const extractCounty = () => {
             function filterOutCountyACB(regionName) {
                 return !(regionName === "county");
-            }
+            };
             const regionName = this.user_location.regionName;
             let words = regionName.split(" ");
-            words = words.filter(filterOutCountyACB)
+            words = words.filter(filterOutCountyACB);
             console.log(words, 'from', regionName); // Output: "Stockholm" from "Stockholm County"
             return words;
         };
         this.user_regionName_without_county = extractCounty();
-        this.user_hardness = this.HardnessData.find(findRegionNameACB)
+        this.user_hardness = this.HardnessData.find(findRegionNameACB);
+    },
+
+    setStockholmAsLocation() {
+        const findStockholmACB = hardnessTuple => {
+            if (hardnessTuple.Location === "Stockholm") {
+                return hardnessTuple;
+            };
+        };
+        this.user_hardness = this.HardnessData.find(findStockholmACB);
     },
 
     setDetergentType(detergent_name) {
         const findDetergentACB = detergent => {
             if (detergent.name === detergent_name) {
                 return detergent;
-            }
+            };
         };
         this.selected_detergent = this.DetergentData.find(findDetergentACB)
         if(this.selected_detergent.type === 'white') {
             this.user_white_detergent = this.selected_detergent;
-            this.detergent_choice = 0; //user wants to use white
+            console.log('white detergent selected', this.user_white_detergent)
         } else {
             this.user_color_detergent = this.selected_detergent;
-            this.detergent_choice = 1; //user wants to use color
-        }
+            console.log('color detergent selected', this.user_color_detergent)
+        };
+    },
+
+    removeUserWhiteDetergent() {
+        this.user_white_detergent = null;
+    },
+    
+    removeUserColorDetergent() {
+        this.user_color_detergent = null;
     },
 
     setStatus(state){
@@ -136,24 +122,23 @@ export default {
     },
 
     setScaleStatus(state){
-        this.scale_status = state
+        this.scale_status = state;
     },
     
     setScaleWeight(weight){
         this.scale_weight = weight;
+        this.weight_choice = 1; //means the user wants to use scale weight
+        console.log("new weight choice scale:", this.weight_choice);
     },
 
     setSelectedScaleWeight(manualWeight) {
         this.selected_weight = manualWeight;
-        this.weight_choice = 0; //means the user wants to select weight
+        this.weight_choice = 0; //means the user wants to select the weight
+        console.log("new weight choice select:", this.weight_choice);
     },
 
     setServomotor(option){
         this.servomotor_option = option;
     },
-    
-
-    
-
     
 }
