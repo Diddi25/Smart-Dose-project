@@ -31,7 +31,8 @@ export function modelToPersistence(model) {
         userSelectedWeight: model.selected_weight,
         userWeightChoice: model.weight_choice,
         servoMotorOption: model.servomotor_option,
-        optimalDosage: model.optimal_dosage
+        optimalDosage: model.optimal_dosage,
+        scaleStatus:model.scale_status,
     };
 };
 
@@ -56,6 +57,7 @@ export function persistenceToModel(data, model) {
     };
     if(data) {
         model.user_location = data.userLocation;
+        model.scale_status = data.scaleStatus;
         model.user_hardness = data.userHardness;
         model.user_regionName_without_county = data.userRegionName;
         model.user_added_detergents = data.userAddedDetergents;
@@ -133,13 +135,15 @@ export default async function connectToFirebase(model, watchFunction){
             model.selected_weight,
             model.weight_choice,
             model.servomotor_option,
-            model.optimal_dosage
+            model.optimal_dosage,
+            model.scale_status,
         ];
     };
     function sideEffectACB() {
         model.setUserHardness(); //this has to be evoked at this point
         saveToFirebase(model);
     };
+
 }
 
 export function checkUpdatesForUserFirebase(model) {
@@ -198,4 +202,5 @@ export function checkUpdatesAsGuest(model) {
         console.log("scale status update:", newUserScaleStatus);  // Logging for debugging
         model.setScaleWeight(newUserScaleStatus);
     });
+
 }

@@ -39,6 +39,14 @@ export default observer(
         props.model.calculateOptimalDosage();
     };
 
+
+    function userWeightChoice (choice){
+    props.model.setWeightChoice(choice);
+
+    console.log("this is the choise" ,props.model.weight_choice );
+
+    };
+
     return <MainPageView 
                                 weight = {props.model.scale_weight}      
                                 status={props.model.dispenser_status} 
@@ -56,6 +64,7 @@ export default observer(
                                 userSelectedDetergent = {props.model.selected_detergent}
                                 selectDetergentType = {selectDetergent}
                                 setSelectedWeight = {selectWeight}
+                                userWeightChoice ={userWeightChoice}
                                 startCalculateDosage = {startCalculationProcess}
                                 />;
                                 

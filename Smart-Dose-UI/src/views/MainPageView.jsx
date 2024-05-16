@@ -106,14 +106,16 @@ function MainPageView(props) {
 
     function handleScaleWeightACB() {
         // resey  the value to 0 for 1 sec
-        setTimeout(() => props.setWeight(0), 1000);
+       // setTimeout(() => props.setWeight(0), 1000);
         //show the firebase scale value
 
         props.scaleChange(true);
         props.setWeight(props.weight);
 
+        props.userWeightChoice(1);
+        
         // false after 6 seconds
-        setTimeout(() => props.scaleChange(false), 6000);
+        setTimeout(() => props.scaleChange(false), 10000);
     };
 
     function buttonHandlerStart() {
