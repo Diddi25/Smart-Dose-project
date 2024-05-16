@@ -4,10 +4,6 @@ import logo from '../images/logo3.png';
 import { auth } from '../model/firebaseModel.js'
 import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 
-
-  
-
-
 function NavigationBarView(props) {
     const [activeLink, setactiveLink] = useState("/");
     const [signInOrOutText, setSignText] = useState('Sign in');
@@ -22,13 +18,6 @@ function NavigationBarView(props) {
         }
     }, []);
 
-    /*
-    useEffect(()=> {
-        const location = window.location.hash;
-        setactiveLink(location)
-    },[]);
-*/
-
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user) {
@@ -42,7 +31,6 @@ function NavigationBarView(props) {
     
         return () => unsubscribe();
     }, []);
-    
 
     function signInACB() {
         const provider = new GoogleAuthProvider();
@@ -52,11 +40,9 @@ function NavigationBarView(props) {
            window.location.href = "#/account"; 
           console.log('Logged in')
         } else {
-            
           window.location.href = "#/account"; 
-        }
-      
-    }
+        };
+    };
 
     return (
         <div>
@@ -101,7 +87,6 @@ function NavigationBarView(props) {
                             onClick={()=>{setactiveLink("#/account");signInACB();}}
                             id="#/account">
                                 {signInOrOutText}  
-                                
                         </a>
                     
                     </li>
@@ -110,7 +95,6 @@ function NavigationBarView(props) {
         </div>
         </div> 
     );
-
 }
 
 export default NavigationBarView;

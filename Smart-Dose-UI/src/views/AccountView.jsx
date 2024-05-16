@@ -105,9 +105,6 @@ function AccountView(props) {
                     </div>
                     </div>
                 </div>
-
-
-
                 <div className="card-profile">
                     <div className="profile-detergent">
                         <div className="profile-title">

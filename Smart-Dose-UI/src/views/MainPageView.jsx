@@ -160,7 +160,7 @@ function MainPageView(props) {
     function filterWhiteDetergentsACB(detergent) {
         if (detergent.type == "white") {
             return detergent;
-        }
+        };
     };
 
     function filterColorDetergentsACB(detergent) {
@@ -188,14 +188,14 @@ function MainPageView(props) {
         };
     };
     function informUser() {
-        if(props.userSelectedDetergent && props.userHard && props.weightChoice != -1) {
+        console.log(props.userSelectedDetergent.name);
+        if(props.userSelectedDetergent.name && props.userHard && props.weightChoice != -1) {
             return ('Ready to start')
         } else {
             return ('Cannot start before setting type and weight')
         };
     };
 
-    
     function addDetergentACB() {
         const theNewDetergent = {
             brand : newDetergent.brand,
@@ -206,7 +206,7 @@ function MainPageView(props) {
             weight: newDetergent.weight
         }
         props.addDetergent(theNewDetergent)
-    }
+    };
 
 
     return (
@@ -306,7 +306,9 @@ function MainPageView(props) {
                         <button
                             id="cancel"
                             onClick={() => { setButtonDisabled(false); props.statusChange(false); }}
-                            disabled={!isButtonDisabled}>CANCEL remove</button>
+                            disabled={!isButtonDisabled}>
+                            CANCEL
+                        </button>
                     </div>
                     <div>
                         {informUser()}
@@ -444,8 +446,7 @@ function MainPageView(props) {
                                 </tbody>
                             </table>
                             <br />
-                            <input type="submit" value="Add Detergent" onClick={addDetergentACB}/>
-                            <button value="Add Detergent" onClick={addDetergentACB}>ADD</button>
+                            <button value="Add Detergent" onClick={addDetergentACB}>Add Detergent</button>
                         </form>
                     </div>
              
