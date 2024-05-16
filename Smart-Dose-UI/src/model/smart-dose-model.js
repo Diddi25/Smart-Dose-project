@@ -8,7 +8,7 @@ export default {
     HardnessData : HardnessDataTable, // const HardnessDataTable = [{Location: "Stockholm", Hardness: 3, ID: 199}]
     DetergentData : DetergentDataTable,
     user_location : {}, //innehåller .country .city .regionName || countryCode, region, zip, lat, lon, timezone, isp, org, as, query
-    user_hardness : {}, //{Location: , Hardness: , ID:}
+    user_hardness : {Location: "Stockholm", Hardness: 5, ID: 199}, //{Location: , Hardness: , ID:}
     user_regionName_without_county : "undefined",
     user_white_detergent: {},
     user_color_detergent: {},
