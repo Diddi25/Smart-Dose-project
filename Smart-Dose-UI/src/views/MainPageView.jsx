@@ -306,9 +306,13 @@ function MainPageView(props) {
                         <button
                             id="cancel"
                             onClick={() => { setButtonDisabled(false); props.statusChange(false); }}
+<<<<<<< HEAD
                             disabled={!isButtonDisabled}>
                             CANCEL
                         </button>
+=======
+                            disabled={!isButtonDisabled}>CANCEL</button>
+>>>>>>> 59f2e20918f30021b0630b3a4b37e0390410348c
                     </div>
                     <div>
                         {informUser()}
@@ -446,7 +450,11 @@ function MainPageView(props) {
                                 </tbody>
                             </table>
                             <br />
+<<<<<<< HEAD
                             <button value="Add Detergent" onClick={addDetergentACB}>Add Detergent</button>
+=======
+                            <button value="Add Detergent" onClick={addDetergentACB}>ADD</button>
+>>>>>>> 59f2e20918f30021b0630b3a4b37e0390410348c
                         </form>
                     </div>
              
