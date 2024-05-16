@@ -2,7 +2,6 @@
 import firebaseConfig from "/src/firebaseConfig.js";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, set, update, onValue } from "firebase/database";
-import React, { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { fetchLocation } from "../geoSource";
 
@@ -14,7 +13,7 @@ const ref_root = ref(db);
 export const auth = getAuth(app);
 // test purposes :  
 
-set(ref(db, "/GuestUSER1"), {"bug": 5});
+//set(ref(db, "/GuestUSER1"), {"bug": 5});
 //set(ref(db, "/GuestUSER"), {"bug": 5});
 
 export function modelToPersistence(model) {
@@ -28,6 +27,7 @@ export function modelToPersistence(model) {
         userSelectedDetergent: model.selected_detergent,
         dispenserStatus: model.dispenser_status,
         userScaleWeight: model.scale_weight,
+        userScaleStatus: model.scale_status,
         userSelectedWeight: model.selected_weight,
         userWeightChoice: model.weight_choice,
         servoMotorOption: model.servomotor_option,
@@ -62,9 +62,10 @@ export function persistenceToModel(data, model) {
         model.user_white_detergent = data.userWhiteDetergent || {};
         model.user_color_detergent = data.userColorDetergent || {};
         model.selected_detergent = data.userSelectedDetergent || {};
-        model.dispenser_status = data.dispenserStatus;
+        model.dispenser_status = data.dispenserStatus || false;
         model.servomotor_option = data.servoMotorOption;
         model.scale_weight = data.userScaleWeight;
+        model.scale_status = data.userScaleStatus || false;
         model.selected_weight = data.userSelectedWeight || 0;
         model.weight_choice = data.userWeightChoice || -1;
         model.optimal_dosage = data.optimalDosage;
@@ -79,7 +80,6 @@ export function saveToFirebase(model) {
         set(ref(db, "/GuestUSER"), modelToPersistence(model));
     };
 };
-
 
 async function fetchGeographicalInfo(model) {
     model.user_location = await fetchLocation();
@@ -107,7 +107,6 @@ export function readFromDatabase() {
 
 export default async function connectToFirebase(model, watchFunction){
     fetchGeographicalInfo(model);
-    
     function loginOrOutACB(user) {
         if (user) {
             model.user=user;
@@ -118,11 +117,8 @@ export default async function connectToFirebase(model, watchFunction){
         }
         readFromDatabase();
     }
- 
     onAuthStateChanged(auth, loginOrOutACB);
-    
     watchFunction(checkACB, sideEffectACB);
-    
     function checkACB() {
         return [
             model.user_location,
@@ -134,13 +130,13 @@ export default async function connectToFirebase(model, watchFunction){
             model.selected_detergent,
             model.dispenser_status,
             model.scale_weight,
+            model.scale_status,
             model.selected_weight,
             model.weight_choice,
             model.servomotor_option,
             model.optimal_dosage
         ];
     };
-    
     function sideEffectACB() {
         model.setUserHardness(); //this has to be evoked at this point
         saveToFirebase(model);
@@ -150,21 +146,45 @@ export default async function connectToFirebase(model, watchFunction){
 export function checkUpdatesForUserFirebase(model) {
     // Listener for userScaleWeight
     console.log("setup listener for user");
+    const userDispenserStatus = ref(db, "USERID:S/" + model.user.displayName + ": " + model.user.uid + "/dispenserStatus");
+    onValue(userDispenserStatus, (snapshot) => {
+        const newUserDispenserStatus = snapshot.val();
+        console.log("disp status update:", newUserDispenserStatus);  // Logging for debugging
+        model.setScaleWeight(newUserDispenserStatus);
+    });
     const userScaleWeightRef = ref(db, "USERID:S/" + model.user.displayName + ": " + model.user.uid + "/userScaleWeight");
     onValue(userScaleWeightRef, (snapshot) => {
         const newUserScaleWeight = snapshot.val();
-        console.log("Real-time userScaleWeight update:", newUserScaleWeight);  // Logging for debugging
+        console.log("scale weight update:", newUserScaleWeight);  // Logging for debugging
         model.setScaleWeight(newUserScaleWeight);
+    });
+    const userScaleStatus = ref(db, "USERID:S/" + model.user.displayName + ": " + model.user.uid + "/userScaleStatus");
+    onValue(userScaleStatus, (snapshot) => {
+        const newUserScaleStatus = snapshot.val();
+        console.log("scale status update:", newUserScaleStatus);  // Logging for debugging
+        model.setScaleWeight(newUserScaleStatus);
     });
 }
 
 export function checkUpdatesAsGuest(model) {
     // Listener for userScaleWeight
     console.log("setup listener for user as guest");
+    const userDispenserStatus = ref(db, "GuestUSER/dispenserStatus");
+    onValue(userDispenserStatus, (snapshot) => {
+        const newUserDispenserStatus = snapshot.val();
+        console.log("disp status update:", newUserDispenserStatus);  // Logging for debugging
+        model.setScaleWeight(newUserDispenserStatus);
+    });
     const userScaleWeightRef = ref(db, "GuestUSER/userScaleWeight");
     onValue(userScaleWeightRef, (snapshot) => {
         const newUserScaleWeight = snapshot.val();
-        console.log("Real-time userScaleWeight update:", newUserScaleWeight);  // Logging for debugging
+        console.log("scale weight update:", newUserScaleWeight);  // Logging for debugging
         model.setScaleWeight(newUserScaleWeight);
+    });
+    const userScaleStatus = ref(db, "GuestUSER/userScaleStatus");
+    onValue(userScaleStatus, (snapshot) => {
+        const newUserScaleStatus = snapshot.val();
+        console.log("scale status update:", newUserScaleStatus);  // Logging for debugging
+        model.setScaleWeight(newUserScaleStatus);
     });
 }

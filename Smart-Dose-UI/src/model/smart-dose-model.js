@@ -14,11 +14,11 @@ export default {
     user_color_detergent: {},
     user_added_detergents: {},
     scale_weight: 0,
-    scale_status: true,
+    scale_status: false,
     selected_weight: null, // 1,5 / 4,5 / 6
     weight_choice: -1, // 0 == selected 1 == scale 
     sensor_weight: 0,
-    dispenser_status : true,
+    dispenser_status : false,
     servomotor_option: 0, //0 == WHITE container 1 == COLOR container
     optimal_dosage: 0,
     selected_detergent: {},
