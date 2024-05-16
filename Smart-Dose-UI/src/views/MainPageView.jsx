@@ -16,6 +16,7 @@ function MainPageView(props) {
     const [buttonPopupWhite, setButtonPopupWhite] = useState(false);
     const [buttonPopupColor, setButtonPopupColor] = useState(false);
     const [buttonPopupStatus, setButtonPopupStatus] = useState(false);
+    
     useEffect(() => {
         setButtonDisabled(props.status); // Disable the start button if status is true
         setStartDisabled(!props.status); // Enable the start button if status is false
