@@ -72,3 +72,33 @@
     font-size: 50px;
     margin: 0;
 }
+
+
+/* -------------- CSS media ----------*/
+
+@media (max-width: 600px) {
+
+    .header-about h1 {
+        font-size: 30px;
+        margin: 0;
+    }
+    
+
+.card-intructions{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 360px;
+    max-width: 360px;
+  
+}
+.instr-text p{
+    font-size: 17px;
+    line-height: 1.4;
+    padding: 10px 50px 10px 50px;
+    text-align: center;
+}
+
+
+
+}
