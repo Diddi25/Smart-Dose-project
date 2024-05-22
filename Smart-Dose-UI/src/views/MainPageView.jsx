@@ -135,6 +135,7 @@ function MainPageView(props) {
             return (
                 <div className="status">
                     <div>The dispenser is pouring/running</div>
+                    {/* Renering gif taken from https://brfenergi.se/iprog/loading.gif */}
                     <img id="gif" src="https://brfenergi.se/iprog/loading.gif" height="100" />
                 </div>
             )
@@ -315,6 +316,7 @@ function MainPageView(props) {
                     </div>
                 </div>
             </div>
+            {/* implementation of popup taken from https://www.youtube.com/watch?v=i8fAO_zyFAM */}
             <Popup trigger={buttonPopupScale} setTrigger={setButtonPopupScale} className="card">
                 <div >
                     <div className="card-title"> SCALE WEIGHT </div>

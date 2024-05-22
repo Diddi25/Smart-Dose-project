@@ -1,3 +1,6 @@
+/* implementation of popup taken from 
+https://www.youtube.com/watch?v=i8fAO_zyFAM */
+
 import React from 'react';
 import "../css/popup.css";
 
