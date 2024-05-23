@@ -1,5 +1,38 @@
+/*
+  WiFiSSLClient.h 
+  This file is part of the Arduino NINA firmware.
+  Copyright (c) 2018 Arduino SA. All rights reserved.
+------------------------------------------------------------
+#include <ArduinoHttpClient.h> Library to simplify HTTP fetching on Arduino
+(c) Copyright Arduino. 2016
+ Released under Apache License, version 2.0
+------------------------------------------------------
+ArduinoJson - https://arduinojson.org
+Copyright © 2014-2024, Benoit BLANCHON
+MIT License
+ https://arduinojson.org/v7/example/http-client/
+
+ ----------------------------------
+#include <Servo.h>
+ Controlling a servo position using a potentiometer (variable resistor)
+ by Michal Rinott <http://people.interaction-ivrea.it/m.rinott>
+mdified on 8 Nov 2013
+ by Scott Fitzgerald
+ http://www.arduino.cc/en/Tutorial/Knob
+
+---------------------------------------------------
+#include "HX711.h"
+  AUTHOR: Rob Tillaart
+    PURPOSE: HX711 demo
+   URL: https://github.com/RobTillaart/HX711
+
+
+
+*/
+
 #include "HX711.h"
 #include <WiFiS3.h>
+
 #include "WiFiSSLClient.h"
 #include <ArduinoHttpClient.h>
 #include <ArduinoJson.h>
